@@ -1,0 +1,2737 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5"/>
+  <meta name="description" content="Stackly — Shop keyboards, mice, monitors, gaming gear, storage and more computer accessories. Salem, Tamil Nadu."/>
+  <title>Store — Stackly Computer Accessories</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+
+  
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+  
+  <link rel="stylesheet" href="style.css?v=5"/>
+
+  <style>
+    /* ══════════════════════════════════════════════
+       STORE-SPECIFIC STYLES
+    ══════════════════════════════════════════════ */
+
+    
+    .store-header {
+      background-image: linear-gradient(to right, rgba(13,27,42,0.85), rgba(13,27,42,0.4)), url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 9rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 450px;
+    }
+    .store-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 80% 50%, rgba(56,189,248,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 20% 30%, rgba(37,99,235,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .store-header__inner { position: relative; z-index: 2; }
+
+    
+    .store-toolbar {
+      background: #fff;
+      border-bottom: 1px solid rgba(37,99,235,0.1);
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 64px;
+      z-index: 500;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+    }
+    .store-toolbar__inner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .store-toolbar__search {
+      display: flex;
+      align-items: center;
+      background: #eff6ff;
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1.5px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      flex: 1;
+      min-width: 180px;
+      max-width: 340px;
+    }
+    .store-toolbar__search:focus-within {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+    .store-toolbar__search i {
+      padding: 0 0.75rem 0 1rem;
+      color: #687d94;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    .store-toolbar__search input {
+      flex: 1;
+      padding: 0.55rem 0.75rem 0.55rem 0;
+      font-size: 0.86rem;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #0d1b2a;
+      font-family: inherit;
+      min-width: 0;
+    }
+    .store-sort-select {
+      padding: 0.52rem 2.2rem 0.52rem 1rem;
+      border: 1.5px solid rgba(37,99,235,0.18);
+      border-radius: 9999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #0d1b2a;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%232563eb'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      font-family: inherit;
+      min-width: 0;
+    }
+    .store-sort-select:focus { border-color: #2563eb; }
+
+    .results-count {
+      font-size: 0.82rem;
+      color: #687d94;
+      font-weight: 600;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+    .view-toggle {
+      display: flex;
+      gap: 0.25rem;
+      flex-shrink: 0;
+    }
+    .view-btn {
+      width: 36px; height: 36px;
+      border-radius: 0.5rem;
+      background: #eff6ff;
+      border: 1.5px solid transparent;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      color: #687d94;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-btn.active, .view-btn:hover {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+
+    
+    .cat-filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 0.25rem;
+    }
+    .cat-filter-bar::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1.5px solid rgba(37,99,235,0.2);
+      background: #fff;
+      color: #687d94;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cat-pill.active, .cat-pill:hover {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+
+    
+    .shop-sidebar-wrapper {
+      position: sticky;
+      top: 130px;
+    }
+    .sidebar-widget {
+      background: #fff;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin-bottom: 1.1rem;
+    }
+    .sidebar-widget__title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0d1b2a;
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(37,99,235,0.1);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .sidebar-widget__title i { color: #2563eb; }
+
+    
+    .filter-checkbox-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .filter-checkbox-item {
+      display: flex; align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      font-size: 0.86rem;
+      color: #2e4057;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .filter-checkbox-item input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: #2563eb;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .filter-cb-count {
+      margin-left: auto;
+      font-size: 0.74rem;
+      background: #eff6ff;
+      color: #2563eb;
+      padding: 0.1rem 0.5rem;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    
+    .rating-filter-item {
+      display: flex; align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.84rem;
+      color: #687d94;
+      padding: 0.3rem 0;
+      transition: color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .rating-filter-item:hover { color: #2563eb; }
+    .stars-row { color: #f7b731; font-size: 0.78rem; display: flex; gap: 2px; }
+
+    
+    .price-range-wrap { padding-top: 0.5rem; }
+    .price-display {
+      display: flex; justify-content: space-between;
+      font-size: 0.84rem; font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 0.75rem;
+    }
+    .range-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: linear-gradient(to right, #2563eb 0%, #2563eb var(--val,60%), rgba(37,99,235,0.15) var(--val,60%), rgba(37,99,235,0.15) 100%);
+      border-radius: 9999px;
+      outline: none;
+      cursor: pointer;
+    }
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.18);
+      cursor: pointer;
+    }
+
+    
+    .prod-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease;
+      position: relative;
+      height: 100%;
+    }
+    .prod-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 24px 60px rgba(37,99,235,0.22);
+    }
+    .prod-thumb,
+    .prod-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+      aspect-ratio: 1/1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .prod-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      padding: 0.85rem;
+      box-sizing: border-box;
+      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      display: block;
+    }
+    .prod-card:hover .prod-img { transform: scale(1.08); }
+    .rating-filter-item.active {
+      background: #eff6ff;
+      color: #2563eb;
+      font-weight: 700;
+      border-radius: var(--r-sm);
+      padding: 0.25rem 0.5rem;
+    }
+    .prod-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(37,99,235,0.9) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1rem;
+      gap: 0.5rem;
+    }
+    .prod-card:hover .prod-overlay { opacity: 1; }
+    .prod-action-btn,
+    .prod-action {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      color: #2563eb;
+      cursor: pointer;
+      transform: translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1) var(--d,0s), background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .prod-card:hover .prod-action-btn,
+    .prod-card:hover .prod-action { transform: translateY(0); }
+    .prod-action-btn:nth-child(1), .prod-action:nth-child(1){--d:0.05s;}
+    .prod-action-btn:nth-child(2), .prod-action:nth-child(2){--d:0.10s;}
+    .prod-action-btn:nth-child(3), .prod-action:nth-child(3){--d:0.15s;}
+    .prod-action-btn:hover, .prod-action:hover { background: #2563eb; color: #fff; }
+    .prod-overlay .prod-action-btn[onclick*="openQuickView"],
+    .prod-overlay .prod-action-btn[aria-label="Quick View"],
+    .prod-overlay .prod-action[title="Quick View"] {
+      display: none !important;
+    }
+    .prod-badge {
+      position: absolute; top: 0.7rem; left: 0.7rem;
+      background: #2563eb; color: #fff;
+      font-size: 0.68rem; font-weight: 700;
+      padding: 0.22rem 0.55rem;
+      border-radius: 9999px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    .prod-badge.sale { background: #f05a5a; }
+    .prod-badge.new  { background: #38bdf8; color: #0d1b2a; }
+    .prod-body,
+    .prod-info { padding: 1rem 1.1rem 1.2rem; }
+    .prod-name,
+    .prod-title { font-size: 0.9rem; font-weight: 700; color: #0d1b2a; margin-bottom: 0.25rem; line-height: 1.4; }
+    .prod-brand { font-size: 0.72rem; color: #687d94; margin-bottom: 0.35rem; }
+    .prod-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.35rem; }
+    .prod-meta .prod-brand { margin-bottom: 0; }
+    .prod-stars,
+    .prod-rating { color: #f7b731; font-size: 0.72rem; }
+    .prod-stars span { color: #687d94; margin-left: 0.25rem; font-size: 0.7rem; }
+    .prod-price .current-price { font: inherit; color: inherit; }
+    .prod-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: 0.55rem; }
+    .prod-price { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #2563eb; }
+    .prod-price del { font-size: 0.78rem; color: #687d94; margin-left: 0.3rem; font-family: var(--font-body); font-weight: 400; }
+    .prod-cart-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #eff6ff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      color: #2563eb;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .prod-cart-btn:hover { background: #2563eb; color: #fff; transform: scale(1.15) rotate(8deg); }
+
+    
+    .products-grid.list-view { display: flex; flex-direction: column; gap: 1rem; }
+    .products-grid.list-view .prod-col { width: 100%; max-width: 100%; flex: 0 0 100%; }
+    .products-grid.list-view .prod-card {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      min-height: 156px;
+      height: auto;
+    }
+    .products-grid.list-view .prod-thumb,
+    .products-grid.list-view .prod-img-wrap {
+      width: 176px;
+      min-width: 176px;
+      height: auto;
+      aspect-ratio: auto;
+      border-right: 1.5px solid rgba(37,99,235,0.09);
+      border-radius: 1.25rem 0 0 1.25rem;
+    }
+    .products-grid.list-view .prod-body {
+      flex: 1;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(120px, auto) minmax(150px, auto);
+      grid-template-areas:
+        "brand stars price"
+        "name stars price";
+      align-items: center;
+      column-gap: 1.5rem;
+      row-gap: 0.2rem;
+      padding: 1.25rem 1.5rem;
+    }
+    .products-grid.list-view .prod-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.25rem 1.5rem;
+      gap: 0.35rem;
+    }
+    .products-grid.list-view .prod-info .prod-price-row { margin-top: 0.15rem; }
+    .products-grid.list-view .prod-brand { grid-area: brand; align-self: end; margin-bottom: 0; }
+    .products-grid.list-view .prod-name,
+    .products-grid.list-view .prod-title {
+      grid-area: name;
+      align-self: start;
+      margin-bottom: 0;
+      font-size: 1.02rem;
+      line-height: 1.35;
+    }
+    .products-grid.list-view .prod-brand,
+    .products-grid.list-view .prod-name,
+    .products-grid.list-view .prod-title { min-width: 0; }
+    .products-grid.list-view .prod-stars,
+    .products-grid.list-view .prod-rating { grid-area: stars; margin-bottom: 0; white-space: nowrap; }
+    .products-grid.list-view .prod-price-row {
+      grid-area: price;
+      margin-top: 0;
+      justify-content: flex-end;
+      gap: 1rem;
+      min-width: 0;
+    }
+    .products-grid.list-view .prod-overlay { display: none; }
+
+    
+    .promo-banner {
+      background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+      border-radius: 1.25rem;
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .promo-banner::after {
+      content: '💊';
+      position: absolute;
+      right: 2%;
+      font-size: 6rem;
+      opacity: 0.12;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .promo-text { color: #fff; }
+    .promo-text h4 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .promo-text p { font-size: 0.88rem; opacity: 0.85; margin: 0; }
+
+    
+    .pagination-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .pag-btn {
+      width: 40px; height: 40px;
+      border-radius: 0.65rem;
+      border: 1.5px solid rgba(37,99,235,0.18);
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #687d94;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+    }
+    .pag-btn:hover, .pag-btn.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+
+    
+    .qv-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(13,27,42,0.65);
+      z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .qv-modal-backdrop.open { opacity: 1; visibility: visible; }
+    .qv-modal {
+      background: #fff;
+      border-radius: 1.5rem;
+      max-width: 700px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      transform: scale(0.9) translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    .qv-modal-backdrop.open .qv-modal { transform: scale(1) translateY(0); }
+    .qv-close {
+      position: absolute; top: 1rem; right: 1rem;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #eff6ff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: #0d1b2a;
+      cursor: pointer; z-index: 5;
+      transition: background 0.2s, transform 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .qv-close:hover { background: #2563eb; color: #fff; transform: rotate(90deg); }
+    .qv-thumb {
+      background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+      height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+    .qv-body { padding: 1.5rem; }
+    .qv-brand { font-size: 0.78rem; color: #687d94; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    .qv-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #0d1b2a; margin: 0.4rem 0 0.5rem; }
+    .qv-stars { color: #f7b731; font-size: 0.88rem; margin-bottom: 0.85rem; }
+    .qv-stars span { color: #687d94; }
+    .qv-desc { font-size: 0.9rem; color: #2e4057; line-height: 1.7; margin-bottom: 1.25rem; }
+    .qv-price-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .qv-price { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: #2563eb; }
+    .qv-price-old { font-size: 1rem; color: #687d94; text-decoration: line-through; }
+    .qv-save { background: #eff6ff; color: #2563eb; font-size: 0.76rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 9999px; }
+    .qv-qty { display: flex; align-items: center; gap: 0; border: 1.5px solid rgba(37,99,235,0.2); border-radius: 9999px; overflow: hidden; margin-bottom: 1rem; width: fit-content; }
+    .qv-qty-btn { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: #eff6ff; border: none; font-size: 1rem; color: #2563eb; cursor: pointer; transition: background 0.2s; }
+    .qv-qty-btn:hover { background: #2563eb; color: #fff; }
+    .qv-qty-num { width: 44px; text-align: center; font-weight: 700; font-size: 0.95rem; }
+
+    
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      pointer-events: none;
+    }
+    .toast {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 0.75rem 1.4rem;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      animation: toastIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      white-space: nowrap;
+    }
+    .toast i { color: #38bdf8; }
+    @keyframes toastIn { from { opacity:0; transform: translateY(20px) scale(0.9); } to { opacity:1; transform: none; } }
+
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem; right: 1.5rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.4);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 900;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: all; }
+    .back-to-top:hover { transform: scale(1.12) translateY(-3px); }
+
+    
+    .filters-backdrop {
+      position: fixed; inset: 0; background: rgba(13,27,42,0.6);
+      z-index: 2040; opacity: 0; visibility: hidden; transition: 0.3s;
+      backdrop-filter: blur(2px);
+    }
+    .filters-backdrop.show { opacity: 1; visibility: visible; }
+
+    
+    @media (max-width: 991.98px) {
+      .sidebar-col { 
+        position: fixed; top: 0; left: -100%; width: 320px; max-width: 85vw;
+        height: 100vh; background: #fff; z-index: 2050; overflow-y: auto;
+        transition: left 0.3s ease; display: block; padding: 1.5rem 1rem;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+      }
+      .sidebar-col.show-filters { left: 0; }
+      .products-col { flex: 0 0 100%; max-width: 100%; }
+    }
+    @media (max-width: 767.98px) {
+      .store-header {
+      background-image: linear-gradient(to right, rgba(13,27,42,0.85), rgba(13,27,42,0.4)), url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 9rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 450px;
+    }
+      .store-toolbar { top: 58px; }
+      .store-toolbar__inner { gap: 0.4rem; justify-content: space-between; }
+      .store-toolbar__search { max-width: 100%; min-width: 0; flex: 1 1 100%; order: 3; margin-top: 0.25rem; }
+      .store-sort-select { flex: 1; min-width: 0; font-size: 0.8rem; padding: 0.45rem 1.8rem 0.45rem 0.85rem; }
+      .view-toggle { gap: 0.35rem; }
+      .view-btn { width: 34px; height: 34px; font-size: 0.8rem; }
+      .results-count { display: none; }
+      .products-grid.list-view .prod-card { min-height: 132px; }
+      .products-grid.list-view .prod-thumb,
+      .products-grid.list-view .prod-img-wrap { width: 124px; min-width: 124px; height: auto; }
+      .products-grid.list-view .prod-body,
+      .products-grid.list-view .prod-info {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas: "brand price" "name price" "stars price";
+        align-items: center;
+        padding: 1rem;
+        column-gap: 1rem;
+        row-gap: 0.45rem;
+      }
+      .products-grid.list-view .prod-brand { margin-bottom: 0.35rem; }
+      .products-grid.list-view .prod-name,
+      .products-grid.list-view .prod-title { font-size: 0.9rem; margin-bottom: 0.25rem; }
+      .products-grid.list-view .prod-price-row { margin-top: 0; justify-content: flex-end; gap: 0.65rem; }
+      .promo-banner { padding: 1.25rem; }
+      .promo-banner::after { display: none; }
+    }
+    @media (max-width: 480px) {
+      .products-grid.list-view .prod-card { flex-direction: row; min-height: 118px; }
+      .products-grid.list-view .prod-thumb,
+      .products-grid.list-view .prod-img-wrap {
+        width: 102px;
+        min-width: 102px;
+        height: auto;
+        border-right: 1.5px solid rgba(37,99,235,0.09);
+        border-radius: 1.25rem 0 0 1.25rem;
+      }
+      .products-grid.list-view .prod-body,
+      .products-grid.list-view .prod-info {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        padding: 0.85rem;
+      }
+      .products-grid.list-view .prod-brand { align-self: flex-start; }
+      .products-grid.list-view .prod-stars { margin-top: 0.35rem; white-space: normal; }
+      .products-grid.list-view .prod-price-row {
+        width: 100%;
+        margin-top: 0.55rem;
+        justify-content: space-between;
+      }
+      .products-grid.list-view .prod-price { font-size: 0.98rem; }
+      .products-grid.list-view .prod-cart-btn { width: 34px; height: 34px; }
+    }
+    @media (max-width: 575.98px) {
+      .cat-pill { font-size: 0.76rem; padding: 0.38rem 0.85rem; }
+      
+      
+      .products-grid .prod-col {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .prod-card { width: 100%; }
+      
+      
+      .products-grid:not(.list-view) .prod-thumb,
+      .products-grid:not(.list-view) .prod-img-wrap {
+        height: 240px;
+        aspect-ratio: auto;
+      }
+      .products-grid:not(.list-view) .prod-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        padding: 0.85rem;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+  
+</head>
+
+<body>
+
+<!-- ════════════════════════════════════════════
+     SEARCH OVERLAY  (reusable component)
+════════════════════════════════════════════ -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-overlay__inner">
+    <div class="search-overlay__input-wrap">
+      <i class="fa-solid fa-magnifying-glass" style="padding-left:1.4rem;color:#687d94;"></i>
+      <input class="search-overlay__input" id="searchInput" type="text" placeholder="Search keyboards, mice, monitors, headsets…" autocomplete="off"/>
+      <button class="search-overlay__close" id="searchClose" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p class="search-overlay__hint">Press <kbd style="background:rgba(255,255,255,0.15);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.75rem;">ESC</kbd> to close</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MOBILE FULL-SCREEN OVERLAY MENU  (reusable)
+════════════════════════════════════════════ -->
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="mobile-overlay__header">
+    <a href="index.html" class="mobile-overlay__logo logo-brand" aria-label="Stackly Home"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+    <button class="mobile-overlay__close-btn" onclick="closeMobileMenu()" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <nav class="mobile-overlay__nav" aria-label="Mobile Navigation">
+    <a href="index.html"   class="mobile-overlay__link" onclick="closeMobileMenu()">Home</a>
+    <a href="about.html"   class="mobile-overlay__link" onclick="closeMobileMenu()">About</a>
+    <a href="store.html"   class="mobile-overlay__link active" onclick="closeMobileMenu()">Store</a>
+    <a href="blog.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">Blog</a>
+    <a href="contact.html" class="mobile-overlay__link" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+  <div class="mobile-overlay__bottom">
+    <div class="mobile-overlay__divider"></div>
+    <div class="mobile-overlay__btns">
+      <a href="signin.html"      class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     NAVBAR  (reusable component)
+════════════════════════════════════════════ -->
+<header class="navbar scrolled" id="navbar">
+  <div class="container navbar__inner">
+
+    
+    <a href="index.html" class="navbar__logo logo-brand" aria-label="Stackly Home"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+
+    
+    <nav class="navbar__nav" aria-label="Main Navigation">
+      <a href="index.html"   class="navbar__link">Home</a>
+      <a href="about.html"   class="navbar__link">About</a>
+      <a href="store.html"   class="navbar__link active">Store</a>
+      <a href="blog.html"    class="navbar__link">Blog</a>
+      <a href="contact.html" class="navbar__link">Contact</a>
+    </nav>
+
+    
+    <div class="navbar__actions">
+      <button class="navbar__search-btn" id="searchToggle" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="navbar__wishlist-btn" aria-label="Wishlist" onclick="openWishlist()" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.9);background:transparent;position:relative;">
+        <i class="fa-solid fa-heart"></i>
+        <span class="wishlist-count" style="display:flex;">0</span>
+      </button>
+      <button class="navbar__cart-btn" aria-label="Cart" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count" id="cartBadge" style="display:none;">0</span>
+      </button>
+      <a href="signin.html"      class="btn btn-outline btn-sm d-none d-lg-inline-flex">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm d-none d-lg-inline-flex">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════
+     STORE PAGE HEADER
+════════════════════════════════════════════ -->
+<div class="store-header">
+  <div class="container store-header__inner">
+    <div class="row align-items-center g-3">
+      <div class="col-md-7" data-aos="fade-up">
+        <nav class="breadcrumb mb-2" aria-label="breadcrumb">
+          <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+          <i class="fa-solid fa-chevron-right" style="font-size:0.6rem;opacity:0.5;"></i>
+          <span style="color:#38bdf8;">Store</span>
+        </nav>
+        <h1 class="page-header__title" style="font-size:clamp(1.8rem,4vw,3rem);margin-bottom:0.5rem;">
+          Our <span style="color:#38bdf8;">Store</span>
+        </h1>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.96rem;max-width:480px;margin:0;">
+          Premium keyboards, mice, monitors &amp; gaming gear — delivered across Salem &amp; beyond.
+        </p>
+      </div>
+      <div class="col-md-5 d-none d-md-flex justify-content-end gap-3" data-aos="fade-left">
+        
+        <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:1rem;padding:1rem 1.25rem;text-align:center;min-width:110px;">
+          <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:#38bdf8;line-height:1;">8K+</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Products</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:1rem;padding:1rem 1.25rem;text-align:center;min-width:110px;">
+          <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:#38bdf8;line-height:1;">40%</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Max Off</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:1rem;padding:1rem 1.25rem;text-align:center;min-width:110px;">
+          <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:#38bdf8;line-height:1;">2hr</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MARQUEE STRIP  (reusable component)
+════════════════════════════════════════════ -->
+<div style="background:linear-gradient(135deg,#2563eb,#1d4ed8);padding:0.75rem 0;overflow:hidden;" aria-label="Features">
+  <div class="marquee-track" aria-hidden="true">
+    <div style="display:flex;gap:0;width:max-content;">
+      <span class="features-strip__item"><i class="fa-solid fa-truck-fast"></i> Fast Delivery</span>
+      <span class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Products</span>
+      <span class="features-strip__item"><i class="fa-solid fa-microchip"></i> Latest Tech Gear</span>
+      <span class="features-strip__item"><i class="fa-solid fa-clock-rotate-left"></i> 24/7 Support</span>
+      <span class="features-strip__item"><i class="fa-solid fa-rotate-left"></i> Easy Returns</span>
+      <span class="features-strip__item"><i class="fa-solid fa-percent"></i> Up to 40% Off</span>
+      <span class="features-strip__item"><i class="fa-solid fa-headset"></i> Expert Tech Advice</span>
+      <span class="features-strip__item"><i class="fa-solid fa-truck-fast"></i> Fast Delivery</span>
+      <span class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Products</span>
+      <span class="features-strip__item"><i class="fa-solid fa-microchip"></i> Latest Tech Gear</span>
+      <span class="features-strip__item"><i class="fa-solid fa-clock-rotate-left"></i> 24/7 Support</span>
+      <span class="features-strip__item"><i class="fa-solid fa-rotate-left"></i> Easy Returns</span>
+      <span class="features-strip__item"><i class="fa-solid fa-percent"></i> Up to 40% Off</span>
+      <span class="features-strip__item"><i class="fa-solid fa-headset"></i> Expert Tech Advice</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     STICKY STORE TOOLBAR
+════════════════════════════════════════════ -->
+<div class="store-toolbar" id="storeToolbar">
+  <div class="container">
+    <div class="store-toolbar__inner">
+      
+      <div class="store-toolbar__search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="storeSearchInput" placeholder="Search keyboards, mice, monitors…" autocomplete="off" aria-label="Search products"/>
+      </div>
+
+      
+      <select class="store-sort-select" id="sortSelect" aria-label="Sort products">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="rating">Top Rated</option>
+        <option value="newest">Newest</option>
+      </select>
+
+      
+      <span class="results-count" id="resultsCount"><i class="fa-solid fa-list-check me-1"></i> Showing 44 products</span>
+
+      
+      <div class="view-toggle" role="group" aria-label="View mode">
+        <button class="view-btn active" id="gridViewBtn" aria-label="Grid view" onclick="setView('grid')">
+          <i class="fa-solid fa-table-cells-large"></i>
+        </button>
+        <button class="view-btn" id="listViewBtn" aria-label="List view" onclick="setView('list')">
+          <i class="fa-solid fa-list"></i>
+        </button>
+        <button class="view-btn d-lg-none" id="mobileFilterBtn" aria-label="Filters" onclick="toggleMobileFilters()" style="width:auto; padding:0 0.6rem; font-weight:600; gap:0.35rem; color:#0d1b2a;">
+          <i class="fa-solid fa-sliders"></i> Filters
+        </button>
+      </div>
+    </div>
+
+    
+        <div class="cat-filter-bar mt-2" role="group" aria-label="Filter by category">
+      <button class="cat-pill active" data-cat="all" onclick="filterCat(this,'all')">
+        <i class="fa-solid fa-border-all"></i> All
+      </button>
+      <button class="cat-pill" data-cat="keyboards" onclick="filterCat(this,'keyboards')">
+        ⌨️ Keyboards
+      </button>
+      <button class="cat-pill" data-cat="mice" onclick="filterCat(this,'mice')">
+        🖱️ Mice
+      </button>
+      <button class="cat-pill" data-cat="monitors" onclick="filterCat(this,'monitors')">
+        🖥️ Monitors
+      </button>
+      <button class="cat-pill" data-cat="gaming" onclick="filterCat(this,'gaming')">
+        🎮 Gaming
+      </button>
+      <button class="cat-pill" data-cat="storage" onclick="filterCat(this,'storage')">
+        💾 Storage
+      </button>
+      <button class="cat-pill" data-cat="audio" onclick="filterCat(this,'audio')">
+        🎧 Audio
+      </button>
+      <button class="cat-pill" data-cat="webcams" onclick="filterCat(this,'webcams')">
+        📷 Webcams
+      </button>
+      <button class="cat-pill" data-cat="cables" onclick="filterCat(this,'cables')">
+        🔌 Cables
+      </button>
+      <button class="cat-pill" data-cat="chargers" onclick="filterCat(this,'chargers')">
+        🔋 Chargers
+      </button>
+      <button class="cat-pill" data-cat="mousepads" onclick="filterCat(this,'mousepads')">
+        🖱️ Mousepads
+      </button>
+      <button class="cat-pill" data-cat="laptops" onclick="filterCat(this,'laptops')">
+        💻 Laptops
+      </button>
+      <button class="cat-pill" data-cat="cooling" onclick="filterCat(this,'cooling')">
+        ❄️ Cooling
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MOBILE FILTERS BACKDROP
+════════════════════════════════════════════ -->
+<div class="filters-backdrop" id="filtersBackdrop" onclick="toggleMobileFilters()"></div>
+
+<!-- ════════════════════════════════════════════
+     MAIN STORE CONTENT
+════════════════════════════════════════════ -->
+<main>
+<div class="container" style="padding-top:2rem;padding-bottom:3rem;">
+  <div class="row g-4">
+
+    
+    <div class="col-lg-3 sidebar-col" id="sidebarCol">
+      <div class="d-flex justify-content-between align-items-center d-lg-none mb-4 pb-2 border-bottom">
+        <h5 class="m-0 fw-bold" style="color: #0d1b2a;">Filters</h5>
+        <button type="button" class="btn-close" aria-label="Close" onclick="toggleMobileFilters()"></button>
+      </div>
+      <aside class="shop-sidebar-wrapper" aria-label="Filters">
+
+        
+        <div style="background:linear-gradient(135deg,#2563eb,#38bdf8);border-radius:1.25rem;padding:1.4rem;margin-bottom:1.1rem;text-align:center;">
+          <i class="fa-solid fa-gamepad" style="font-size:1.8rem;color:#fff;margin-bottom:0.6rem;display:block;"></i>
+          <div style="font-family:var(--font-display);font-weight:800;color:#fff;font-size:0.95rem;margin-bottom:0.3rem;">Build Your Setup</div>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.82);margin-bottom:0.9rem;">Get expert picks for gaming and work-from-home rigs.</p>
+          <button class="btn btn-white btn-sm w-100" onclick="showToast('Setup guide coming soon!','fa-gamepad')">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Get Recommendations
+          </button>
+        </div>
+
+        
+        <div class="sidebar-widget">
+          <div class="sidebar-widget__title"><i class="fa-solid fa-tag"></i> Categories</div>
+          <div class="filter-checkbox-list">
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="keyboards" onchange="filterCatCheckbox(this)"/> Keyboards <span class="filter-cb-count">48</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="mice" onchange="filterCatCheckbox(this)"/> Mice <span class="filter-cb-count">52</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="monitors" onchange="filterCatCheckbox(this)"/> Monitors <span class="filter-cb-count">36</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="gaming" onchange="filterCatCheckbox(this)"/> Gaming <span class="filter-cb-count">64</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="storage" onchange="filterCatCheckbox(this)"/> Storage <span class="filter-cb-count">41</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="audio" onchange="filterCatCheckbox(this)"/> Audio <span class="filter-cb-count">38</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="webcams" onchange="filterCatCheckbox(this)"/> Webcams <span class="filter-cb-count">22</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="cables" onchange="filterCatCheckbox(this)"/> Cables <span class="filter-cb-count">55</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="chargers" onchange="filterCatCheckbox(this)"/> Chargers <span class="filter-cb-count">29</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="mousepads" onchange="filterCatCheckbox(this)"/> Mousepads <span class="filter-cb-count">18</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="laptops" onchange="filterCatCheckbox(this)"/> Laptops <span class="filter-cb-count">24</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="cat-cb" value="cooling" onchange="filterCatCheckbox(this)"/> Cooling <span class="filter-cb-count">19</span></label>
+          </div>
+        </div>
+
+        
+        <div class="sidebar-widget">
+          <div class="sidebar-widget__title"><i class="fa-solid fa-indian-rupee-sign"></i> Price Range</div>
+          <div class="price-range-wrap">
+            <div class="price-display">
+              <span>₹0</span>
+            <span id="priceMax">₹55,000</span>
+            </div>
+          <input type="range" class="range-slider" id="priceSlider" min="0" max="55000" value="55000" step="500"
+                 oninput="updatePrice(this)" style="--val:100%;" aria-label="Max price"/>
+          </div>
+        </div>
+
+        
+        <div class="sidebar-widget">
+          <div class="sidebar-widget__title"><i class="fa-solid fa-building"></i> Brands</div>
+          <div class="filter-checkbox-list">
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Logitech" onchange="applyBrandFilter()"/> Logitech <span class="filter-cb-count">42</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Razer" onchange="applyBrandFilter()"/> Razer <span class="filter-cb-count">35</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Corsair" onchange="applyBrandFilter()"/> Corsair <span class="filter-cb-count">28</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="HP" onchange="applyBrandFilter()"/> HP <span class="filter-cb-count">31</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Dell" onchange="applyBrandFilter()"/> Dell <span class="filter-cb-count">27</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Samsung" onchange="applyBrandFilter()"/> Samsung <span class="filter-cb-count">24</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Kingston" onchange="applyBrandFilter()"/> Kingston <span class="filter-cb-count">19</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Redragon" onchange="applyBrandFilter()"/> Redragon <span class="filter-cb-count">16</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="boAt" onchange="applyBrandFilter()"/> boAt <span class="filter-cb-count">14</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Anker" onchange="applyBrandFilter()"/> Anker <span class="filter-cb-count">12</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="LG" onchange="applyBrandFilter()"/> LG <span class="filter-cb-count">11</span></label>
+            <label class="filter-checkbox-item"><input type="checkbox" class="brand-cb" value="Cooler Master" onchange="applyBrandFilter()"/> Cooler Master <span class="filter-cb-count">9</span></label>
+          </div>
+        </div>
+
+        
+        <div class="sidebar-widget">
+          <div class="sidebar-widget__title"><i class="fa-solid fa-star"></i> Rating</div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div class="rating-filter-item" onclick="filterRating(this, 5)">
+              <div class="stars-row"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <span style="font-size:0.8rem;">&amp; above</span>
+              <span class="filter-cb-count" style="margin-left:auto;">124</span>
+            </div>
+            <div class="rating-filter-item" onclick="filterRating(this, 4)">
+              <div class="stars-row"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+              <span style="font-size:0.8rem;">&amp; above</span>
+              <span class="filter-cb-count" style="margin-left:auto;">256</span>
+            </div>
+            <div class="rating-filter-item" onclick="filterRating(this, 3)">
+              <div class="stars-row"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></div>
+              <span style="font-size:0.8rem;">&amp; above</span>
+              <span class="filter-cb-count" style="margin-left:auto;">312</span>
+            </div>
+          </div>
+        </div>
+
+        
+        <button class="btn btn-outline w-100" onclick="resetFilters()">
+          <i class="fa-solid fa-rotate-left"></i> Clear All Filters
+        </button>
+
+      </aside>
+    </div>
+
+    
+    <div class="col-lg-9 products-col">
+
+      
+      <div class="promo-banner mb-4" data-aos="fade-up">
+        <div class="promo-text">
+          <h4>🎉 Tech Fest Sale — Up to 40% Off!</h4>
+          <p>Limited time offer on keyboards, mice &amp; gaming gear. Use code <strong>STACK40</strong></p>
+        </div>
+        <button class="btn btn-white btn-sm" onclick="showToast('Offer code STACK40 copied!','fa-copy')" style="flex-shrink:0;">
+          Copy Code
+        </button>
+      </div>
+
+      
+      <div class="row g-3 products-grid" id="productsGrid">
+
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="keyboards" data-price="8999" data-brand="Logitech" data-rating="4.5" data-name="Logitech MX Keys Wireless" data-index="1" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_logitech_mx_keys_wireless.png" class="prod-img" alt="Logitech MX Keys Wireless">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Logitech</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+              </div>
+              <h3 class="prod-title">Logitech MX Keys Wireless</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹8,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Logitech MX Keys Wireless', 'Logitech', 8999, 'assets/prod_logitech_mx_keys_wireless.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="keyboards" data-price="12499" data-brand="Razer" data-rating="4.7" data-name="Razer BlackWidow V4 Pro" data-index="2" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_razer_blackwidow.png" class="prod-img" alt="Razer BlackWidow V4 Pro">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Razer</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Razer BlackWidow V4 Pro</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹12,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Razer BlackWidow V4 Pro', 'Razer', 12499, 'assets/prod_razer_blackwidow.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="keyboards" data-price="2999" data-brand="Redragon" data-rating="4.3" data-name="Redragon K552 Mechanical" data-index="3" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_redragon_k552.png" class="prod-img" alt="Redragon K552 Mechanical">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Redragon</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.3</span>
+              </div>
+              <h3 class="prod-title">Redragon K552 Mechanical</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹2,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Redragon K552 Mechanical', 'Redragon', 2999, 'assets/prod_redragon_k552.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="mice" data-price="3995" data-brand="Logitech" data-rating="4.6" data-name="Logitech G502 Hero Gaming" data-index="4" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_logitech_g502.png" class="prod-img" alt="Logitech G502 Hero Gaming">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Logitech</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Logitech G502 Hero Gaming</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹3,995</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Logitech G502 Hero Gaming', 'Logitech', 3995, 'assets/prod_logitech_g502.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="mice" data-price="5499" data-brand="Razer" data-rating="4.8" data-name="Razer DeathAdder V3 Pro" data-index="5" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_razer_deathadder.png" class="prod-img" alt="Razer DeathAdder V3 Pro">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Razer</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+              <h3 class="prod-title">Razer DeathAdder V3 Pro</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹5,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Razer DeathAdder V3 Pro', 'Razer', 5499, 'assets/prod_razer_deathadder.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="mice" data-price="1299" data-brand="HP" data-rating="4.2" data-name="HP Z3700 Wireless Mouse" data-index="6" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_hp_z3700.png" class="prod-img" alt="HP Z3700 Wireless Mouse">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">HP</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.2</span>
+              </div>
+              <h3 class="prod-title">HP Z3700 Wireless Mouse</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹1,299</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('HP Z3700 Wireless Mouse', 'HP', 1299, 'assets/prod_hp_z3700.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="monitors" data-price="18999" data-brand="Samsung" data-rating="4.7" data-name="Samsung 27" data-index="7" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_samsung_odyssey.png" class="prod-img" alt="Samsung 27">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Samsung</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Samsung 27</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹18,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Samsung 27', 'Samsung', 18999, 'assets/prod_samsung_odyssey.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="monitors" data-price="12499" data-brand="Dell" data-rating="4.5" data-name="Dell 24" data-index="8" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_dell_24.png" class="prod-img" alt="Dell 24">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Dell</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+              </div>
+              <h3 class="prod-title">Dell 24</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹12,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Dell 24', 'Dell', 12499, 'assets/prod_dell_24.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="monitors" data-price="8999" data-brand="LG" data-rating="4.4" data-name="LG 22" data-index="9" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_lg_22.png" class="prod-img" alt="LG 22">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">LG</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.4</span>
+              </div>
+              <h3 class="prod-title">LG 22</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹8,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('LG 22', 'LG', 8999, 'assets/prod_lg_22.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="gaming" data-price="12999" data-brand="Razer" data-rating="4.8" data-name="Razer Basilisk Ultimate Kit" data-index="10" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_razer_basilisk_ultimate_kit.png" class="prod-img" alt="Razer Basilisk Ultimate Kit">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Razer</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+              <h3 class="prod-title">Razer Basilisk Ultimate Kit</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹12,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Razer Basilisk Ultimate Kit', 'Razer', 12999, 'assets/prod_razer_basilisk_ultimate_kit.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="gaming" data-price="3499" data-brand="Corsair" data-rating="4.5" data-name="Corsair Katar Pro Wireless" data-index="11" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_corsair_katar.png" class="prod-img" alt="Corsair Katar Pro Wireless">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Corsair</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+              </div>
+              <h3 class="prod-title">Corsair Katar Pro Wireless</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹3,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Corsair Katar Pro Wireless', 'Corsair', 3499, 'assets/prod_corsair_katar.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="gaming" data-price="24999" data-brand="Corsair" data-rating="4.6" data-name="Corsair T3 Rush Gaming Chair" data-index="12" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/chair.jpg" class="prod-img" alt="Corsair T3 Rush Gaming Chair">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Corsair</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Corsair T3 Rush Gaming Chair</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹24,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Corsair T3 Rush Gaming Chair', 'Corsair', 24999, 'assets/chair.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="storage" data-price="5499" data-brand="Kingston" data-rating="4.7" data-name="Kingston NV2 1TB NVMe SSD" data-index="13" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_kingston_nv2.png" class="prod-img" alt="Kingston NV2 1TB NVMe SSD">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Kingston</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Kingston NV2 1TB NVMe SSD</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹5,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Kingston NV2 1TB NVMe SSD', 'Kingston', 5499, 'assets/prod_kingston_nv2.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="storage" data-price="4299" data-brand="Samsung" data-rating="4.8" data-name="Samsung 870 EVO 500GB SSD" data-index="14" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_samsung_870.png" class="prod-img" alt="Samsung 870 EVO 500GB SSD">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Samsung</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+              <h3 class="prod-title">Samsung 870 EVO 500GB SSD</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹4,299</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Samsung 870 EVO 500GB SSD', 'Samsung', 4299, 'assets/prod_samsung_870.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="storage" data-price="3999" data-brand="Corsair" data-rating="4.6" data-name="Corsair Vengeance 16GB DDR4" data-index="15" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_corsair_vengeance.png" class="prod-img" alt="Corsair Vengeance 16GB DDR4">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Corsair</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Corsair Vengeance 16GB DDR4</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹3,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Corsair Vengeance 16GB DDR4', 'Corsair', 3999, 'assets/prod_corsair_vengeance.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="audio" data-price="1999" data-brand="boAt" data-rating="4.3" data-name="boAt Rockerz 450 Bluetooth" data-index="16" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_boat_rockerz.png" class="prod-img" alt="boAt Rockerz 450 Bluetooth">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">boAt</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.3</span>
+              </div>
+              <h3 class="prod-title">boAt Rockerz 450 Bluetooth</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹1,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('boAt Rockerz 450 Bluetooth', 'boAt', 1999, 'assets/prod_boat_rockerz.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="audio" data-price="2499" data-brand="Logitech" data-rating="4.4" data-name="Logitech H390 USB Headset" data-index="17" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/audio.jpg" class="prod-img" alt="Logitech H390 USB Headset">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Logitech</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.4</span>
+              </div>
+              <h3 class="prod-title">Logitech H390 USB Headset</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹2,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Logitech H390 USB Headset', 'Logitech', 2499, 'assets/audio.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="audio" data-price="5999" data-brand="Razer" data-rating="4.7" data-name="Razer Kraken V3 X Headset" data-index="18" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_razer_kraken_v3_x_headset.png" class="prod-img" alt="Razer Kraken V3 X Headset">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Razer</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Razer Kraken V3 X Headset</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹5,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Razer Kraken V3 X Headset', 'Razer', 5999, 'assets/prod_razer_kraken_v3_x_headset.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="webcams" data-price="6499" data-brand="Logitech" data-rating="4.8" data-name="Logitech C920 HD Pro Webcam" data-index="19" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_logitech_c920_hd_pro_webcam.png" class="prod-img" alt="Logitech C920 HD Pro Webcam">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Logitech</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+              <h3 class="prod-title">Logitech C920 HD Pro Webcam</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹6,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Logitech C920 HD Pro Webcam', 'Logitech', 6499, 'assets/prod_logitech_c920_hd_pro_webcam.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="webcams" data-price="2999" data-brand="HP" data-rating="4.2" data-name="HP Wide Vision 720p Webcam" data-index="20" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_hp_wide_vision_720p_webcam.png" class="prod-img" alt="HP Wide Vision 720p Webcam">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">HP</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.2</span>
+              </div>
+              <h3 class="prod-title">HP Wide Vision 720p Webcam</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹2,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('HP Wide Vision 720p Webcam', 'HP', 2999, 'assets/prod_hp_wide_vision_720p_webcam.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="cables" data-price="499" data-brand="Anker" data-rating="4.5" data-name="Anker USB-C Cable 2m" data-index="21" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_anker_usb_c_cable_2m.png" class="prod-img" alt="Anker USB-C Cable 2m">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Anker</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+              </div>
+              <h3 class="prod-title">Anker USB-C Cable 2m</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Anker USB-C Cable 2m', 'Anker', 499, 'assets/prod_anker_usb_c_cable_2m.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="cables" data-price="1299" data-brand="Anker" data-rating="4.6" data-name="Anker PowerLine HDMI 2.1 Cable 3m" data-index="22" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/cable.jpg" class="prod-img" alt="Anker PowerLine HDMI 2.1 Cable 3m">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Anker</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Anker PowerLine HDMI 2.1 Cable 3m</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹1,299</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Anker PowerLine HDMI 2.1 Cable 3m', 'Anker', 1299, 'assets/cable.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="cables" data-price="3499" data-brand="Anker" data-rating="4.7" data-name="Anker 7-in-1 USB-C Hub" data-index="23" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/hub.jpg" class="prod-img" alt="Anker 7-in-1 USB-C Hub">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Anker</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Anker 7-in-1 USB-C Hub</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹3,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Anker 7-in-1 USB-C Hub', 'Anker', 3499, 'assets/hub.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="chargers" data-price="2499" data-brand="Anker" data-rating="4.6" data-name="Anker 65W GaN USB-C Charger" data-index="24" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/charger.jpg" class="prod-img" alt="Anker 65W GaN USB-C Charger">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Anker</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Anker 65W GaN USB-C Charger</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹2,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Anker 65W GaN USB-C Charger', 'Anker', 2499, 'assets/charger.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="chargers" data-price="1899" data-brand="Dell" data-rating="4.4" data-name="Dell 65W Laptop Adapter" data-index="25" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/anker_usb_c_cable_2m.png" class="prod-img" alt="Dell 65W Laptop Adapter">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Dell</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.4</span>
+              </div>
+              <h3 class="prod-title">Dell 65W Laptop Adapter</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹1,899</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Dell 65W Laptop Adapter', 'Dell', 1899, 'assets/anker_usb_c_cable_2m.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="mousepads" data-price="1599" data-brand="Razer" data-rating="4.5" data-name="Razer Goliathus Extended" data-index="26" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/mousepad.jpg" class="prod-img" alt="Razer Goliathus Extended">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Razer</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+              </div>
+              <h3 class="prod-title">Razer Goliathus Extended</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹1,599</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Razer Goliathus Extended', 'Razer', 1599, 'assets/mousepad.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="mousepads" data-price="1299" data-brand="Logitech" data-rating="4.6" data-name="Logitech G640 Cloth Mousepad" data-index="27" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_razer_basilisk.png" class="prod-img" alt="Logitech G640 Cloth Mousepad">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Logitech</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Logitech G640 Cloth Mousepad</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹1,299</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Logitech G640 Cloth Mousepad', 'Logitech', 1299, 'assets/prod_razer_basilisk.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="laptops" data-price="54999" data-brand="HP" data-rating="4.7" data-name="HP Pavilion 15 Intel i5" data-index="28" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/laptop.jpg" class="prod-img" alt="HP Pavilion 15 Intel i5">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">HP</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">HP Pavilion 15 Intel i5</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹54,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('HP Pavilion 15 Intel i5', 'HP', 54999, 'assets/laptop.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="laptops" data-price="48999" data-brand="Dell" data-rating="4.6" data-name="Dell Inspiron 14 Ryzen 5" data-index="29" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/hero-setup.jpg" class="prod-img" alt="Dell Inspiron 14 Ryzen 5">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Dell</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Dell Inspiron 14 Ryzen 5</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹48,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Dell Inspiron 14 Ryzen 5', 'Dell', 48999, 'assets/hero-setup.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="cooling" data-price="2799" data-brand="Cooler Master" data-rating="4.5" data-name="Cooler Master Hyper 212" data-index="30" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/cooler.jpg" class="prod-img" alt="Cooler Master Hyper 212">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Cooler Master</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+              </div>
+              <h3 class="prod-title">Cooler Master Hyper 212</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹2,799</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Cooler Master Hyper 212', 'Cooler Master', 2799, 'assets/cooler.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="cooling" data-price="1899" data-brand="Cooler Master" data-rating="4.4" data-name="Cooler Master MasterFan MF120 3-Pack" data-index="31" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/gaming.jpg" class="prod-img" alt="Cooler Master MasterFan MF120 3-Pack">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Cooler Master</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.4</span>
+              </div>
+              <h3 class="prod-title">Cooler Master MasterFan MF120 3-Pack</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹1,899</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Cooler Master MasterFan MF120 3-Pack', 'Cooler Master', 1899, 'assets/gaming.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="storage" data-price="899" data-brand="Kingston" data-rating="4.3" data-name="Kingston DataTraveler 128GB USB 3.0" data-index="32" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/storage.jpg" class="prod-img" alt="Kingston DataTraveler 128GB USB 3.0">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Kingston</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.3</span>
+              </div>
+              <h3 class="prod-title">Kingston DataTraveler 128GB USB 3.0</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹899</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Kingston DataTraveler 128GB USB 3.0', 'Kingston', 899, 'assets/storage.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="audio" data-price="8999" data-brand="Samsung" data-rating="4.7" data-name="Samsung Galaxy Buds2 Pro" data-index="33" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/earbuds.jpg" class="prod-img" alt="Samsung Galaxy Buds2 Pro">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Samsung</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Samsung Galaxy Buds2 Pro</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹8,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Samsung Galaxy Buds2 Pro', 'Samsung', 8999, 'assets/earbuds.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="monitors" data-price="32999" data-brand="LG" data-rating="4.8" data-name="LG UltraWide 34" data-index="34" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/monitor.jpg" class="prod-img" alt="LG UltraWide 34">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">LG</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+              <h3 class="prod-title">LG UltraWide 34</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹32,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('LG UltraWide 34', 'LG', 32999, 'assets/monitor.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="mousepads" data-price="899" data-brand="Redragon" data-rating="4.2" data-name="RGB Gaming Mouse Pad XL" data-index="35" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/gaming.jpg" class="prod-img" alt="RGB Gaming Mouse Pad XL">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Redragon</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.2</span>
+              </div>
+              <h3 class="prod-title">RGB Gaming Mouse Pad XL</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹899</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('RGB Gaming Mouse Pad XL', 'Redragon', 899, 'assets/gaming.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="laptops" data-price="72999" data-brand="Samsung" data-rating="4.9" data-name="Samsung Galaxy Book3 Pro" data-index="36" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_logitech_mx_keys.png" class="prod-img" alt="Samsung Galaxy Book3 Pro">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Samsung</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+              </div>
+              <h3 class="prod-title">Samsung Galaxy Book3 Pro</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹72,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Samsung Galaxy Book3 Pro', 'Samsung', 72999, 'assets/prod_logitech_mx_keys.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="keyboards" data-price="14999" data-brand="Corsair" data-rating="4.6" data-name="Corsair K70 RGB Pro Keyboard" data-index="37" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/keyboard.jpg" class="prod-img" alt="Corsair K70 RGB Pro Keyboard">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Corsair</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Corsair K70 RGB Pro Keyboard</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹14,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Corsair K70 RGB Pro Keyboard', 'Corsair', 14999, 'assets/keyboard.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="mice" data-price="8999" data-brand="Logitech" data-rating="4.7" data-name="Logitech G Pro X Superlight 2" data-index="38" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/mouse.jpg" class="prod-img" alt="Logitech G Pro X Superlight 2">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Logitech</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Logitech G Pro X Superlight 2</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹8,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Logitech G Pro X Superlight 2', 'Logitech', 8999, 'assets/mouse.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="monitors" data-price="21999" data-brand="Samsung" data-rating="4.6" data-name="Samsung Odyssey G5 27 Curved" data-index="39" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/monitor.jpg" class="prod-img" alt="Samsung Odyssey G5 27 Curved">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Samsung</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Samsung Odyssey G5 27 Curved</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹21,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Samsung Odyssey G5 27 Curved', 'Samsung', 21999, 'assets/monitor.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="audio" data-price="26990" data-brand="Sony" data-rating="4.8" data-name="Sony WH-1000XM5 Headphones" data-index="40" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/audio.jpg" class="prod-img" alt="Sony WH-1000XM5 Headphones">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Sony</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+              <h3 class="prod-title">Sony WH-1000XM5 Headphones</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹26,990</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Sony WH-1000XM5 Headphones', 'Sony', 26990, 'assets/audio.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="webcams" data-price="11999" data-brand="Logitech" data-rating="4.7" data-name="Logitech Brio 4K Webcam" data-index="41" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/webcam.jpg" class="prod-img" alt="Logitech Brio 4K Webcam">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Logitech</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              </div>
+              <h3 class="prod-title">Logitech Brio 4K Webcam</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹11,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Logitech Brio 4K Webcam', 'Logitech', 11999, 'assets/webcam.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="chargers" data-price="3499" data-brand="Anker" data-rating="4.5" data-name="Anker 735 GaNPrime 65W Charger" data-index="42" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/anker_usb_c_cable_2m.png" class="prod-img" alt="Anker 735 GaNPrime 65W Charger">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Anker</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+              </div>
+              <h3 class="prod-title">Anker 735 GaNPrime 65W Charger</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹3,499</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Anker 735 GaNPrime 65W Charger', 'Anker', 3499, 'assets/anker_usb_c_cable_2m.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="cooling" data-price="8999" data-brand="Cooler Master" data-rating="4.6" data-name="Cooler Master MasterLiquid 240" data-index="43" data-new="true">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/ram.jpg" class="prod-img" alt="Cooler Master MasterLiquid 240">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Cooler Master</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+              </div>
+              <h3 class="prod-title">Cooler Master MasterLiquid 240</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹8,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Cooler Master MasterLiquid 240', 'Cooler Master', 8999, 'assets/ram.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 prod-col" data-cat="gaming" data-price="4999" data-brand="Redragon" data-rating="4.4" data-name="Redragon K617 Fizz Gaming Keyboard" data-index="44" data-new="false">
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="assets/prod_redragon_k552.png" class="prod-img" alt="Redragon K617 Fizz Gaming Keyboard">
+              <div class="prod-overlay">
+                <button class="prod-action" title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                <button class="prod-action" title="Quick View"><i class="fa-regular fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="prod-info">
+              <div class="prod-meta">
+                <span class="prod-brand">Redragon</span>
+                <span class="prod-rating"><i class="fa-solid fa-star"></i> 4.4</span>
+              </div>
+              <h3 class="prod-title">Redragon K617 Fizz Gaming Keyboard</h3>
+              <div class="prod-price-row">
+                <div class="prod-price">
+                  <span class="current-price">₹4,999</span>
+                </div>
+                <button class="prod-cart-btn" onclick="addToCart('Redragon K617 Fizz Gaming Keyboard', 'Redragon', 4999, 'assets/prod_redragon_k552.png')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="noResults" style="display:none;text-align:center;padding:3rem 1rem;">
+        <i class="fa-solid fa-box-open" style="font-size:3rem;color:#687d94;margin-bottom:1rem;display:block;"></i>
+        <p style="font-weight:600;color:#0d1b2a;margin-bottom:0.75rem;">No products match your filters</p>
+        <button class="btn btn-outline btn-sm" onclick="resetFilters()"><i class="fa-solid fa-rotate-left"></i> Clear Filters</button>
+      </div>
+
+      <div class="pagination-wrap"></div>
+
+    </div>
+  </div>
+</div>
+      </main>
+
+<!-- ════════════════════════════════════════════
+     FOOTER  (reusable component)
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo logo-brand" aria-label="Stackly Home"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+        <p class="footer__desc">Your trusted computer accessories store — delivering genuine keyboards, mice, monitors and tech gear to your door since 2018.</p>
+        <div class="footer__col-title" style="margin-top:1rem; margin-bottom:0.75rem;">Newsletter</div>
+        <form class="footer__newsletter" onsubmit="handleNewsletter(event)" style="margin-bottom:1.25rem;">
+          <input type="email" placeholder="Your email…" required aria-label="Newsletter email"/>
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <div class="footer__social">
+          <a href="404.html" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Quick Links</div>
+        <ul class="footer__links">
+          <li><a href="index.html"   class="footer__link">Home</a></li>
+          <li><a href="about.html"   class="footer__link">About Us</a></li>
+          <li><a href="store.html"   class="footer__link">Our Store</a></li>
+          <li><a href="blog.html"    class="footer__link">Tech Blog</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+          <li><a href="signin.html"  class="footer__link">Sign In</a></li>
+        </ul>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Services</div>
+        <ul class="footer__links">
+          <li><a href="404.html"   class="footer__link">PC Build Service</a></li>
+          <li><a href="404.html"   class="footer__link">Laptop Repair</a></li>
+          <li><a href="404.html" class="footer__link">Tech Consultation</a></li>
+          <li><a href="404.html"   class="footer__link">Warranty Plans</a></li>
+          <li><a href="404.html"   class="footer__link">Gaming Bundles</a></li>
+          <li><a href="404.html"     class="footer__link">Bulk Orders</a></li>
+        </ul>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Find Us</div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>hello@stackly.in</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon–Sat: 8am–10pm · Sun: 9am–6pm</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="footer__bottom">
+      <div class="footer__copyright">
+        &copy; 2026 <span>Stackly</span>. All rights reserved. Designed with ❤️ in Salem.
+      </div>
+      <div class="footer__legal">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Use</a>
+        <a href="404.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ════════════════════════════════════════════
+     QUICK VIEW MODAL
+════════════════════════════════════════════ -->
+<div class="qv-modal-backdrop" id="qvBackdrop" role="dialog" aria-modal="true" aria-label="Quick View" onclick="closeQV(event)">
+  <div class="qv-modal" id="qvModal">
+    <button class="qv-close" onclick="closeQV()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="qv-thumb" id="qvThumb"></div>
+    <div class="qv-body">
+      <div class="qv-brand" id="qvBrand"></div>
+      <div class="qv-name" id="qvName"></div>
+      <div class="qv-stars" id="qvStars"></div>
+      <p class="qv-desc" id="qvDesc"></p>
+      <div class="qv-price-row">
+        <div class="qv-price" id="qvPrice"></div>
+        <div class="qv-price-old" id="qvOld"></div>
+        <div class="qv-save" id="qvSave" style="display:none;"></div>
+      </div>
+      <div class="qv-qty">
+        <button class="qv-qty-btn" onclick="changeQty(-1)" aria-label="Decrease"><i class="fa-solid fa-minus"></i></button>
+        <span class="qv-qty-num" id="qvQtyNum">1</span>
+        <button class="qv-qty-btn" onclick="changeQty(1)" aria-label="Increase"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <button class="btn btn-primary" style="flex:1;min-width:0;" onclick="addToCartFromQV()" id="qvAddBtn">
+          <i class="fa-solid fa-cart-plus"></i> Add to Cart
+        </button>
+        <button class="btn btn-outline" style="flex-shrink:0;" onclick="addWishlistQV()" id="qvWishlistBtn" aria-label="Add to Wishlist">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════ -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+<script>
+/* ══════════════════════════════════════════════
+   STORE PAGE — JavaScript
+══════════════════════════════════════════════ */
+
+
+let currentView = 'grid';
+let currentCat = 'all';
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ duration: 600, once: true, offset: 40, easing: 'ease-out-cubic' });
+  }
+
+  
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => {
+    if (window.scrollY > 10) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  
+  const hamburger = document.getElementById('hamburger');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileOverlay.classList.contains('is-open');
+    if (isOpen) { closeMobileMenu(); }
+    else {
+      mobileOverlay.classList.add('is-open');
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  });
+
+  
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeMobileMenu(); closeSearch(); closeQVModal(); }
+  });
+
+  
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) {
+      closeMobileMenu();
+    }
+  });
+
+  
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchToggle  = document.getElementById('searchToggle');
+  const searchCloseBtn = document.getElementById('searchClose');
+  const searchInputEl = document.getElementById('searchInput');
+
+  searchToggle.addEventListener('click', () => {
+    searchOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => searchInputEl.focus(), 300);
+  });
+  searchCloseBtn.addEventListener('click', closeSearch);
+  searchOverlay.addEventListener('click', e => { if (e.target === searchOverlay) closeSearch(); });
+  searchInputEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { closeSearch(); applySearch(searchInputEl.value); }
+  });
+
+  
+  const storeSearchInput = document.getElementById('storeSearchInput');
+  let searchTimeout;
+  storeSearchInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => applySearch(storeSearchInput.value), 300);
+  });
+
+  
+  document.getElementById('sortSelect').addEventListener('change', function() {
+    showToast('Sorting by: ' + this.options[this.selectedIndex].text, 'fa-sort');
+    applySort();
+  });
+
+  
+  const slider = document.getElementById('priceSlider');
+  if (slider) updatePriceSliderStyle(slider);
+
+  
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  
+  document.querySelectorAll('.navbar__link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === 'store.html') link.classList.add('active');
+  });
+
+  const urlCat = new URLSearchParams(window.location.search).get('cat');
+  if (urlCat) {
+    const pill = document.querySelector(`.cat-pill[data-cat="${urlCat}"]`);
+    if (pill) filterCat(pill, urlCat);
+    else updateResultsCount();
+  } else {
+    updateResultsCount();
+  }
+});
+
+
+
+function toggleMobileFilters() {
+  const sidebar = document.getElementById('sidebarCol');
+  const backdrop = document.getElementById('filtersBackdrop');
+  if(sidebar && backdrop) {
+    sidebar.classList.toggle('show-filters');
+    backdrop.classList.toggle('show');
+    if(sidebar.classList.contains('show-filters')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+}
+
+function closeMobileMenu() {
+  document.getElementById('mobileOverlay').classList.remove('is-open');
+  document.getElementById('hamburger').classList.remove('is-open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('is-open');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function showToast(msg, icon = 'fa-circle-check') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<i class="fa-solid ${icon}"></i>${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(16px)';
+    toast.style.transition = 'all 0.35s';
+    setTimeout(() => toast.remove(), 400);
+  }, 3200);
+}
+
+function handleNewsletter(e) {
+  e.preventDefault();
+  window.location.href = '404.html';
+}
+
+
+
+
+
+
+function addWishlistQV() {
+  if (typeof qvCurrentProduct === 'undefined' || !qvCurrentProduct) return;
+  const { name, brand, emoji, price } = qvCurrentProduct;
+  toggleWishlist(name, brand, price, emoji, null);
+  updateQVWishlistState(name);
+}
+
+
+
+function setView(mode) {
+  currentView = mode;
+  const grid = document.getElementById('productsGrid');
+  const gridBtn = document.getElementById('gridViewBtn');
+  const listBtn = document.getElementById('listViewBtn');
+  if (mode === 'list') {
+    grid.classList.add('list-view');
+    listBtn.classList.add('active');
+    gridBtn.classList.remove('active');
+  } else {
+    grid.classList.remove('list-view');
+    gridBtn.classList.add('active');
+    listBtn.classList.remove('active');
+  }
+}
+
+
+let selectedRating = 0;
+
+function filterCat(btn, cat) {
+  currentCat = cat;
+  currentPage = 1;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  
+  
+  document.querySelectorAll('.cat-cb').forEach(cb => cb.checked = false);
+  
+  applyFilters();
+}
+
+function filterCatCheckbox(cb) {
+ 
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  currentPage = 1;
+  
+  const checkedCount = document.querySelectorAll('.cat-cb:checked').length;
+  if (checkedCount === 0) {
+    document.querySelector('.cat-pill[data-cat="all"]').classList.add('active');
+    currentCat = 'all';
+  } else {
+    currentCat = 'all'; 
+  }
+  
+  applyFilters();
+}
+
+function applyBrandFilter() {
+  currentPage = 1;
+  applyFilters();
+}
+
+function filterRating(element, ratingVal) {
+  const items = document.querySelectorAll('.rating-filter-item');
+  const wasActive = element.classList.contains('active');
+  currentPage = 1;
+  
+  items.forEach(item => item.classList.remove('active'));
+  
+  if (wasActive) {
+    selectedRating = 0;
+  } else {
+    element.classList.add('active');
+    selectedRating = ratingVal;
+    showToast(`Rating filter: ${ratingVal}★ & above`, 'fa-star');
+  }
+  
+  applyFilters();
+}
+
+function applySearch(term) {
+  currentPage = 1;
+  applyFilters(term);
+}
+
+
+// Pagination logic
+let currentPage = 1;
+const itemsPerPage = 16;
+let filteredCols = [];
+
+function resetFilters() {
+  const searchInput = document.getElementById('storeSearchInput');
+  if (searchInput) searchInput.value = '';
+  
+  const priceSlider = document.getElementById('priceSlider');
+  if (priceSlider) {
+    priceSlider.value = priceSlider.max || 5000;
+    updatePrice(priceSlider);
+  }
+  
+  document.querySelectorAll('.cat-cb, .brand-cb').forEach(cb => cb.checked = false);
+  
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  const allPill = document.querySelector('.cat-pill[data-cat="all"]');
+  if (allPill) allPill.classList.add('active');
+  currentCat = 'all';
+  
+  document.querySelectorAll('.rating-filter-item').forEach(item => item.classList.remove('active'));
+  selectedRating = 0;
+  
+  const sortSelect = document.getElementById('sortSelect');
+  if (sortSelect) sortSelect.value = 'popular';
+  
+  currentPage = 1;
+  applyFilters();
+}
+
+function applyFilters(searchTerm) {
+  const term = (searchTerm || document.getElementById('storeSearchInput').value || '').toLowerCase().trim();
+  const maxPrice = parseFloat(document.getElementById('priceSlider').value || 5000);
+  const checkedCats = Array.from(document.querySelectorAll('.cat-cb:checked')).map(cb => cb.value);
+  const checkedBrands = Array.from(document.querySelectorAll('.brand-cb:checked')).map(cb => cb.value);
+  const cols = Array.from(document.querySelectorAll('.prod-col'));
+  
+  filteredCols = [];
+  
+  cols.forEach(col => {
+    const cat = col.dataset.cat || '';
+    const price = parseFloat(col.dataset.price || 0);
+    const brand = col.dataset.brand || '';
+    const rating = parseFloat(col.dataset.rating || 0);
+    const name = (col.dataset.name || '').toLowerCase();
+    const fullText = col.textContent.toLowerCase();
+    
+    let catMatch = (currentCat === 'all') ? true : (cat === currentCat);
+    if (currentCat === 'all' && checkedCats.length > 0) catMatch = checkedCats.includes(cat);
+    
+    const priceMatch = (price <= maxPrice);
+    const brandMatch = (checkedBrands.length === 0 || checkedBrands.includes(brand));
+    const ratingMatch = (rating >= selectedRating);
+    const searchMatch = !term || name.includes(term) || fullText.includes(term);
+    
+    if (catMatch && priceMatch && brandMatch && ratingMatch && searchMatch) {
+      filteredCols.push(col);
+    } else {
+      col.style.display = 'none';
+    }
+  });
+  
+  applySortAndPaginate();
+}
+
+function applySortAndPaginate() {
+  const select = document.getElementById('sortSelect');
+  const sortBy = select ? select.value : '';
+  
+  filteredCols.sort((a, b) => {
+    if (sortBy === 'price-asc') return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+    if (sortBy === 'price-desc') return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+    if (sortBy === 'rating') return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+    if (sortBy === 'newest') return (b.dataset.new === 'true' ? 1 : 0) - (a.dataset.new === 'true' ? 1 : 0) || parseInt(b.dataset.index) - parseInt(a.dataset.index);
+    return parseInt(a.dataset.index) - parseInt(b.dataset.index);
+  });
+  
+  
+  filteredCols.forEach(col => col.style.display = 'none');
+  
+  const totalItems = filteredCols.length;
+  const noResults = document.getElementById('noResults');
+  if (noResults) noResults.style.display = totalItems === 0 ? 'block' : 'none';
+  document.getElementById('resultsCount').innerHTML = `<i class="fa-solid fa-list-check me-1"></i> Showing ${totalItems} product${totalItems !== 1 ? 's' : ''}`;
+  
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+  if (currentPage < 1) currentPage = 1;
+  
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  
+  const grid = document.getElementById('productsGrid');
+  filteredCols.slice(start, end).forEach(col => {
+    col.style.display = '';
+    grid.appendChild(col);
+  });
+  
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+  const nav = document.querySelector('.pagination-wrap');
+  if (!nav) return;
+  nav.innerHTML = '';
+  
+  if (totalPages <= 1) {
+    nav.style.display = 'none';
+    return;
+  }
+  nav.style.display = 'flex';
+  
+  const prev = document.createElement('a');
+  prev.className = 'pag-btn' + (currentPage === 1 ? ' disabled' : '');
+  prev.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+  prev.onclick = (e) => { e.preventDefault(); if (currentPage > 1) { currentPage--; applySortAndPaginate(); } };
+  nav.appendChild(prev);
+  
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('a');
+    btn.className = 'pag-btn' + (i === currentPage ? ' active' : '');
+    btn.textContent = i;
+    btn.onclick = (e) => { e.preventDefault(); currentPage = i; applySortAndPaginate(); };
+    nav.appendChild(btn);
+  }
+  
+  const next = document.createElement('a');
+  next.className = 'pag-btn' + (currentPage === totalPages ? ' disabled' : '');
+  next.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+  next.onclick = (e) => { e.preventDefault(); if (currentPage < totalPages) { currentPage++; applySortAndPaginate(); } };
+  nav.appendChild(next);
+}
+
+// Ensure `applySort` logic routes to new logic
+function applySort() {
+  currentPage = 1;
+  applySortAndPaginate();
+}
+
+function updateResultsCount() {
+  applyFilters();
+}
+
+
+
+function updatePrice(input) {
+  const val = parseInt(input.value);
+  document.getElementById('priceMax').textContent = '₹' + val.toLocaleString('en-IN');
+  updatePriceSliderStyle(input);
+  currentPage = 1;
+  applyFilters();
+}
+
+function updatePriceSliderStyle(input) {
+  const pct = ((input.value - input.min) / (input.max - input.min) * 100) + '%';
+  input.style.setProperty('--val', pct);
+}
+
+const marqueeTrack = document.querySelector('.marquee-track');
+if (marqueeTrack) {
+  marqueeTrack.style.animation = 'marquee 30s linear infinite';
+}
+
+
+</script>
+
+<style>
+  
+  .marquee-track { display:flex; animation:marquee 30s linear infinite; width:max-content; }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+</style>
+    <script src="cart.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

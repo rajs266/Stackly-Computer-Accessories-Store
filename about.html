@@ -1,0 +1,1440 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5"/>
+  <meta name="description" content="About Stackly — Salem's trusted computer accessories store since 2018. Meet our tech experts and learn about our mission to deliver premium PC peripherals."/>
+  <title>About Us — Stackly</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+  
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    
+
+    
+    .page-header {
+      background-image: linear-gradient(to right, rgba(13,27,42,0.85), rgba(13,27,42,0.4)), url('https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 9rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 450px;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 30%, rgba(37,99,235,0.32) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56,189,248,0.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .page-header__particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .page-header__particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56,189,248,0.5) 0%, transparent 70%);
+      animation: floatParticle var(--duration, 6s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+      opacity: 0.25;
+    }
+    .page-header__inner { position: relative; z-index: 2; }
+    .page-header__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.25);
+      padding: 0.35rem 1rem;
+      border-radius: var(--r-full);
+      margin-bottom: 1.1rem;
+    }
+    .page-header__title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--clr-white);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .page-header__desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      margin-inline: auto;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.38s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--clr-accent); }
+    .breadcrumb i { font-size: 0.65rem; }
+
+    
+    .about-story-img {
+      position: relative;
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-xl);
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-story-img__inner {
+      font-size: 9rem;
+      animation: imgFloat 5s ease-in-out infinite;
+      filter: drop-shadow(0 24px 48px rgba(37,99,235,0.3));
+      user-select: none;
+    }
+    @keyframes imgFloat {
+      0%,100%{ transform: translateY(0) rotate(-2deg); }
+      50%    { transform: translateY(-18px) rotate(2deg); }
+    }
+    .about-badge-float {
+      position: absolute;
+      background: var(--clr-white);
+      border-radius: var(--r-md);
+      padding: 0.9rem 1.2rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--clr-dark);
+      animation: floatBadge 3.5s ease-in-out infinite;
+      z-index: 2;
+      white-space: nowrap;
+    }
+    .about-badge-float i { color: var(--clr-primary); font-size: 1.1rem; }
+    .about-badge-float .num {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--clr-primary);
+      line-height: 1;
+      display: block;
+    }
+    .about-badge-float .lbl { font-size: 0.72rem; color: var(--clr-grey); font-weight: 600; }
+    .about-bf-years  { bottom: 2rem; left: -1rem; animation-delay: 0s; }
+    .about-bf-cust   { top: 2rem; right: -1rem; animation-delay: -1.5s; }
+    @keyframes floatBadge {
+      0%,100%{ transform: translateY(0) scale(1); }
+      50%    { transform: translateY(-8px) scale(1.02); }
+    }
+
+    
+    .mission-card {
+      background: var(--clr-white);
+      border-radius: var(--r-lg);
+      padding: 2rem 1.75rem;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+      height: 100%;
+    }
+    .mission-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--clr-primary);
+    }
+    .mission-card__icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--r-md);
+      background: var(--clr-accent2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--clr-primary);
+      margin-bottom: 1.25rem;
+      transition: background 0.3s, color 0.2s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .mission-card:hover .mission-card__icon {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      transform: rotateY(360deg) scale(1.1);
+    }
+    .mission-card__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 0.5rem;
+    }
+    .mission-card__desc {
+      font-size: 0.88rem;
+      color: var(--clr-grey);
+      line-height: 1.7;
+    }
+
+    
+    .why-section {
+      background: var(--grad-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 20% 50%, rgba(37,99,235,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 30%, rgba(56,189,248,0.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--r-lg);
+      padding: 1.75rem 1.5rem;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), background 0.3s, box-shadow 0.4s;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.12) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .why-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+    }
+    .why-card:hover::before { opacity: 1; }
+    .why-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--r-md);
+      background: rgba(56,189,248,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--clr-accent);
+      margin-bottom: 1.1rem;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .why-card:hover .why-icon { transform: rotateY(360deg) scale(1.1); }
+    .why-title { font-size: 0.95rem; font-weight: 700; color: var(--clr-white); margin-bottom: 0.4rem; }
+    .why-desc  { font-size: 0.82rem; color: rgba(255,255,255,0.58); line-height: 1.65; }
+
+    
+    .team-card {
+      background: var(--clr-white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+      text-align: center;
+    }
+    .team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .team-card__photo {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+    .team-card__emoji {
+      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      user-select: none;
+    }
+    .team-card:hover .team-card__emoji { transform: scale(1.15) rotate(5deg); }
+    .team-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(37,99,235,0.9), transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .team-card:hover .team-card__overlay { opacity: 1; }
+    .team-social-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--clr-primary);
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      border: none;
+      cursor: pointer;
+      transform: translateY(16px);
+    }
+    .team-card:hover .team-social-btn { transform: translateY(0); }
+    .team-social-btn:nth-child(1) { transition-delay: 0.05s; }
+    .team-social-btn:nth-child(2) { transition-delay: 0.1s; }
+    .team-social-btn:nth-child(3) { transition-delay: 0.15s; }
+    .team-social-btn:hover { background: var(--clr-primary); color: var(--clr-white); }
+    .team-card__body { padding: 1.1rem 1rem 1.4rem; }
+    .team-card__name { font-size: 1rem; font-weight: 700; color: var(--clr-dark); margin-bottom: 0.2rem; }
+    .team-card__role { font-size: 0.78rem; color: var(--clr-primary); font-weight: 600; }
+    .team-card__bio  { font-size: 0.78rem; color: var(--clr-grey); margin-top: 0.4rem; line-height: 1.55; }
+
+    
+    .stat-card {
+      text-align: center;
+      padding: 1.5rem 0.5rem;
+      background: var(--clr-white);
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(37,99,235,0.09);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+    }
+    .stat-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+    .stat-card__icon {
+      font-size: 2rem;
+      color: var(--clr-primary);
+      margin-bottom: 0.75rem;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .stat-card:hover .stat-card__icon { transform: scale(1.2) rotateY(180deg); }
+    .stat-card__num {
+      font-family: var(--font-body);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--clr-dark);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-card__num .accent { color: var(--clr-primary); }
+    .stat-card__label { font-size: 0.82rem; color: var(--clr-grey); font-weight: 600; }
+
+    
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--clr-primary), var(--clr-accent));
+      border-radius: var(--r-full);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item:last-child::after {
+      content: '';
+      position: absolute;
+      left: -21px;
+      width: 2px;
+      top: calc(0.35rem + 14px);
+      bottom: -2px;
+      background: var(--clr-white);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      left: -27px;
+      top: 0.35rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--clr-primary);
+      border: 3px solid var(--clr-white);
+      box-shadow: 0 0 0 2px var(--clr-primary);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
+    }
+    .timeline-item:hover::before {
+      transform: scale(1.4);
+      background: var(--clr-accent);
+    }
+    .timeline-year {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-primary);
+      background: var(--clr-accent2);
+      padding: 0.2rem 0.7rem;
+      border-radius: var(--r-full);
+      margin-bottom: 0.4rem;
+    }
+    .timeline-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--clr-dark);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-desc {
+      font-size: 0.84rem;
+      color: var(--clr-grey);
+      line-height: 1.6;
+    }
+
+    
+    .accordion-item {
+      border: 1px solid rgba(37,99,235,0.12);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      margin-bottom: 0.6rem;
+      transition: box-shadow 0.2s;
+    }
+    .accordion-item:hover { box-shadow: var(--shadow-sm); }
+    .accordion-item.open  { box-shadow: var(--shadow-md); border-color: var(--clr-primary); }
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--clr-dark);
+      gap: 0.75rem;
+      transition: color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      font-family: inherit;
+    }
+    .accordion-trigger:hover { color: var(--clr-primary); }
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--clr-accent2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-primary);
+      font-size: 0.75rem;
+      transition: background 0.2s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .accordion-item.open .accordion-icon {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      transform: rotate(180deg);
+    }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .accordion-body__inner {
+      padding: 0 1.25rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--clr-grey);
+      line-height: 1.7;
+    }
+
+    
+    .cta-band {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 60%, #0d1b2a 100%);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      position: relative;
+      padding: 3.5rem 3rem;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2338bdf8' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-band::after {
+      content: '💻';
+      position: absolute;
+      right: -20px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 10rem;
+      opacity: 0.06;
+      line-height: 1;
+      pointer-events: none;
+    }
+    @media (max-width: 767.98px) {
+
+      .cta-band { padding: 2.5rem 1.5rem; text-align: center; }
+      .cta-band::after { display: none; }
+      
+      .about-bf-years { bottom: 1rem; left: 0.5rem; }
+      .about-bf-cust { top: 1rem; right: 0.5rem; }
+      .about-badge-float { padding: 0.6rem 0.8rem; gap: 0.4rem; }
+      .about-badge-float .num { font-size: 1.1rem; }
+      .about-badge-float .lbl { font-size: 0.65rem; }
+      .about-badge-float i { font-size: 0.9rem; }
+      .about-story-img { min-height: 400px; }
+      
+      .about-story-img { max-width: 100%; }
+      
+      .page-header__particle { pointer-events: none; }
+    }
+    
+    .why-section,
+    body { overflow-x: hidden; }
+  </style>
+  
+</head>
+
+<body>
+
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-overlay__inner">
+    <div class="search-overlay__input-wrap">
+      <i class="fa-solid fa-magnifying-glass" style="padding-left:1.4rem;color:#687d94;"></i>
+      <input class="search-overlay__input" id="searchInput" type="text" placeholder="Search keyboards, mice, monitors, PC gear…" autocomplete="off"/>
+      <button class="search-overlay__close" id="searchClose" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p class="search-overlay__hint">Press <kbd style="background:rgba(255,255,255,0.15);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.75rem;">ESC</kbd> to close</p>
+  </div>
+</div>
+
+
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="mobile-overlay__header">
+    <a href="index.html" class="mobile-overlay__logo logo-brand" aria-label="Stackly Home"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+    <button class="mobile-overlay__close-btn" onclick="closeMobileMenu()" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <nav class="mobile-overlay__nav" aria-label="Mobile Navigation">
+    <a href="index.html"   class="mobile-overlay__link" onclick="closeMobileMenu()">Home</a>
+    <a href="about.html"   class="mobile-overlay__link active" onclick="closeMobileMenu()">About</a>
+    <a href="store.html"   class="mobile-overlay__link" onclick="closeMobileMenu()">Store</a>
+    <a href="blog.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">Blog</a>
+    <a href="contact.html" class="mobile-overlay__link" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+  <div class="mobile-overlay__bottom">
+    <div class="mobile-overlay__divider"></div>
+    <div class="mobile-overlay__btns">
+      <a href="signin.html"      class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </div>
+</div>
+
+
+<header class="navbar navbar--hero" id="navbar">
+  <div class="container navbar__inner">
+
+    
+    <a href="index.html" class="navbar__logo logo-brand" aria-label="Stackly Home"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+
+    
+    <nav class="navbar__nav" aria-label="Main Navigation">
+      <a href="index.html"   class="navbar__link">Home</a>
+      <a href="about.html"   class="navbar__link active">About</a>
+      <a href="store.html"   class="navbar__link">Store</a>
+      <a href="blog.html"    class="navbar__link">Blog</a>
+      <a href="contact.html" class="navbar__link">Contact</a>
+    </nav>
+
+    
+    <div class="navbar__actions">
+      <button class="navbar__search-btn" id="searchToggle" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="navbar__wishlist-btn" aria-label="Wishlist" onclick="openWishlist()" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.9);background:transparent;position:relative;">
+        <i class="fa-solid fa-heart"></i>
+        <span class="wishlist-count" style="display:flex;">0</span>
+      </button>
+      <button class="navbar__cart-btn" aria-label="Cart" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count" id="cartBadge" style="display:none;">0</span>
+      </button>
+      <a href="signin.html"      class="btn btn-outline btn-sm d-none d-lg-inline-flex">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm d-none d-lg-inline-flex">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<section class="page-header">
+  
+  <div class="page-header__particles" aria-hidden="true">
+    <div class="page-header__particle" style="width:70px;height:70px;top:15%;left:8%;--duration:7s;--delay:0s;"></div>
+    <div class="page-header__particle" style="width:45px;height:45px;top:65%;left:5%;--duration:5s;--delay:-2s;"></div>
+    <div class="page-header__particle" style="width:90px;height:90px;top:25%;right:6%;--duration:8s;--delay:-1s;"></div>
+    <div class="page-header__particle" style="width:35px;height:35px;top:75%;right:18%;--duration:6s;--delay:-3s;"></div>
+  </div>
+
+  <div class="container page-header__inner">
+    <div class="page-header__eyebrow">
+      <i class="fa-solid fa-circle-info"></i> Our Story
+    </div>
+    <h1 class="page-header__title">
+      About <span class="text-gradient">Stackly</span>
+    </h1>
+    <p class="page-header__desc">
+      Salem's trusted computer accessories retailer — premium PC peripherals, gaming gear, and expert tech guidance since 2018.
+    </p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>About Us</span>
+    </nav>
+  </div>
+</section>
+
+
+<div class="features-strip" aria-hidden="true">
+  <div class="features-strip__inner">
+    <div class="features-strip__track">
+      <div class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> Genuine Branded Products</div>
+      <div class="features-strip__item"><i class="fa-solid fa-truck-fast"></i> Fast Local Delivery</div>
+      <div class="features-strip__item"><i class="fa-solid fa-microchip"></i> Expert Tech Team</div>
+      <div class="features-strip__item"><i class="fa-solid fa-screwdriver-wrench"></i> PC Build Support</div>
+      <div class="features-strip__item"><i class="fa-solid fa-headset"></i> Tech Support</div>
+      <div class="features-strip__item"><i class="fa-solid fa-tag"></i> Best Price Guarantee</div>
+      <div class="features-strip__item"><i class="fa-solid fa-gamepad"></i> Gaming Gear</div>
+      <div class="features-strip__item"><i class="fa-solid fa-star"></i> 4.9 Customer Rating</div>
+      
+      <div class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> Genuine Branded Products</div>
+      <div class="features-strip__item"><i class="fa-solid fa-truck-fast"></i> Fast Local Delivery</div>
+      <div class="features-strip__item"><i class="fa-solid fa-microchip"></i> Expert Tech Team</div>
+      <div class="features-strip__item"><i class="fa-solid fa-screwdriver-wrench"></i> PC Build Support</div>
+      <div class="features-strip__item"><i class="fa-solid fa-headset"></i> Tech Support</div>
+      <div class="features-strip__item"><i class="fa-solid fa-tag"></i> Best Price Guarantee</div>
+      <div class="features-strip__item"><i class="fa-solid fa-gamepad"></i> Gaming Gear</div>
+      <div class="features-strip__item"><i class="fa-solid fa-star"></i> 4.9 Customer Rating</div>
+    </div>
+  </div>
+</div>
+
+
+<section class="section" id="story">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="about-story-img">
+          <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=1600&q=80" alt="Who We Are" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; border-radius: var(--r-xl);" />
+          
+          <div class="about-badge-float about-bf-years">
+            <div>
+              <span class="num">8+</span>
+              <span class="lbl">Years of Trust</span>
+            </div>
+          </div>
+          <div class="about-badge-float about-bf-cust">
+            <i class="fa-solid fa-users"></i>
+            <div>
+              <span class="num">50K+</span>
+              <span class="lbl">Happy Customers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-lg-7" data-aos="fade-left">
+        <span class="eyebrow">Who We Are</span>
+        <h2 class="section-title mt-3 mb-3">
+          More Than a Store —<br/>
+          <span class="text-gradient">Your Tech Partner</span>
+        </h2>
+        <p class="section-subtitle mb-4">
+          Stackly was born in 2018 with a single mission: bring premium computer accessories and PC peripherals to every tech enthusiast in Salem and beyond. We started as a small shop at MMR Complex and have grown into Salem's most trusted computer accessories retailer.
+        </p>
+        <p style="font-size:0.93rem;color:var(--clr-grey);line-height:1.75;margin-bottom:1.5rem;">
+          Every order we fulfil represents a customer who trusts us with their setup. That responsibility drives everything we do — from sourcing only genuine, brand-authorized peripherals to ensuring our tech experts are available to answer your questions.
+        </p>
+
+        
+        <div class="values-list mb-4">
+          <div class="value-item" data-aos="fade-up" data-aos-delay="0">
+            <div class="value-item__icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <div class="value-item__title">Genuine Products</div>
+              <div class="value-item__desc">Every peripheral sourced directly from authorized distributors — zero counterfeits, always.</div>
+            </div>
+          </div>
+          <div class="value-item" data-aos="fade-up" data-aos-delay="80">
+            <div class="value-item__icon"><i class="fa-solid fa-user-gear"></i></div>
+            <div>
+              <div class="value-item__title">Customer-First Support</div>
+              <div class="value-item__desc">Your perfect setup is our success metric, not just transaction numbers.</div>
+            </div>
+          </div>
+          <div class="value-item" data-aos="fade-up" data-aos-delay="160">
+            <div class="value-item__icon"><i class="fa-solid fa-gamepad"></i></div>
+            <div>
+              <div class="value-item__title">Complete Tech Solutions</div>
+              <div class="value-item__desc">Keyboards, mice, monitors, headsets, and PC components — all under one roof.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="store.html" class="btn btn-primary">
+            <i class="fa-solid fa-store"></i> Shop Now
+          </a>
+          <a href="contact.html" class="btn btn-outline">
+            <i class="fa-solid fa-envelope"></i> Contact Us
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow">By the Numbers</span>
+      <h2 class="section-title mt-3">Our <span class="text-gradient">Impact</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
+        <div class="stat-card">
+          <div class="stat-card__icon"><i class="fa-solid fa-users"></i></div>
+          <div class="stat-card__num">
+            <span class="counter" data-target="50000">0</span><span class="accent">+</span>
+          </div>
+          <div class="stat-card__label">Happy Customers</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="80">
+        <div class="stat-card">
+          <div class="stat-card__icon"><i class="fa-solid fa-box-open"></i></div>
+          <div class="stat-card__num">
+            <span class="counter" data-target="8000">0</span><span class="accent">+</span>
+          </div>
+          <div class="stat-card__label">Products Listed</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="160">
+        <div class="stat-card">
+          <div class="stat-card__icon"><i class="fa-solid fa-award"></i></div>
+          <div class="stat-card__num">
+            <span class="counter" data-target="8" data-suffix="+">0</span>
+          </div>
+          <div class="stat-card__label">Years of Trust</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="240">
+        <div class="stat-card">
+          <div class="stat-card__icon"><i class="fa-solid fa-star"></i></div>
+          <div class="stat-card__num">
+            4.9<span class="accent">★</span>
+          </div>
+          <div class="stat-card__label">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow">What Drives Us</span>
+      <h2 class="section-title mt-3">Our Mission &amp; <span class="text-gradient">Values</span></h2>
+      <p class="section-subtitle mx-auto mt-2">Everything we do starts from a simple belief — every tech enthusiast deserves premium, genuine PC peripherals at fair prices.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="mission-card">
+          <div class="mission-card__icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h3 class="mission-card__title">Our Mission</h3>
+          <p class="mission-card__desc">To make premium PC peripherals and computer accessories accessible to every tech enthusiast in Salem and Tamil Nadu.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="mission-card">
+          <div class="mission-card__icon"><i class="fa-solid fa-eye"></i></div>
+          <h3 class="mission-card__title">Our Vision</h3>
+          <p class="mission-card__desc">To become South India's most trusted tech retail platform — combining peripherals, custom builds, and expert support in one seamless experience.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="mission-card">
+          <div class="mission-card__icon"><i class="fa-solid fa-handshake-angle"></i></div>
+          <h3 class="mission-card__title">Our Promise</h3>
+          <p class="mission-card__desc">Genuine products, transparent pricing, and a real tech expert just a message away — always. Your trust is our most valuable asset.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="mission-card">
+          <div class="mission-card__icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="mission-card__title">100% Authenticity</h3>
+          <p class="mission-card__desc">Every product is sourced directly from authorized brand distributors. We conduct rigorous quality checks at every step of our supply chain.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="mission-card">
+          <div class="mission-card__icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <h3 class="mission-card__title">Swift Delivery</h3>
+          <p class="mission-card__desc">Secure packaging and express delivery across Salem. Local orders delivered within 2 hours.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="mission-card">
+          <div class="mission-card__icon"><i class="fa-solid fa-user-gear"></i></div>
+          <h3 class="mission-card__title">Expert Tech Team</h3>
+          <p class="mission-card__desc">Our certified tech experts are available to help you choose the right peripherals, troubleshoot compatibility, and optimize your setup.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section why-section">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow" style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:var(--clr-accent);">Why Stackly</span>
+      <h2 class="section-title mt-3 text-white">Why Thousands <span class="text-gradient">Choose Us</span></h2>
+      <p class="section-subtitle mx-auto mt-2" style="color:rgba(255,255,255,0.55);">We're not just a gadget shop. We're your long-term tech partner.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-certificate"></i></div>
+          <div class="why-title">Licensed &amp; Regulated</div>
+          <div class="why-desc">Authorized dealer for leading brands — Logitech, Razer, Corsair, and more. Every product comes with genuine warranty.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-temperature-half"></i></div>
+          <div class="why-title">Secure Packaging</div>
+          <div class="why-desc">Monitors, GPUs, and delicate components are packed with anti-static foam and shock protection — arriving in perfect condition.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-rotate"></i></div>
+          <div class="why-title">Build Consultation</div>
+          <div class="why-desc">Book a free PC build consultation. Our experts help you pick compatible components and assemble your dream setup.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-lock"></i></div>
+          <div class="why-title">Private &amp; Secure</div>
+          <div class="why-desc">Your order data and personal information are encrypted and never shared. We treat your privacy with the same care as your setup.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-tag"></i></div>
+          <div class="why-title">Best Price Guarantee</div>
+          <div class="why-desc">We match or beat competitor prices on identical SKUs. Exclusive member discounts up to 20% on peripherals and accessories.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
+          <div class="why-title">Expert Tech Chat</div>
+          <div class="why-desc">Real tech experts — not chatbots. Reach us via WhatsApp, call, or in-store for personalised setup guidance.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row align-items-start g-5">
+
+      
+      <div class="col-lg-5" data-aos="fade-right">
+        <span class="eyebrow">Our Journey</span>
+        <h2 class="section-title mt-3 mb-3">
+          8 Years of <span class="text-gradient">Growth</span>
+        </h2>
+        <p class="section-subtitle mb-4">
+          From a single accessories counter in Salem to a full-stack tech retail platform — every milestone has been driven by your trust.
+        </p>
+        <a href="store.html" class="btn btn-primary">
+          <i class="fa-solid fa-arrow-right"></i> Explore Our Store
+        </a>
+      </div>
+
+      
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="timeline">
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="0">
+            <span class="timeline-year">2018</span>
+            <div class="timeline-title">Stackly Founded</div>
+            <div class="timeline-desc">Opened our first computer accessories shop at MMR Complex, Salem with 200 products and 3 tech enthusiasts.</div>
+          </div>
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="60">
+            <span class="timeline-year">2019</span>
+            <div class="timeline-title">Online Platform Launched</div>
+            <div class="timeline-desc">Launched our website and online ordering, bringing Salem's best PC peripherals to customers across the city.</div>
+          </div>
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="120">
+            <span class="timeline-year">2020</span>
+            <div class="timeline-title">Home Delivery During Pandemic</div>
+            <div class="timeline-desc">Expanded home delivery across Salem during the work-from-home boom — equipping over 5,000 home offices with quality gear.</div>
+          </div>
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="180">
+            <span class="timeline-year">2022</span>
+            <div class="timeline-title">Auto-Refill &amp; Chronic Care</div>
+            <div class="timeline-desc">Launched custom PC build services and gaming setup consultations for enthusiasts across Tamil Nadu.</div>
+          </div>
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="240">
+            <span class="timeline-year">2024</span>
+            <div class="timeline-title">8,000+ Products &amp; App Launch</div>
+            <div class="timeline-desc">Expanded catalogue to 3,000+ SKUs spanning keyboards, mice, monitors, headsets, and PC components. Launched the Stackly online store.</div>
+          </div>
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+            <span class="timeline-year">2026</span>
+            <div class="timeline-title">50,000 Happy Customers</div>
+            <div class="timeline-desc">Crossed 50,000 satisfied customers with a 4.9-star rating — and we're just getting started.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow">The People</span>
+      <h2 class="section-title mt-3">Meet Our <span class="text-gradient">Team</span></h2>
+      <p class="section-subtitle mx-auto mt-2">Passionate tech experts committed to your perfect setup.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-12 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="team-card">
+          <div class="team-card__photo">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Arjun Selvam" class="team-card-img" style="width:100%; height:100%; object-fit:cover;" />
+              <div class="team-card__overlay">
+                <div class="d-flex gap-2">
+                  <a href="404.html" class="team-social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="404.html" class="team-social-btn"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <div class="team-card__name">Arjun Selvam</div>
+            <div class="team-card__role">Founder &amp; Lead Tech Expert</div>
+            <div class="team-card__bio">B.Tech CSE · 14 years in PC hardware & retail</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+        <div class="team-card">
+          <div class="team-card__photo">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" alt="Priya Krishnamurthy" class="team-card-img" style="width:100%; height:100%; object-fit:cover;" />
+              <div class="team-card__overlay">
+                <div class="d-flex gap-2">
+                  <a href="404.html" class="team-social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="404.html" class="team-social-btn"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <div class="team-card__name">Priya Krishnamurthy</div>
+            <div class="team-card__role">Operations Director</div>
+            <div class="team-card__bio">MBA from PSG · 10 years tech retail supply chain</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+        <div class="team-card">
+          <div class="team-card__photo">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Karthik Rajan" class="team-card-img" style="width:100%; height:100%; object-fit:cover;" />
+              <div class="team-card__overlay">
+                <div class="d-flex gap-2">
+                  <a href="404.html" class="team-social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="404.html" class="team-social-btn"><i class="fa-brands fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <div class="team-card__name">Karthik Rajan</div>
+            <div class="team-card__role">Head of Technology</div>
+            <div class="team-card__bio">B.Tech NIT Trichy · Full-stack &amp; e-commerce builder</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+        <div class="team-card">
+          <div class="team-card__photo">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Meena Suresh" class="team-card-img" style="width:100%; height:100%; object-fit:cover;" />
+              <div class="team-card__overlay">
+                <div class="d-flex gap-2">
+                  <a href="404.html" class="team-social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-card__body">
+              <div class="team-card__name">Meena Suresh</div>
+            <div class="team-card__role">Senior Tech Specialist</div>
+            <div class="team-card__bio">Hardware certified · Specialised in gaming setups</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4" data-aos="fade-right">
+        <span class="eyebrow">Questions</span>
+        <h2 class="section-title mt-3 mb-3">
+          Frequently Asked <span class="text-gradient">Questions</span>
+        </h2>
+        <p class="section-subtitle mb-4">
+          Can't find your answer? Our team is available 24/7.
+        </p>
+        <a href="contact.html" class="btn btn-primary">
+          <i class="fa-solid fa-headset"></i> Ask Us Anything
+        </a>
+      </div>
+      <div class="col-lg-8" data-aos="fade-left">
+        <div class="accordion-item open">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            Is Stackly an authorized retailer?
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="accordion-body" style="max-height:300px;">
+            <div class="accordion-body__inner">Yes. Stackly is an authorized computer accessories retailer operating from MMR Complex, Salem. All our products are sourced from genuine brand distributors and come with manufacturer warranty.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            Do you deliver outside Salem?
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body__inner">Absolutely. We deliver across Tamil Nadu, including Erode, Coimbatore, Namakkal, and Chennai. Salem orders qualify for same-day delivery. Outstation orders arrive within 2–4 business days via secure courier.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            Do you offer PC build consultation?
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body__inner">Visit our store at MMR Complex or message us on WhatsApp (+91 98765 43210) with your budget and use case. Our tech experts will recommend compatible components and can assemble your PC in-store.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            Are your prices competitive?
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body__inner">We offer competitive pricing on all peripherals with up to 20% off during sales. Our Best Price Guarantee means if you find a lower price on an identical SKU, we'll match it. Members get exclusive discounts on accessories.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            What is your return &amp; refund policy?
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body__inner">We accept returns on unopened items within 7 days in original packaging. For defective products or wrong items delivered, we offer a full refund or free replacement within 48 hours. Opened software and custom-built PCs have separate return policies.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            What warranty do products come with?
+            <div class="accordion-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body__inner">All products come with manufacturer warranty — typically 1–3 years depending on the brand. We handle warranty claims on your behalf. Extended warranty options are available on monitors, keyboards, and gaming gear.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" data-aos="zoom-in">
+    <div class="cta-band">
+      <div class="row align-items-center g-4" style="position:relative;z-index:2;">
+        <div class="col-lg-8">
+          <span class="eyebrow" style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);color:#fff;">Get Started Today</span>
+          <h2 class="section-title text-white mt-3 mb-2">
+            Your Setup, Our <span style="color:var(--clr-accent);">Priority</span>
+          </h2>
+          <p style="color:rgba(255,255,255,0.75);font-size:1rem;max-width:480px;line-height:1.7;">
+            Join 15,000+ customers who trust Stackly for premium PC peripherals and expert tech support — delivered fast.
+          </p>
+        </div>
+        <div class="col-lg-4 d-flex gap-3 flex-wrap justify-content-lg-end">
+          <a href="signup.html"      class="btn btn-white">
+            <i class="fa-solid fa-user-plus"></i> Get Started Free
+          </a>
+          <a href="store.html" class="btn btn-ghost">
+            <i class="fa-solid fa-store"></i> Shop Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo logo-brand"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+        <p class="footer__desc">Salem's premier computer accessories store — premium PC peripherals, gaming gear, and expert tech support since 2018.</p>
+        <div class="footer__col-title" style="margin-top:1rem; margin-bottom:0.75rem;">Newsletter</div>
+        <form class="footer__newsletter" onsubmit="handleNewsletter(event)" style="margin-bottom:1.25rem;">
+          <input type="email" placeholder="Your email…" required aria-label="Newsletter email"/>
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <div class="footer__social">
+          <a href="404.html" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Quick Links</div>
+        <ul class="footer__links">
+          <li><a href="index.html"    class="footer__link">Home</a></li>
+          <li><a href="about.html"    class="footer__link">About Us</a></li>
+          <li><a href="store.html"    class="footer__link">Our Store</a></li>
+          <li><a href="blog.html"     class="footer__link">Tech Blog</a></li>
+          <li><a href="contact.html"  class="footer__link">Contact</a></li>
+          <li><a href="signin.html"   class="footer__link">Sign In</a></li>
+        </ul>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Services</div>
+        <ul class="footer__links">
+          <li><a href="404.html"   class="footer__link">PC Build Consultation</a></li>
+          <li><a href="404.html"   class="footer__link">Custom PC Builds</a></li>
+          <li><a href="404.html" class="footer__link">Tech Support</a></li>
+          <li><a href="404.html"   class="footer__link">Warranty Service</a></li>
+          <li><a href="404.html"   class="footer__link">Gaming Bundles</a></li>
+          <li><a href="404.html"     class="footer__link">Corporate Orders</a></li>
+        </ul>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Find Us</div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>hello@stackly.in</span>
+        </div>
+        <div class="footer__address-item" style="margin-top:0.25rem;">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon–Sat: 8am–10pm · Sun: 9am–6pm</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="footer__bottom">
+      <div class="footer__copyright">
+        &copy; 2026 <span>Stackly</span>. All rights reserved. Designed with ❤️ in Salem.
+      </div>
+      <div class="footer__legal">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Use</a>
+        <a href="404.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+
+<div class="toast-container" id="toastContainer"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+  }
+
+  
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+      navbar.classList.remove('navbar--hero');
+    } else {
+      navbar.classList.remove('scrolled');
+      navbar.classList.add('navbar--hero');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  
+  const hamburger = document.getElementById('hamburger');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileOverlay.classList.contains('is-open');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      mobileOverlay.classList.add('is-open');
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  });
+
+  
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+      closeSearch();
+    }
+  });
+
+  
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) {
+      closeMobileMenu();
+    }
+  });
+
+  
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchToggle  = document.getElementById('searchToggle');
+  const searchClose   = document.getElementById('searchClose');
+  const searchInput   = document.getElementById('searchInput');
+
+  searchToggle.addEventListener('click', () => {
+    searchOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => searchInput.focus(), 300);
+  });
+  searchClose.addEventListener('click', closeSearch);
+  searchOverlay.addEventListener('click', e => {
+    if (e.target === searchOverlay) closeSearch();
+  });
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      closeSearch();
+      window.location.href = 'store.html';
+    }
+  });
+
+  
+  const counters = document.querySelectorAll('.counter');
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = target >= 10000
+          ? Math.floor(current).toLocaleString('en-IN')
+          : Math.floor(current) + (el.dataset.suffix || '');
+        if (current >= target) clearInterval(timer);
+      }, 16);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => countObserver.observe(c));
+
+  
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  
+  const animEls = document.querySelectorAll('.anim-fade-up,.anim-fade-left,.anim-fade-right,.anim-scale,.anim-flip');
+  if (animEls.length) {
+    const animObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.12 });
+    animEls.forEach(el => animObserver.observe(el));
+  }
+
+  
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.navbar__link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === currentPage) link.classList.add('active');
+  });
+
+});
+
+
+function closeMobileMenu() {
+  document.getElementById('mobileOverlay').classList.remove('is-open');
+  document.getElementById('hamburger').classList.remove('is-open');
+  document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('is-open');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function showToast(msg, icon = 'fa-circle-check') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<i class="fa-solid ${icon}"></i>${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(16px)';
+    toast.style.transition = 'all 0.35s';
+    setTimeout(() => toast.remove(), 400);
+  }, 3500);
+}
+
+function handleNewsletter(e) {
+  e.preventDefault();
+  window.location.href = '404.html';
+}
+
+
+function toggleAccordion(btn) {
+  const item = btn.closest('.accordion-item');
+  const body = item.querySelector('.accordion-body');
+  const isOpen = item.classList.contains('open');
+
+  
+  document.querySelectorAll('.accordion-item.open').forEach(openItem => {
+    openItem.classList.remove('open');
+    openItem.querySelector('.accordion-body').style.maxHeight = '0';
+  });
+
+  
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+
+</script>
+    <script src="cart.js"></script>
+  </body>
+</html>
+
+
+
+

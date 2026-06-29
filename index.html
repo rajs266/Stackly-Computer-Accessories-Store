@@ -1,0 +1,1932 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5"/>
+  <meta name="description" content="Stackly — Premium computer accessories store. Keyboards, mice, monitors, gaming gear & PC peripherals delivered across Salem, Tamil Nadu."/>
+  <title>Stackly — Premium Computer Accessories Store</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+  
+  <link rel="stylesheet" href="style.css?v=5"/>
+
+  <style>
+    
+
+    
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(15,23,42,0.65) 0%, rgba(15,23,42,0.85) 100%);
+      z-index: 1;
+    }
+    .hero__title {
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 1), 0 2px 4px rgba(0, 0, 0, 1);
+      font-weight: 900;
+    }
+    .hero__desc {
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 1), 0 1px 3px rgba(0, 0, 0, 1);
+      font-weight: 500;
+    }
+    .hero .container { position: relative; z-index: 2; }
+
+    .cursor {
+      display: inline-block;
+      width: 4px;
+      background-color: var(--clr-accent);
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+
+    
+    .marquee-track {
+      display: flex;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+    @keyframes marquee {
+      0%  { transform: translateX(0); }
+      100%{ transform: translateX(-50%); }
+    }
+
+    
+    .cat-card {
+      display: block;
+      background: #fff;
+      border-radius: 1.25rem;
+      border: 1.5px solid rgba(37,99,235,0.08);
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.35s ease,
+                  border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cat-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(37,99,235,0.22);
+      border-color: #2563eb;
+    }
+    .cat-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: linear-gradient(135deg, #eff6ff, #d0f0e8);
+      transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .cat-card:hover .cat-bg {
+      transform: scale(1.15);
+    }
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,27,42,0.9) 0%, rgba(13,27,42,0.3) 60%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 1rem 0.5rem;
+    }
+    .cat-label { 
+      font-size: clamp(0.75rem, 2vw, 0.9rem); 
+      font-weight: 700; 
+      color: #fff; 
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    
+    .prod-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.4s ease;
+      position: relative;
+    }
+    .prod-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 24px 60px rgba(37,99,235,0.22);
+    }
+    .prod-thumb {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prod-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      padding: 0.85rem;
+      box-sizing: border-box;
+      transition: transform 0.6s ease;
+    }
+    .prod-card:hover .prod-img { transform: scale(1.08); }
+    .prod-emoji {
+      font-size: 4rem;
+      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      display: block;
+    }
+    .prod-card:hover .prod-emoji { transform: scale(1.18) rotate(8deg); }
+
+    
+    .prod-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(37,99,235,0.9) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1rem;
+      gap: 0.5rem;
+    }
+    .prod-card:hover .prod-overlay { opacity: 1; }
+    .prod-action-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      color: #2563eb;
+      cursor: pointer;
+      transform: translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1) var(--d,0s),
+                  background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .prod-card:hover .prod-action-btn { transform: translateY(0); }
+    .prod-action-btn:nth-child(1) { --d: 0.05s; }
+    .prod-action-btn:nth-child(2) { --d: 0.10s; }
+    .prod-action-btn:nth-child(3) { --d: 0.15s; }
+    .prod-action-btn:hover { background: #2563eb; color: #fff; }
+    .prod-overlay .prod-action-btn[onclick*="openQuickView"],
+    .prod-overlay .prod-action-btn[aria-label="Quick View"] {
+      display: none !important;
+    }
+
+    .prod-badge {
+      position: absolute;
+      top: 0.7rem; left: 0.7rem;
+      background: #2563eb;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.22rem 0.55rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    .prod-badge.sale { background: #f05a5a; }
+    .prod-badge.new  { background: #38bdf8; color: #0f172a; }
+
+    .prod-body { padding: 1rem 1.1rem 1.2rem; }
+    .prod-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+    .prod-brand { font-size: 0.72rem; color: #687d94; margin-bottom: 0.35rem; }
+    .prod-stars { color: #f7b731; font-size: 0.72rem; }
+    .prod-stars span { color: #687d94; margin-left: 0.25rem; font-size: 0.7rem; }
+    .prod-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: 0.55rem; }
+    .prod-price {
+      font-family: var(--font-body);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #2563eb;
+    }
+    .prod-price del { font-size: 0.95rem; color: #687d94; margin-left: 0.3rem; font-family: var(--font-body); font-weight: 400; }
+    .prod-cart-btn {
+      width: 36px; height: 36px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #eff6ff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      color: #2563eb;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .prod-cart-btn:hover {
+      background: #2563eb;
+      color: #fff;
+      transform: scale(1.15) rotate(8deg);
+    }
+
+    
+    .flip-container {
+      perspective: 900px;
+      height: 260px;
+    }
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    .flip-container:hover .flip-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .flip-front {
+      background: #fff;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      box-shadow: 0 4px 24px rgba(37,99,235,0.09);
+    }
+    .flip-back {
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      transform: rotateY(180deg);
+      color: #fff;
+    }
+    .flip-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: #eff6ff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .flip-front-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
+    .flip-front-desc  { font-size: 0.82rem; color: #687d94; line-height: 1.6; }
+    .flip-back-title  { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.65rem; font-family: var(--font-display); }
+    .flip-back-desc   { font-size: 0.83rem; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 1rem; }
+
+    
+    .why-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 1.25rem;
+      padding: 1.75rem 1.5rem;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  background 0.3s,
+                  box-shadow 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: -40%; left: -40%;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .why-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255,255,255,0.09);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+    }
+    .why-card:hover::before { opacity: 1; }
+    .why-icon {
+      width: 56px; height: 56px;
+      border-radius: 0.9rem;
+      background: rgba(56,189,248,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      color: #38bdf8;
+      margin-bottom: 1.1rem;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .why-card:hover .why-icon { transform: rotateY(360deg) scale(1.1); }
+    .why-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .why-desc  { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
+
+    
+    .cta-section {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 60%, #0f172a 100%);
+      border-radius: 2rem;
+      overflow: hidden;
+      position: relative;
+      padding: 4rem 3rem;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300d4a0' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-pill-float {
+      position: absolute;
+      right: -30px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 10rem;
+      opacity: 0.06;
+      line-height: 1;
+    }
+
+    
+    .testi-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.4s;
+      height: 100%;
+    }
+    .testi-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(37,99,235,0.18);
+    }
+    .testi-stars { color: #f7b731; font-size: 0.82rem; margin-bottom: 0.85rem; }
+    .testi-text {
+      font-size: 0.9rem;
+      color: #2e4057;
+      line-height: 1.72;
+      margin-bottom: 1.25rem;
+    }
+    .testi-text::before { content: '\201C'; font-size: 2.5rem; color: #2563eb; line-height: 0; vertical-align: -0.7rem; margin-right: 0.2rem; font-family: Georgia, serif; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .testi-name { font-size: 0.88rem; font-weight: 700; color: #0f172a; }
+    .testi-role { font-size: 0.75rem; color: #687d94; }
+
+    
+    .bl-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1.5px solid rgba(37,99,235,0.08);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.4s;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .bl-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(37,99,235,0.18);
+    }
+    .bl-thumb {
+      overflow: hidden;
+      background: linear-gradient(135deg, #eff6ff, #d0f0e8);
+      height: 190px;
+      position: relative;
+    }
+    .bl-thumb .bl-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      display: block;
+    }
+    .bl-card:hover .bl-thumb .bl-card-img { transform: scale(1.08); }
+    .bl-body { padding: 1.25rem; }
+    .bl-cat {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+    .bl-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.45;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .bl-card:hover .bl-title { color: #2563eb; }
+    .bl-meta { font-size: 0.76rem; color: #687d94; display: flex; align-items: center; gap: 0.85rem; }
+    .bl-meta i { color: #2563eb; }
+
+    
+    .stat-num-big {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: #2563eb;
+      line-height: 1;
+    }
+
+    
+    .parallax-bg {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+
+    
+    .wave-sep {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+.wave-sep svg { display: block; width: calc(100% + 2px); }
+
+    
+    @media (max-width:991.98px) {
+      .hero-3d-scene { display: none; }
+      .hfb-1,.hfb-2,.hfb-3 { display: none; }
+    }
+    @media (max-width:767.98px) {
+      .hero { min-height: 92vh; }
+      .cta-section { padding: 2.5rem 1.5rem; }
+      .cta-pill-float { display: none; }
+      .flip-container { height: 230px; }
+    }
+    @media (max-width: 767.98px) {
+      
+      #products .row {
+        display: flex !important;
+        flex-direction: column !important;
+        margin-inline: 0 !important;
+      }
+      .top-pick-item {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+        padding-inline: 0 !important;
+        margin-bottom: 1.25rem !important;
+      }
+      .top-pick-item .prod-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        height: 180px !important;
+        padding: 0.5rem !important;
+        transform: none !important;
+        box-shadow: 0 4px 15px rgba(37,99,235,0.06) !important;
+        border-radius: 1rem !important;
+      }
+      .top-pick-item .prod-thumb {
+        width: 110px !important;
+        height: 110px !important;
+        flex-shrink: 0 !important;
+        border-radius: 0.6rem !important;
+        border-right: 1px solid rgba(37,99,235,0.09) !important;
+        aspect-ratio: 1/1 !important;
+      }
+      .top-pick-item .prod-emoji {
+        font-size: 3.5rem !important;
+      }
+      .top-pick-item .prod-img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+      }
+      .top-pick-item .prod-body {
+        padding: 0.25rem 0.5rem !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        height: 100% !important;
+        min-width: 0 !important;
+      }
+      .top-pick-item .prod-brand {
+        font-size: 0.72rem !important;
+        margin-bottom: 0.15rem !important;
+      }
+      .top-pick-item .prod-name {
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.25rem !important;
+        display: block !important;
+        overflow: visible !important;
+        white-space: normal !important;
+      }
+      .top-pick-item .prod-stars {
+        font-size: 0.7rem !important;
+        margin-bottom: 0.4rem !important;
+      }
+      .top-pick-item .prod-price-row {
+        margin-top: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+        gap: 0.25rem !important;
+      }
+      .top-pick-item .prod-price {
+        font-size: 1.6rem !important;
+        white-space: normal !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        line-height: 1 !important;
+      }
+      .top-pick-item .prod-price del {
+        font-size: 1rem !important;
+        margin-left: 0 !important;
+        margin-top: 0.15rem !important;
+      }
+      .top-pick-item .prod-cart-btn {
+        width: 32px !important;
+        height: 32px !important;
+        flex-shrink: 0 !important;
+        background: #2563eb !important;
+        color: #ffffff !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.85rem !important;
+        box-shadow: 0 4px 10px rgba(37,99,235,0.3) !important;
+        margin-left: 0 !important;
+        margin-right: 0.4rem !important;
+        transition: transform 0.2s !important;
+      }
+      .top-pick-item .prod-cart-btn i {
+        display: inline-block !important;
+        transform: scale(1) !important;
+      }
+      .top-pick-item .prod-overlay {
+        display: none !important;
+      }
+    }
+    @media (min-width: 992px) {
+      .hero-title-nowrap {
+        white-space: nowrap;
+      }
+    }
+    .filter-tabs-container {
+      margin-bottom: 3rem !important;
+    }
+    .top-pick-item.filter-hidden {
+      display: none !important;
+    }
+  </style>
+  <link rel="icon" href="assets/top-logo.webp" type="image/webp">
+</head>
+
+<body>
+<!-- ════════════════════════════════════════════════
+     SEARCH OVERLAY
+════════════════════════════════════════════════ -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-overlay__inner">
+    <div class="search-overlay__input-wrap">
+      <i class="fa-solid fa-magnifying-glass" style="padding-left:1.4rem;color:#687d94;"></i>
+      <input class="search-overlay__input" id="searchInput" type="text" placeholder="Search keyboards, mice, monitors, gaming gear…" autocomplete="off"/>
+      <button class="search-overlay__close" id="searchClose" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p class="search-overlay__hint">Press <kbd style="background:rgba(255,255,255,0.15);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.75rem;">ESC</kbd> to close</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     MOBILE FULL-SCREEN OVERLAY MENU
+════════════════════════════════════════════════ -->
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation"> 
+  <div class="mobile-overlay__header">
+    <a href="index.html" class="mobile-overlay__logo logo-brand" aria-label="Stackly Home">
+      <img src="assets/logo.webp" alt="Stackly Logo" style="height: 32px; width: auto;" />
+    </a>
+    <button class="mobile-overlay__close-btn" onclick="closeMobileMenu()" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <nav class="mobile-overlay__nav" aria-label="Mobile Navigation">
+    <a href="index.html"    class="mobile-overlay__link active" onclick="closeMobileMenu()">Home</a>
+    <a href="about.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">About</a>
+    <a href="store.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">Store</a>
+    <a href="blog.html"     class="mobile-overlay__link" onclick="closeMobileMenu()">Blog</a>
+    <a href="contact.html"  class="mobile-overlay__link" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+  <div class="mobile-overlay__bottom">
+    <div class="mobile-overlay__divider"></div>
+    <div class="mobile-overlay__btns">
+      <a href="signin.html"      class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════ -->
+<header class="navbar navbar--hero" id="navbar">
+  <div class="container navbar__inner">
+
+    
+    <a href="index.html" class="navbar__logo logo-brand" aria-label="Stackly Home">
+      <img src="assets/logo.webp" alt="Stackly Logo" style="height: 40px; width: auto;" />
+    </a>
+
+    
+    <nav class="navbar__nav" aria-label="Main Navigation">
+      <a href="index.html"   class="navbar__link active">Home</a>
+      <a href="about.html"   class="navbar__link">About</a>
+      <a href="store.html"   class="navbar__link">Store</a>
+      <a href="blog.html"    class="navbar__link">Blog</a>
+      <a href="contact.html" class="navbar__link">Contact</a>
+    </nav>
+
+    
+    <div class="navbar__actions">
+      <button class="navbar__search-btn" id="searchToggle" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="navbar__wishlist-btn" aria-label="Wishlist" onclick="openWishlist()" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.9);background:transparent;position:relative;">
+        <i class="fa-solid fa-heart"></i>
+        <span class="wishlist-count" style="display:flex;">0</span>
+      </button>
+      <button class="navbar__cart-btn" aria-label="Cart" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count" id="cartBadge" style="display:none;">0</span>
+      </button>
+      <a href="signin.html"      class="btn btn-outline btn-sm d-none d-lg-inline-flex">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm d-none d-lg-inline-flex">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+
+  
+  <video class="hero-video-bg" autoplay loop muted playsinline>
+    <source src="assets/hero-bg.mp4" type="video/mp4">
+  </video>
+
+  
+  <div class="hero-overlay" style="background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);"></div>
+
+  <div class="container">
+    <div class="row align-items-center justify-content-center pt-2 pt-lg-3 pb-4 pb-lg-5">
+
+      <div class="col-12 col-md-10 col-lg-8 text-center">
+        <div class="hero__eyebrow justify-content-center" style="opacity:1;animation:none;margin-bottom:1rem;">
+          <i class="fa-solid fa-bolt"></i> Stackly® Tech Store
+        </div>
+        <h1 class="hero__title" style="font-size: clamp(1.6rem, 4vw, 3rem); opacity:1; animation:none; white-space: normal;">
+          POWER YOUR SETUP WITH<br/>
+          <span class="accent typed-text"></span><span class="cursor">&nbsp;</span>
+        </h1>
+        <div style="color:#ffffff; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 800; text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.8); margin-bottom: 1.25rem;">
+          Premium PC Peripherals &amp; Accessories
+        </div>
+
+        <p class="hero__desc" style="color: #ffffff; max-width: 600px; margin-inline: auto; margin-bottom: 1.5rem; opacity:1; animation:none; font-weight: 700; text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.8); line-height: 1.6; font-size: 1.05rem;">
+          Genuine keyboards, mice, headsets, monitors, and gaming gear � curated for creators, gamers, and professionals across Salem &amp; beyond.
+        </p>
+
+        <div class="hero__actions justify-content-center" style="opacity:1; animation:none;">
+          <a href="store.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-store"></i> Shop Collection
+          </a>
+          <a href="signup.html" class="btn btn-ghost btn-lg" style="background: rgba(255,255,255,0.25); border: 2px solid #ffffff; backdrop-filter: blur(8px); color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
+            <i class="fa-solid fa-user-plus"></i> Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <a href="#categories" class="scroll-indicator" aria-label="Scroll down">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll</span>
+  </a>
+
+</section>
+
+<!-- ════════════════════════════════════════════════
+     MARQUEE FEATURES STRIP
+════════════════════════════════════════════════ -->
+<div style="background:linear-gradient(135deg,#2563eb,#1d4ed8);padding:0.85rem 0;overflow:hidden;" aria-label="Features">
+  <div class="marquee-track" aria-hidden="true">
+    
+    <div style="display:flex;gap:0;width:max-content;">
+      <span class="features-strip__item"><i class="fa-solid fa-truck-fast"></i> Free Shipping Above ₹999</span>
+      <span class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Products</span>
+      <span class="features-strip__item"><i class="fa-solid fa-screwdriver-wrench"></i> Expert Tech Support</span>
+      <span class="features-strip__item"><i class="fa-solid fa-clock-rotate-left"></i> 24/7 Customer Care</span>
+      <span class="features-strip__item"><i class="fa-solid fa-rotate"></i> 7-Day Easy Returns</span>
+      <span class="features-strip__item"><i class="fa-solid fa-percent"></i> Up to 45% Off</span>
+      <span class="features-strip__item"><i class="fa-solid fa-gamepad"></i> Gaming Gear Deals</span>
+      <span class="features-strip__item"><i class="fa-solid fa-truck-fast"></i> Free Shipping Above ₹999</span>
+      <span class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Products</span>
+      <span class="features-strip__item"><i class="fa-solid fa-screwdriver-wrench"></i> Expert Tech Support</span>
+      <span class="features-strip__item"><i class="fa-solid fa-clock-rotate-left"></i> 24/7 Customer Care</span>
+      <span class="features-strip__item"><i class="fa-solid fa-rotate"></i> 7-Day Easy Returns</span>
+      <span class="features-strip__item"><i class="fa-solid fa-percent"></i> Up to 45% Off</span>
+      <span class="features-strip__item"><i class="fa-solid fa-gamepad"></i> Gaming Gear Deals</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     SHOP BY CATEGORY
+════════════════════════════════════════════════ -->
+<section class="section bg-light" id="categories">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow">Shop Categories</span>
+      <h2 class="section-title mt-3">Browse by <span class="text-gradient">Category</span></h2>
+      <p class="section-subtitle mx-auto mt-2">Find the perfect peripherals for your setup — from gaming rigs to home offices.</p>
+    </div>
+
+    <div class="row g-3 justify-content-center">
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="0">
+        <a href="store.html" class="cat-card">
+          <img src="assets/keyboard.jpg" class="cat-bg" alt="Keyboards">
+          <div class="cat-overlay"><span class="cat-label">Keyboards</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="60">
+        <a href="store.html" class="cat-card">
+          <img src="assets/mouse.jpg" class="cat-bg" alt="Mice">
+          <div class="cat-overlay"><span class="cat-label">Mice</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="120">
+        <a href="store.html" class="cat-card">
+          <img src="assets/monitor.jpg" class="cat-bg" alt="Monitors">
+          <div class="cat-overlay"><span class="cat-label">Monitors</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="180">
+        <a href="store.html" class="cat-card">
+          <img src="assets/gaming.jpg" class="cat-bg" alt="Gaming">
+          <div class="cat-overlay"><span class="cat-label">Gaming</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="240">
+        <a href="store.html" class="cat-card">
+          <img src="assets/storage.jpg" class="cat-bg" alt="Storage">
+          <div class="cat-overlay"><span class="cat-label">Storage</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="300">
+        <a href="store.html" class="cat-card">
+          <img src="assets/audio.jpg" class="cat-bg" alt="Audio">
+          <div class="cat-overlay"><span class="cat-label">Audio</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="60">
+        <a href="store.html" class="cat-card">
+          <img src="assets/webcam.jpg" class="cat-bg" alt="Webcams">
+          <div class="cat-overlay"><span class="cat-label">Webcams</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="120">
+        <a href="store.html" class="cat-card">
+          <img src="assets/cable.jpg" class="cat-bg" alt="Cables">
+          <div class="cat-overlay"><span class="cat-label">Cables</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="180">
+        <a href="store.html" class="cat-card">
+          <img src="assets/charger.jpg" class="cat-bg" alt="Chargers">
+          <div class="cat-overlay"><span class="cat-label">Chargers</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="240">
+        <a href="store.html" class="cat-card">
+          <img src="assets/laptop.jpg" class="cat-bg" alt="Laptops">
+          <div class="cat-overlay"><span class="cat-label">Laptops</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="300">
+        <a href="store.html" class="cat-card">
+          <img src="assets/cooler.jpg" class="cat-bg" alt="Cooling">
+          <div class="cat-overlay"><span class="cat-label">Cooling</span></div>
+        </a>
+      </div>
+      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="360">
+        <a href="store.html" class="cat-card">
+          <img src="assets/mousepad.jpg" class="cat-bg" alt="Mousepads">
+          <div class="cat-overlay"><span class="cat-label">Mousepads</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FEATURED PRODUCTS
+════════════════════════════════════════════════ -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-5" data-aos="fade-up">
+      <div>
+        <span class="eyebrow">Top Picks</span>
+        <h2 class="section-title mt-3">Featured <span class="text-gradient">Products</span></h2>
+      </div>
+      <a href="store.html" class="btn btn-outline">View All <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    
+    <div class="d-flex gap-2 flex-wrap mb-4 filter-tabs-container" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="keyboards">Keyboards</button>
+      <button class="filter-btn" data-filter="gaming">Gaming</button>
+      <button class="filter-btn" data-filter="monitors">Monitors</button>
+      <button class="filter-btn" data-filter="audio">Audio</button>
+    </div>
+
+    <div class="row g-4">
+      
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="keyboards" data-aos="fade-up" data-aos-delay="0">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/keyboard.jpg" class="prod-img" alt="Logitech MX Keys Mechanical Keyboard">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <span class="prod-badge sale">-20%</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Logitech</div>
+            <div class="prod-name">MX Keys Mechanical Keyboard</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+              <span>(342)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹7,999 <del>₹9,999</del></span>
+              <button class="prod-cart-btn" onclick="addToCart('MX Keys Mechanical Keyboard', 'Logitech', 7999, 'assets/keyboard.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="gaming" data-aos="fade-up" data-aos-delay="80">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/mouse.jpg" class="prod-img" alt="Razer DeathAdder V3 Pro">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <span class="prod-badge new">New</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Razer</div>
+            <div class="prod-name">DeathAdder V3 Pro Mouse</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+              <span>(198)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹12,499</span>
+              <button class="prod-cart-btn" onclick="addToCart('DeathAdder V3 Pro Mouse', 'Razer', 12499, 'assets/mouse.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="monitors" data-aos="fade-up" data-aos-delay="160">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/monitor.jpg" class="prod-img" alt="Samsung 27 Curved Monitor">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <span class="prod-badge sale">-15%</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Samsung</div>
+            <div class="prod-name">27" Curved Gaming Monitor</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <span>(415)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹18,999 <del>₹22,499</del></span>
+              <button class="prod-cart-btn" onclick="addToCart('27 Curved Gaming Monitor', 'Samsung', 18999, 'assets/monitor.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="audio" data-aos="fade-up" data-aos-delay="240">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/audio.jpg" class="prod-img" alt="Sony WH-1000XM5 Headphones">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Sony</div>
+            <div class="prod-name">WH-1000XM5 Headphones</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+              <span>(508)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹26,990</span>
+              <button class="prod-cart-btn" onclick="addToCart('WH-1000XM5 Headphones', 'Sony', 26990, 'assets/audio.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="gaming" data-aos="fade-up" data-aos-delay="0">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/keyboard.jpg" class="prod-img" alt="Corsair K70 RGB Keyboard">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <span class="prod-badge">Hot</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Corsair</div>
+            <div class="prod-name">K70 RGB Pro Keyboard</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+              <span>(287)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹14,999</span>
+              <button class="prod-cart-btn" onclick="addToCart('K70 RGB Pro Keyboard', 'Corsair', 14999, 'assets/keyboard.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="monitors" data-aos="fade-up" data-aos-delay="80">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/monitor.jpg" class="prod-img" alt="Dell UltraSharp 27 Monitor">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <span class="prod-badge new">New</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Dell</div>
+            <div class="prod-name">UltraSharp 27" 4K Monitor</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <span>(321)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹32,999</span>
+              <button class="prod-cart-btn" onclick="addToCart('UltraSharp 27 4K Monitor', 'Dell', 32999, 'assets/monitor.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="keyboards" data-aos="fade-up" data-aos-delay="160">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/webcam.jpg" class="prod-img" alt="Logitech C920 HD Webcam">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <span class="prod-badge sale">-25%</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Logitech</div>
+            <div class="prod-name">C920 HD Pro Webcam</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+              <span>(193)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹5,999 <del>₹7,999</del></span>
+              <button class="prod-cart-btn" onclick="addToCart('C920 HD Pro Webcam', 'Logitech', 5999, 'assets/webcam.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="gaming" data-aos="fade-up" data-aos-delay="240">
+        <div class="prod-card">
+          <div class="prod-thumb">
+            <img src="assets/storage.jpg" class="prod-img" alt="Kingston NV2 1TB SSD">
+            <div class="prod-overlay">
+              <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="prod-body">
+            <div class="prod-brand">Kingston</div>
+            <div class="prod-name">NV2 1TB NVMe SSD</div>
+            <div class="prod-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+              <span>(276)</span>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">₹4,499</span>
+              <button class="prod-cart-btn" onclick="addToCart('NV2 1TB NVMe SSD', 'Kingston', 4499, 'assets/storage.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="store.html" class="btn btn-primary btn-lg">
+        Explore Full Store <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     3D SCROLL SEQUENCE
+════════════════════════════════════════════════ -->
+<section id="scroll-sequence" style="height: 350vh; position: relative; background: #000;">
+  <div class="sticky-container" style="position: sticky; top: 62px; height: calc(100vh - 62px); overflow: hidden; width: 100%;">
+    <canvas id="hero-3d-canvas" style="width: 100%; height: 100%; object-fit: cover;"></canvas>
+    
+    <div id="scroll-text-1" class="scroll-text-overlay" style="position: absolute; top: 50%; left: 10%; transform: translateY(-50%); color: white; font-size: clamp(2rem, 4vw, 4rem); font-weight: 800; opacity: 0; transition: opacity 0.3s; text-shadow: 0 4px 12px rgba(0,0,0,0.8); pointer-events: none;">
+      Immersive Design.
+    </div>
+    <div id="scroll-text-2" class="scroll-text-overlay" style="position: absolute; top: 50%; right: 10%; transform: translateY(-50%); color: white; font-size: clamp(2rem, 4vw, 4rem); font-weight: 800; opacity: 0; transition: opacity 0.3s; text-shadow: 0 4px 12px rgba(0,0,0,0.8); pointer-events: none;">
+      Unmatched Performance.
+    </div>
+    <div id="scroll-text-3" class="scroll-text-overlay" style="position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); color: white; font-size: clamp(2rem, 4vw, 4rem); font-weight: 800; opacity: 0; transition: opacity 0.3s; text-shadow: 0 4px 12px rgba(0,0,0,0.8); text-align: center; pointer-events: none;">
+      Experience Stackly.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     WHY CHOOSE STACKLY — dark bg + glass cards
+════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--clr-dark);position:relative;overflow:hidden;">
+  
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 15% 50%,rgba(37,99,235,0.2) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 85% 30%,rgba(56,189,248,0.1) 0%,transparent 55%);pointer-events:none;"></div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow" style="background:rgba(56,189,248,0.15);color:#38bdf8;border-color:#38bdf8;">Why Stackly</span>
+      <h2 class="section-title mt-3 text-white">Tech Gear You Can <span style="color:#38bdf8;">Trust</span></h2>
+      <p class="section-subtitle mx-auto mt-2" style="color:rgba(255,255,255,0.55);">We go beyond selling accessories — we help you build the perfect setup.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="why-title">100% Authentic</div>
+          <div class="why-desc">Every product is sourced directly from authorized distributors. Zero counterfeits, guaranteed.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <div class="why-title">Same-Day Delivery</div>
+          <div class="why-desc">Order before 2pm and get delivery across Salem the same day. Nationwide shipping available.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <div class="why-title">Expert Guidance</div>
+          <div class="why-desc">Chat with our tech specialists anytime. Get the right gear for your gaming or work setup.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-percent"></i></div>
+          <div class="why-title">Best Prices</div>
+          <div class="why-desc">Up to 45% off on leading brands. Loyalty rewards and exclusive member discounts every day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="wave-sep" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;">
+    <svg viewBox="0 0 1440 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height:50px;">
+      <path d="M0,20 C480,55 960,-10 1440,20 L1440,0 L0,0 Z" fill="#f8fafc"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PROMO BANNERS — 3D Product Showcase (Bos Nesi Style)
+════════════════════════════════════════════════ -->
+<section class="section bg-light" id="promos">
+  <div class="container">
+    <div class="text-center mb-4" data-aos="fade-up">
+      <span class="eyebrow">Featured Deals</span>
+      <h2 class="section-title mt-3">Trending <span class="text-gradient">Collections</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <a href="store.html" class="promo-split d-block">
+          <div class="promo-split__img">
+            <img src="assets/gaming.jpg" alt="Gaming Mouse" loading="lazy"/>
+          </div>
+          <div class="promo-split__content" style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;">
+            <span style="font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#38bdf8;">Razer®</span>
+            <h3 style="font-family:var(--font-display);font-size:1.35rem;font-weight:800;margin:0.5rem 0;color:#fff;">Pro Gaming Gear</h3>
+            <p style="font-size:0.95rem;color:#f8fafc;margin-bottom:1.2rem;line-height:1.5;">Elite mice, keyboards &amp; headsets for competitive gamers.</p>
+            <span class="btn btn-white btn-sm">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <a href="store.html" class="promo-split d-block">
+          <div class="promo-split__img">
+            <img src="assets/monitor.jpg" alt="Monitor" loading="lazy"/>
+          </div>
+          <div class="promo-split__content" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;">
+            <span style="font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#eff6ff;">Samsung®</span>
+            <h3 style="font-family:var(--font-display);font-size:1.35rem;font-weight:800;margin:0.5rem 0;color:#fff;">Ultra HD Monitors</h3>
+            <p style="font-size:0.95rem;color:#f8fafc;margin-bottom:1.2rem;line-height:1.5;">Weekend Sale — 20–45% off curved &amp; 4K displays.</p>
+            <span class="btn btn-white btn-sm">Read More <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <a href="store.html" class="promo-split d-block">
+          <div class="promo-split__img">
+            <img src="assets/keyboard.jpg" alt="Keyboard" loading="lazy"/>
+          </div>
+          <div class="promo-split__content" style="background:linear-gradient(135deg,#1e293b,#334155);color:#fff;">
+            <span style="font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#38bdf8;">Logitech®</span>
+            <h3 style="font-family:var(--font-display);font-size:1.35rem;font-weight:800;margin:0.5rem 0;color:#fff;">Creator Essentials</h3>
+            <p style="font-size:0.95rem;color:#f8fafc;margin-bottom:1.2rem;line-height:1.5;">Keyboards, webcams &amp; audio for streamers &amp; professionals.</p>
+            <span class="btn btn-white btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SERVICES — FLIP CARDS
+════════════════════════════════════════════════ -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow">What We Offer</span>
+      <h2 class="section-title mt-3">Our <span class="text-gradient">Services</span></h2>
+      <p class="section-subtitle mx-auto mt-2">Hover any card to see the full story behind each service.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3" data-aos="flip-left" data-aos-delay="0">
+        <div class="flip-container">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-icon"><i class="fa-solid fa-keyboard"></i></div>
+              <div class="flip-front-title">Custom PC Builds</div>
+              <div class="flip-front-desc">Tell us your budget and we'll hand-pick the perfect components for your dream rig.</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Build Your Rig</div>
+              <div class="flip-back-desc">From budget gaming PCs to high-end workstations — our experts assemble, test, and deliver ready-to-use systems with full warranty.</div>
+              <a href="contact.html" class="btn btn-white btn-sm">Get Quote</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3" data-aos="flip-left" data-aos-delay="100">
+        <div class="flip-container">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-icon"><i class="fa-solid fa-laptop-medical"></i></div>
+              <div class="flip-front-title">Laptop Repair</div>
+              <div class="flip-front-desc">Screen replacement, battery upgrades, and hardware fixes by certified technicians.</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Fix It Fast</div>
+              <div class="flip-back-desc">Same-day diagnostics for most brands. Genuine parts, transparent pricing, and 90-day service warranty on all repairs.</div>
+              <a href="contact.html" class="btn btn-white btn-sm">Book Repair</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3" data-aos="flip-left" data-aos-delay="200">
+        <div class="flip-container">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-icon"><i class="fa-solid fa-headset"></i></div>
+              <div class="flip-front-title">Tech Support</div>
+              <div class="flip-front-desc">Live chat and phone support for setup, troubleshooting, and product advice.</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Help in Minutes</div>
+              <div class="flip-back-desc">Connect with our tech team via chat or call. Driver installs, BIOS updates, peripheral pairing — we've got you covered.</div>
+              <a href="contact.html" class="btn btn-white btn-sm">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3" data-aos="flip-left" data-aos-delay="300">
+        <div class="flip-container">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-icon"><i class="fa-solid fa-box-open"></i></div>
+              <div class="flip-front-title">Corporate Orders</div>
+              <div class="flip-front-desc">Bulk peripherals for offices, schools, and businesses with special pricing.</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Scale Your Fleet</div>
+              <div class="flip-back-desc">Volume discounts on keyboards, mice, monitors, and docking stations. Dedicated account manager and priority delivery for bulk orders.</div>
+              <a href="contact.html" class="btn btn-white btn-sm">Enquire</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     STATS COUNTER STRIP
+════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--grad-primary);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:url('data:image/svg+xml,<svg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg><circle cx=30 cy=30 r=2 fill=rgba(255,255,255,0.06)/></svg>');background-size:30px 30px;"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
+        <div class="stat-num-big counter" data-target="50000" style="color:#fff;">0</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">Happy Customers</div>
+      </div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
+        <div class="stat-num-big counter" data-target="8500" style="color:#fff;">0</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">Products Available</div>
+      </div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+        <div class="stat-num-big counter" data-target="25" style="color:#fff;">0</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">Tech Experts</div>
+      </div>
+      <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
+        <div class="stat-num-big counter" data-target="98" style="color:#fff;">0</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">% Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-section" data-aos="zoom-in">
+      <div style="position:relative;z-index:2;" class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="eyebrow" style="background:rgba(56,189,248,0.18);color:#38bdf8;border-color:#38bdf8;margin-bottom:1rem;display:inline-flex;">
+            Limited Offer
+          </span>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:0.75rem;">
+            Get <span style="color:#38bdf8;">30% Off</span> Your<br/>First Order
+          </h2>
+          <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;max-width:420px;">Sign up today and use code <strong style="color:#38bdf8;">STACKLY30</strong> at checkout. Valid on all accessories and gaming gear.</p>
+        </div>
+        <div class="col-lg-5 d-flex gap-3 flex-wrap justify-content-lg-end">
+          <a href="signup.html"      class="btn btn-white btn-lg">
+            <i class="fa-solid fa-user-plus"></i> Sign Up Free
+          </a>
+          <a href="store.html" class="btn btn-ghost btn-lg">
+            Shop Now <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="cta-pill-float" aria-hidden="true" style="right: 5%; top: 40%; font-size: 0; pointer-events: none;"><img src="assets/mouse.jpg" alt="" style="width: 140px; height: 140px; object-fit:contain; opacity: 0.15; transform: rotate(25deg);" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════ -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow">Customer Love</span>
+      <h2 class="section-title mt-3">What Our <span class="text-gradient">Customers Say</span></h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <div class="testi-text">Ordered a gaming keyboard at midnight and it arrived the next morning. Absolutely amazing service — genuine products, great prices, and fast delivery in Salem.</div>
+          <div class="testi-author">
+            <div class="testi-avatar">RK</div>
+            <div>
+              <div class="testi-name">Ramesh Kumar</div>
+              <div class="testi-role">Gamer · Salem, Tamil Nadu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <div class="testi-text">Built my entire home office setup through Stackly — monitor, keyboard, webcam, everything. The tech team helped me pick compatible gear. Highly recommend!</div>
+          <div class="testi-author">
+            <div class="testi-avatar">LP</div>
+            <div>
+              <div class="testi-name">Lakshmi Priya</div>
+              <div class="testi-role">Remote Worker · Erode</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <div class="testi-text">The custom PC build service is outstanding. They assembled my gaming rig, stress-tested it, and delivered it ready to play. Best tech store in Salem!</div>
+          <div class="testi-author">
+            <div class="testi-avatar">SV</div>
+            <div>
+              <div class="testi-name">Surya Venkat</div>
+              <div class="testi-role">Streamer · Coimbatore</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     BLOG PREVIEW
+════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-5" data-aos="fade-up">
+      <div>
+        <span class="eyebrow">Tech Blog</span>
+        <h2 class="section-title mt-3">Latest <span class="text-gradient">Tech Insights</span></h2>
+      </div>
+      <a href="blog.html" class="btn btn-outline">All Articles <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <a href="blog.html" class="bl-card">
+          <div class="bl-thumb"><img src="assets/gaming.jpg" class="bl-card-img" alt="Gaming Setup"></div>
+          <div class="bl-body">
+            <span class="bl-cat">Gaming</span>
+            <div class="bl-title">Complete Guide to Building Your Dream Gaming Setup in 2026</div>
+            <div class="bl-meta">
+              <span><i class="fa-regular fa-calendar"></i> June 5, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <a href="blog.html" class="bl-card">
+          <div class="bl-thumb"><img src="assets/keyboard.jpg" class="bl-card-img" alt="Mechanical Keyboard"></div>
+          <div class="bl-body">
+            <span class="bl-cat">Keyboards</span>
+            <div class="bl-title">Mechanical vs Membrane Keyboards: Which Is Right for You?</div>
+            <div class="bl-meta">
+              <span><i class="fa-regular fa-calendar"></i> May 28, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <a href="blog.html" class="bl-card">
+          <div class="bl-thumb"><img src="assets/monitor.jpg" class="bl-card-img" alt="Monitor"></div>
+          <div class="bl-body">
+            <span class="bl-cat">Monitors</span>
+            <div class="bl-title">144Hz vs 240Hz: Do You Really Need a High Refresh Rate Monitor?</div>
+            <div class="bl-meta">
+              <span><i class="fa-regular fa-calendar"></i> May 18, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     NEWSLETTER
+════════════════════════════════════════════════ -->
+<section class="section bg-accent" style="background:var(--clr-accent2);">
+  <div class="container text-center" data-aos="zoom-in">
+    <span class="eyebrow">Stay Updated</span>
+    <h2 class="section-title mt-3 mb-2">Tech Deals in Your <span class="text-gradient">Inbox</span></h2>
+    <p class="section-subtitle mx-auto mb-4">Weekly tech articles, exclusive discounts &amp; new product launches. No spam, unsubscribe anytime.</p>
+    <form class="d-flex gap-2 justify-content-center flex-wrap" onsubmit="handleNewsletter(event)">
+      <input type="email" placeholder="Enter your email address" required
+             style="padding:0.8rem 1.5rem;border-radius:9999px;border:1.5px solid rgba(37,99,235,0.2);outline:none;font-size:0.9rem;min-width:280px;background:#fff;color:#0f172a;font-family:inherit;"
+             aria-label="Email for newsletter"/>
+      <button type="submit" class="btn btn-primary">
+        Subscribe <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+    <p style="font-size:0.75rem;color:#687d94;margin-top:0.75rem;">
+      <i class="fa-solid fa-lock" style="font-size:0.7rem;"></i> Your email is safe with us. Read our <a href="404.html" style="color:#2563eb;text-decoration:underline;">Privacy Policy</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo logo-brand">
+          <img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" />
+        </a>
+        <p class="footer__desc">Your trusted computer accessories store — delivering genuine keyboards, mice, monitors, gaming gear and expert tech support since 2018.</p>
+        <div class="footer__col-title" style="margin-top:1rem; margin-bottom:0.75rem;">Newsletter</div>
+        <form class="footer__newsletter" onsubmit="handleNewsletter(event)" style="margin-bottom:1.25rem;">
+          <input type="email" placeholder="Your email…" required aria-label="Newsletter email"/>
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <div class="footer__social">
+          <a href="404.html" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Quick Links</div>
+        <ul class="footer__links">
+          <li><a href="index.html"    class="footer__link">Home</a></li>
+          <li><a href="about.html"    class="footer__link">About Us</a></li>
+          <li><a href="store.html"    class="footer__link">Our Store</a></li>
+          <li><a href="blog.html"     class="footer__link">Tech Blog</a></li>
+          <li><a href="contact.html"  class="footer__link">Contact</a></li>
+          <li><a href="signin.html"   class="footer__link">Sign In</a></li>
+        </ul>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Services</div>
+        <ul class="footer__links">
+          <li><a href="404.html"  class="footer__link">Custom PC Builds</a></li>
+          <li><a href="404.html"  class="footer__link">Laptop Repair</a></li>
+          <li><a href="404.html" class="footer__link">Tech Support</a></li>
+          <li><a href="404.html"  class="footer__link">Corporate Orders</a></li>
+          <li><a href="404.html"  class="footer__link">Gaming Bundles</a></li>
+          <li><a href="404.html"    class="footer__link">Warranty Claims</a></li>
+        </ul>
+      </div>
+
+      
+      <div>
+        <div class="footer__col-title">Find Us</div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>hello@stackly.in</span>
+        </div>
+        <div class="footer__address-item" style="margin-top:0.25rem;">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon–Sat: 8am–10pm · Sun: 9am–6pm</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="footer__bottom">
+      <div class="footer__copyright">
+        &copy; 2026 <span>Stackly</span>. All rights reserved. Designed with ❤️ in Salem.
+      </div>
+      <div class="footer__legal">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Use</a>
+        <a href="404.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════ -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+
+<script>
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ 
+      duration: 700, 
+      once: true, 
+      offset: 60, 
+      easing: 'ease-out-cubic',
+      disable: 'mobile'
+    });
+  }
+
+  
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+      navbar.classList.remove('navbar--hero');
+    } else {
+      navbar.classList.remove('scrolled');
+      navbar.classList.add('navbar--hero');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  
+  const hamburger = document.getElementById('hamburger');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileOverlay.classList.contains('is-open');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      mobileOverlay.classList.add('is-open');
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  });
+
+  
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+      closeSearch();
+    }
+  });
+
+  
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) {
+      closeMobileMenu();
+    }
+  });
+
+  
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchToggle  = document.getElementById('searchToggle');
+  const searchClose   = document.getElementById('searchClose');
+  const searchInput   = document.getElementById('searchInput');
+
+  searchToggle.addEventListener('click', () => {
+    searchOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => searchInput.focus(), 300);
+  });
+  searchClose.addEventListener('click', closeSearch);
+  searchOverlay.addEventListener('click', e => {
+    if (e.target === searchOverlay) closeSearch();
+  });
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      closeSearch();
+      window.location.href = 'store.html';
+    }
+  });
+
+
+
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filterValue = btn.getAttribute('data-filter');
+      document.querySelectorAll('.top-pick-item').forEach(item => {
+        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+          item.classList.remove('filter-hidden');
+        } else {
+          item.classList.add('filter-hidden');
+        }
+      });
+      
+      if (typeof AOS !== 'undefined') {
+        setTimeout(() => AOS.refresh(), 50);
+      }
+    });
+  });
+
+  
+  const counters = document.querySelectorAll('.counter');
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = target >= 10000
+          ? Math.floor(current).toLocaleString('en-IN')
+          : Math.floor(current) + (el.dataset.suffix || '');
+        if (current >= target) clearInterval(timer);
+      }, 16);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => countObserver.observe(c));
+
+  
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  
+  const animEls = document.querySelectorAll('.anim-fade-up,.anim-fade-left,.anim-fade-right,.anim-scale,.anim-flip');
+  if (animEls.length) {
+    const animObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.12 });
+    animEls.forEach(el => animObserver.observe(el));
+  }
+
+  
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.navbar__link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === currentPage) link.classList.add('active');
+  });
+
+  
+  const words = ["GAMERS", "CREATORS", "PROS", "EVERYONE"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typedTextSpan = document.querySelector(".typed-text");
+
+  function type() {
+    const currentWord = words[wordIndex];
+    if (isDeleting) {
+      typedTextSpan.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typedTextSpan.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let typeSpeed = isDeleting ? 50 : 100;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      typeSpeed = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      typeSpeed = 500;
+    }
+    setTimeout(type, typeSpeed);
+  }
+  if(typedTextSpan) type();
+
+});
+
+
+function closeMobileMenu() {
+  document.getElementById('mobileOverlay').classList.remove('is-open');
+  document.getElementById('hamburger').classList.remove('is-open');
+  document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('is-open');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function showToast(msg, icon = 'fa-circle-check') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<i class="fa-solid ${icon}"></i>${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(16px)'; toast.style.transition = 'all 0.35s'; setTimeout(() => toast.remove(), 400); }, 3500);
+}
+
+function handleNewsletter(e) {
+  e.preventDefault();
+  window.location.href = '404.html';
+}
+
+// --- 3D SCROLL SEQUENCE LOGIC ---
+const canvas = document.getElementById("hero-3d-canvas");
+if (canvas) {
+  const context = canvas.getContext("2d");
+  const frameCount = 184;
+  const currentFrame = index => `assets/section1/frame_${(index + 1).toString().padStart(3, '0')}.png`;
+  
+  const images = [];
+  const imageSequence = { frame: 0 };
+
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+    images.push(img);
+  }
+
+  let lastValidImage = images[0];
+
+  function render() {
+    let img = images[imageSequence.frame];
+    if (!img || !img.complete || img.naturalWidth === 0) {
+      img = lastValidImage;
+    } else {
+      lastValidImage = img;
+    }
+    if (!img || img.naturalWidth === 0) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    const cw = canvas.parentElement.clientWidth;
+    const ch = canvas.parentElement.clientHeight;
+
+    canvas.width = cw * dpr;
+    canvas.height = ch * dpr;
+    context.scale(dpr, dpr);
+
+    const hRatio = cw / img.naturalWidth;
+    const vRatio = ch / img.naturalHeight;
+    const ratio = Math.max(hRatio, vRatio);
+    const centerShift_x = (cw - img.naturalWidth * ratio) / 2;
+    const centerShift_y = (ch - img.naturalHeight * ratio) / 2;  
+    
+    context.clearRect(0, 0, cw, ch);
+    context.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, centerShift_x, centerShift_y, img.naturalWidth * ratio, img.naturalHeight * ratio);
+  }
+
+  images[0].onload = render;
+  window.addEventListener('resize', render);
+
+  window.addEventListener("scroll", () => {
+    const section = document.getElementById("scroll-sequence");
+    if (!section) return;
+
+    const scrollTop = window.scrollY;
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    
+    const scrollProgress = scrollTop - sectionTop;
+    const maxScroll = sectionHeight - viewportHeight;
+
+    let fraction = scrollProgress / maxScroll;
+    if (fraction < 0) fraction = 0;
+    if (fraction > 1) fraction = 1;
+
+    const frameIndex = Math.min(frameCount - 1, Math.floor(fraction * frameCount));
+
+    requestAnimationFrame(() => {
+      imageSequence.frame = frameIndex;
+      render();
+      
+      const t1 = document.getElementById('scroll-text-1');
+      const t2 = document.getElementById('scroll-text-2');
+      const t3 = document.getElementById('scroll-text-3');
+      if(t1) t1.style.opacity = (fraction > 0.05 && fraction < 0.25) ? 1 : 0;
+      if(t2) t2.style.opacity = (fraction > 0.35 && fraction < 0.55) ? 1 : 0;
+      if(t3) t3.style.opacity = (fraction > 0.65 && fraction < 0.95) ? 1 : 0;
+    });
+  }, { passive: true });
+}
+
+
+</script>
+    <script src="cart.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+

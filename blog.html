@@ -1,0 +1,1728 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5"/>
+  <meta name="description" content="Stackly Tech Blog — Expert guides on gaming setups, keyboards, monitors, and PC building tips. Salem, Tamil Nadu."/>
+  <title>Tech Blog — Stackly</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+
+  
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+  
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    /* ══════════════════════════════════════════════
+       BLOG-SPECIFIC STYLES
+    ══════════════════════════════════════════════ */
+
+    
+    .blog-page-header {
+      background-image: linear-gradient(to right, rgba(13,27,42,0.85), rgba(13,27,42,0.4)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 9rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 450px;
+    }
+    .blog-page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 80% 50%, rgba(56,189,248,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 20% 30%, rgba(37,99,235,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .blog-page-header__inner { position: relative; z-index: 2; }
+
+    
+    .blog-toolbar {
+      background: #fff;
+      border-bottom: 1px solid rgba(37,99,235,0.1);
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 64px;
+      z-index: 500;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.07);
+    }
+    .blog-toolbar__inner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .blog-toolbar__search {
+      display: flex;
+      align-items: center;
+      background: #eff6ff;
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1.5px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      flex: 1;
+      min-width: 180px;
+      max-width: 360px;
+    }
+    .blog-toolbar__search:focus-within {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+    .blog-toolbar__search i {
+      padding: 0 0.75rem 0 1rem;
+      color: #687d94;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    .blog-toolbar__search input {
+      flex: 1;
+      padding: 0.55rem 0.75rem 0.55rem 0;
+      font-size: 0.86rem;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #0d1b2a;
+      font-family: inherit;
+      min-width: 0;
+    }
+    .results-count {
+      font-size: 0.82rem;
+      color: #687d94;
+      font-weight: 600;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+
+    
+    .cat-filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 0.25rem;
+    }
+    .cat-filter-bar::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1.5px solid rgba(37,99,235,0.2);
+      background: #fff;
+      color: #687d94;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cat-pill.active, .cat-pill:hover {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+
+    
+    .featured-post {
+      position: relative;
+      border-radius: 1.75rem;
+      overflow: hidden;
+      background: #0d1b2a;
+      box-shadow: 0 32px 80px rgba(37,99,235,0.22);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .featured-post__thumb {
+      height: 480px;
+      background: linear-gradient(135deg, #2563eb 0%, #0d1b2a 70%, #112233 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.6s ease;
+    }
+    .featured-post:hover .featured-post__thumb { transform: scale(1.03); }
+    .featured-post__thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,27,42,0.97) 0%, rgba(13,27,42,0.45) 50%, transparent 80%);
+    }
+    .featured-post__overlay {
+      position: absolute;
+      inset: 0;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0.65rem;
+      z-index: 2;
+    }
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #2563eb;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.28rem 0.75rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: fit-content;
+    }
+    .featured-post__cat {
+      display: inline-block;
+      background: rgba(56,189,248,0.18);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: fit-content;
+    }
+    .featured-post__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .featured-post__excerpt {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0;
+    }
+    .featured-post__meta {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      flex-wrap: wrap;
+    }
+    .featured-post__meta i { color: #38bdf8; }
+    .featured-post__author {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .featured-post__avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#2563eb,#38bdf8);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    
+    .bl-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1.5px solid rgba(37,99,235,0.08);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bl-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(37,99,235,0.18);
+    }
+    .bl-thumb {
+      overflow: hidden;
+      background: #f4f7f6;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .bl-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .bl-card:hover .bl-card-img {
+      transform: scale(1.08);
+    }
+    .bl-thumb-emoji {
+      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      display: block;
+      line-height: 1;
+    }
+    .bl-card:hover .bl-thumb-emoji { transform: scale(1.2) rotate(-8deg); }
+    .bl-body { padding: 1.3rem 1.25rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .bl-cat {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-bottom: 0.65rem;
+      width: fit-content;
+    }
+    .bl-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0d1b2a;
+      line-height: 1.45;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+      flex: 1;
+    }
+    .bl-card:hover .bl-title { color: #2563eb; }
+    .bl-excerpt {
+      font-size: 0.84rem;
+      color: #687d94;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .bl-meta {
+      font-size: 0.76rem;
+      color: #687d94;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .bl-meta i { color: #2563eb; }
+    .bl-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #2563eb;
+      margin-left: auto;
+      transition: gap 0.2s;
+    }
+    .bl-card:hover .bl-read-more { gap: 0.55rem; }
+
+    
+    .blog-sidebar { position: sticky; top: 130px; }
+    .sidebar-widget {
+      background: #fff;
+      border: 1.5px solid rgba(37,99,235,0.09);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin-bottom: 1.1rem;
+    }
+    .sidebar-widget__title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0d1b2a;
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(37,99,235,0.1);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .sidebar-widget__title i { color: #2563eb; }
+
+    
+    .popular-post-item {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(37,99,235,0.07);
+      cursor: pointer;
+      transition: transform 0.25s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .popular-post-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .popular-post-item:hover { transform: translateX(4px); }
+    .popular-post-thumb {
+      width: 56px; height: 56px;
+      border-radius: 0.65rem;
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .popular-post-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #0d1b2a;
+      line-height: 1.4;
+      margin-bottom: 0.2rem;
+      transition: color 0.2s;
+    }
+    .popular-post-item:hover .popular-post-title { color: #2563eb; }
+    .popular-post-date { font-size: 0.73rem; color: #687d94; }
+
+    
+    .tags-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag-item {
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(37,99,235,0.18);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #687d94;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tag-item:hover { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+    
+    .newsletter-widget {
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin-bottom: 1.1rem;
+      text-align: center;
+    }
+    .newsletter-widget h5 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+    .newsletter-widget p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .newsletter-form-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .newsletter-form-mini input {
+      padding: 0.65rem 1rem;
+      border-radius: 9999px;
+      border: 2px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 0.84rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form-mini input::placeholder { color: rgba(255,255,255,0.65); }
+    .newsletter-form-mini input:focus { border-color: rgba(255,255,255,0.8); }
+
+    
+    .article-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(13,27,42,0.72);
+      z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      backdrop-filter: blur(5px);
+    }
+    .article-modal-backdrop.open { opacity: 1; visibility: visible; }
+    .article-modal {
+      background: #fff;
+      border-radius: 1.5rem;
+      max-width: 720px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.9) translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: #2563eb #eff6ff;
+    }
+    .article-modal::-webkit-scrollbar { width: 5px; }
+    .article-modal::-webkit-scrollbar-track { background: #eff6ff; }
+    .article-modal::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 9999px; }
+    .article-modal-backdrop.open .article-modal { transform: scale(1) translateY(0); }
+    .am-close {
+      position: sticky; top: 1rem;
+      float: right;
+      margin: 1rem 1rem 0 0;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #eff6ff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: #0d1b2a;
+      cursor: pointer; z-index: 5;
+      transition: background 0.2s, transform 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .am-close:hover { background: #2563eb; color: #fff; transform: rotate(90deg); }
+    .am-thumb {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      height: 240px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem;
+      border-radius: 1.5rem 1.5rem 0 0;
+    }
+    .am-body { padding: 0 2rem 2rem; }
+    .am-cat {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #2563eb;
+      background: #eff6ff;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-bottom: 0.85rem; margin-top: 1.5rem;
+    }
+    .am-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-weight: 800;
+      color: #0d1b2a;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+    .am-meta {
+      display: flex; align-items: center; gap: 1rem;
+      font-size: 0.8rem; color: #687d94;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .am-meta i { color: #2563eb; }
+    .am-author {
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .am-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#2563eb,#38bdf8);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.72rem; font-weight: 800;
+      color: #fff; flex-shrink: 0;
+    }
+    .am-divider { height: 1px; background: rgba(37,99,235,0.1); margin: 1.25rem 0; }
+    .am-content { font-size: 0.93rem; color: #2e4057; line-height: 1.85; }
+    .am-content p { margin-bottom: 1.1rem; }
+    .am-content h3 {
+      font-family: var(--font-display); font-size: 1.1rem;
+      font-weight: 700; color: #0d1b2a;
+      margin: 1.5rem 0 0.65rem;
+    }
+    .am-content ul { padding-left: 1.25rem; margin-bottom: 1.1rem; }
+    .am-content li { margin-bottom: 0.45rem; }
+    .am-content strong { color: #2563eb; }
+    .am-cta {
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .am-cta p { color: #fff; font-size: 0.9rem; font-weight: 600; margin: 0; flex: 1; }
+
+    
+    .pagination-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .pag-btn {
+      width: 40px; height: 40px;
+      border-radius: 0.65rem;
+      border: 1.5px solid rgba(37,99,235,0.18);
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #687d94;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+    }
+    .pag-btn:hover, .pag-btn.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+
+    
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      pointer-events: none;
+    }
+    .toast {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 0.75rem 1.4rem;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      animation: toastIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      white-space: nowrap;
+    }
+    .toast i { color: #38bdf8; }
+    @keyframes toastIn { from { opacity:0; transform:translateY(20px) scale(0.9); } to { opacity:1; transform:none; } }
+
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem; right: 1.5rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: #fff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.4);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 900;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: all; }
+    .back-to-top:hover { transform: scale(1.12) translateY(-3px); }
+
+    
+    @media (max-width: 991.98px) {
+      .blog-sidebar-col { display: none; }
+      .blog-content-col { flex: 0 0 100%; max-width: 100%; }
+    }
+    @media (max-width: 767.98px) {
+      .blog-page-header {
+      background-image: linear-gradient(to right, rgba(13,27,42,0.85), rgba(13,27,42,0.4)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 9rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 450px;
+    }
+      .blog-toolbar { top: 58px; }
+      .blog-toolbar__inner { gap: 0.5rem; }
+      .blog-toolbar__search { max-width: 100%; min-width: 0; flex: 1 1 100%; order: 3; }
+      .results-count { display: none; }
+      .featured-post__thumb { height: 300px; font-size: 6rem; }
+      .featured-post__overlay { padding: 1.5rem; }
+      .am-body { padding: 0 1.25rem 1.5rem; }
+      .am-thumb { height: 180px; font-size: 5rem; }
+    }
+    @media (max-width: 480px) {
+      .featured-post__title { font-size: 1.2rem; }
+      .featured-post__excerpt { display: none; }
+    }
+
+    
+    .marquee-track { display:flex; animation:marquee 30s linear infinite; width:max-content; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  </style>
+  
+</head>
+
+<body>
+
+<!-- ════════════════════════════════════════════
+     SEARCH OVERLAY  (reusable component)
+════════════════════════════════════════════ -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-overlay__inner">
+    <div class="search-overlay__input-wrap">
+      <i class="fa-solid fa-magnifying-glass" style="padding-left:1.4rem;color:#687d94;"></i>
+      <input class="search-overlay__input" id="searchInput" type="text" placeholder="Search keyboards, mice, monitors, PC gear…" autocomplete="off"/>
+      <button class="search-overlay__close" id="searchClose" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p class="search-overlay__hint">Press <kbd style="background:rgba(255,255,255,0.15);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.75rem;">ESC</kbd> to close</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MOBILE FULL-SCREEN OVERLAY MENU  (reusable)
+════════════════════════════════════════════ -->
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="mobile-overlay__header">
+    <a href="index.html" class="mobile-overlay__logo logo-brand" aria-label="Stackly Home"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+    <button class="mobile-overlay__close-btn" onclick="closeMobileMenu()" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <nav class="mobile-overlay__nav" aria-label="Mobile Navigation">
+    <a href="index.html"   class="mobile-overlay__link" onclick="closeMobileMenu()">Home</a>
+    <a href="about.html"   class="mobile-overlay__link" onclick="closeMobileMenu()">About</a>
+    <a href="store.html"   class="mobile-overlay__link" onclick="closeMobileMenu()">Store</a>
+    <a href="blog.html"    class="mobile-overlay__link active" onclick="closeMobileMenu()">Blog</a>
+    <a href="contact.html" class="mobile-overlay__link" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+  <div class="mobile-overlay__bottom">
+    <div class="mobile-overlay__divider"></div>
+    <div class="mobile-overlay__btns">
+      <a href="signin.html"      class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     NAVBAR  (reusable component)
+════════════════════════════════════════════ -->
+<header class="navbar scrolled" id="navbar">
+  <div class="container navbar__inner">
+
+    <a href="index.html" class="navbar__logo logo-brand" aria-label="Stackly Home"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+
+    <nav class="navbar__nav" aria-label="Main Navigation">
+      <a href="index.html"   class="navbar__link">Home</a>
+      <a href="about.html"   class="navbar__link">About</a>
+      <a href="store.html"   class="navbar__link">Store</a>
+      <a href="blog.html"    class="navbar__link active">Blog</a>
+      <a href="contact.html" class="navbar__link">Contact</a>
+    </nav>
+
+    <div class="navbar__actions">
+
+      <button class="navbar__wishlist-btn" aria-label="Wishlist" onclick="openWishlist()" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.9);background:transparent;position:relative;">
+        <i class="fa-solid fa-heart"></i>
+        <span class="wishlist-count" style="display:flex;">0</span>
+      </button>
+      <button class="navbar__cart-btn" aria-label="Cart" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </button>
+      <a href="signin.html"      class="btn btn-outline btn-sm d-none d-lg-inline-flex">Sign In</a>
+      <a href="signup.html"      class="btn btn-primary btn-sm d-none d-lg-inline-flex">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════
+     BLOG PAGE HEADER
+════════════════════════════════════════════ -->
+<div class="blog-page-header">
+  <div class="container blog-page-header__inner">
+    <div class="row align-items-center g-3">
+      <div class="col-md-7" data-aos="fade-up">
+        <nav class="breadcrumb mb-2" aria-label="breadcrumb">
+          <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+          <i class="fa-solid fa-chevron-right" style="font-size:0.6rem;opacity:0.5;"></i>
+          <span style="color:#38bdf8;">Blog</span>
+        </nav>
+        <h1 class="page-header__title" style="font-size:clamp(1.8rem,4vw,3rem);margin-bottom:0.5rem;">
+          Tech <span style="color:#38bdf8;">Insights</span>
+        </h1>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.96rem;max-width:480px;margin:0;">
+          Expert guides on gaming setups, keyboards, monitors &amp; PC building — written by our tech team.
+        </p>
+      </div>
+      <div class="col-md-5 d-none d-md-flex justify-content-end gap-3" data-aos="fade-left">
+        <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:1rem;padding:1rem 1.25rem;text-align:center;min-width:110px;">
+          <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:#38bdf8;line-height:1;">50+</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Articles</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:1rem;padding:1rem 1.25rem;text-align:center;min-width:110px;">
+          <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:#38bdf8;line-height:1;">6</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Categories</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.16);border-radius:1rem;padding:1rem 1.25rem;text-align:center;min-width:110px;">
+          <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:#38bdf8;line-height:1;">12K</div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Readers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MARQUEE STRIP  (reusable component)
+════════════════════════════════════════════ -->
+<div style="background:linear-gradient(135deg,#2563eb,#1d4ed8);padding:0.75rem 0;overflow:hidden;" aria-label="Features">
+  <div class="marquee-track" aria-hidden="true">
+    <div style="display:flex;gap:0;width:max-content;">
+      <span class="features-strip__item"><i class="fa-solid fa-newspaper"></i> Weekly Tech Tips</span>
+      <span class="features-strip__item"><i class="fa-solid fa-microchip"></i> Written by Tech Experts</span>
+      <span class="features-strip__item"><i class="fa-solid fa-gamepad"></i> Gaming Setups</span>
+      <span class="features-strip__item"><i class="fa-solid fa-keyboard"></i> Keyboard Guides</span>
+      <span class="features-strip__item"><i class="fa-solid fa-display"></i> Monitor Reviews</span>
+      <span class="features-strip__item"><i class="fa-solid fa-screwdriver-wrench"></i> PC Building Tips</span>
+      <span class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> Trusted Tech Info</span>
+      <span class="features-strip__item"><i class="fa-solid fa-newspaper"></i> Weekly Tech Tips</span>
+      <span class="features-strip__item"><i class="fa-solid fa-microchip"></i> Written by Tech Experts</span>
+      <span class="features-strip__item"><i class="fa-solid fa-gamepad"></i> Gaming Setups</span>
+      <span class="features-strip__item"><i class="fa-solid fa-keyboard"></i> Keyboard Guides</span>
+      <span class="features-strip__item"><i class="fa-solid fa-display"></i> Monitor Reviews</span>
+      <span class="features-strip__item"><i class="fa-solid fa-screwdriver-wrench"></i> PC Building Tips</span>
+      <span class="features-strip__item"><i class="fa-solid fa-shield-halved"></i> Trusted Tech Info</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     STICKY BLOG TOOLBAR
+════════════════════════════════════════════ -->
+<div class="blog-toolbar" id="blogToolbar">
+  <div class="container">
+    <div class="blog-toolbar__inner">
+      <div class="blog-toolbar__search">
+        <input type="text" id="blogSearchInput" placeholder="Search articles…" autocomplete="off" aria-label="Search articles" style="padding-left: 1.2rem;"/>
+      </div>
+      <button class="cat-pill" onclick="resetFilters()" style="background:#eff6ff;color:#2563eb;font-weight:600;padding:0.6rem 1.25rem;border-radius:9999px;border:none;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:0.4rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(37,99,235,0.1)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+        <i class="fa-solid fa-rotate-left"></i> Clear Filters
+      </button>
+      <span class="results-count" id="resultsCount">Showing 12 articles</span>
+    </div>
+
+    
+    <div class="cat-filter-bar mt-2" role="group" aria-label="Filter by category">
+      <button class="cat-pill active" data-cat="all" onclick="filterCat(this,'all')">
+        <i class="fa-solid fa-border-all"></i> All
+      </button>
+      <button class="cat-pill" data-cat="gaming" onclick="filterCat(this,'gaming')">
+        <i class="fa-solid fa-gamepad"></i> Gaming
+      </button>
+      <button class="cat-pill" data-cat="keyboards" onclick="filterCat(this,'keyboards')">
+        <i class="fa-solid fa-keyboard"></i> Keyboards
+      </button>
+      <button class="cat-pill" data-cat="monitors" onclick="filterCat(this,'monitors')">
+        <i class="fa-solid fa-display"></i> Monitors
+      </button>
+      <button class="cat-pill" data-cat="pcbuilding" onclick="filterCat(this,'pcbuilding')">
+        <i class="fa-solid fa-screwdriver-wrench"></i> PC Building
+      </button>
+      <button class="cat-pill" data-cat="peripherals" onclick="filterCat(this,'peripherals')">
+        <i class="fa-solid fa-computer-mouse"></i> Peripherals
+      </button>
+      <button class="cat-pill" data-cat="guides" onclick="filterCat(this,'guides')">
+        <i class="fa-solid fa-book"></i> Guides
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MAIN BLOG CONTENT
+════════════════════════════════════════════ -->
+<main>
+<div class="container" style="padding-top:2rem;padding-bottom:3rem;">
+  <div class="row g-4">
+
+    
+    <div class="col-lg-8 blog-content-col">
+
+      
+            <div class="featured-post mb-4" data-aos="fade-up"
+           onclick="openArticle(0)"
+           aria-label="Read featured article">
+        <div class="featured-post__thumb">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80" class="bl-card-img" alt="Gaming Setup Guide" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        </div>
+        <div class="featured-post__overlay">
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;">
+            <span class="featured-label"><i class="fa-solid fa-star"></i> Featured</span>
+            <span class="featured-post__cat"><i class="fa-solid fa-gamepad"></i> Gaming</span>
+          </div>
+          <h2 class="featured-post__title">The Complete Guide to Building Your Dream Gaming Setup in 2026</h2>
+          <p class="featured-post__excerpt">From monitor placement to peripheral choices — everything you need to create a competitive gaming station at home.</p>
+          <div class="featured-post__meta">
+            <div class="featured-post__author">
+              <div class="featured-post__avatar">KR</div>
+              <span>Karthik Rajan</span>
+            </div>
+            <span><i class="fa-regular fa-calendar"></i> June 5, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+            <span><i class="fa-regular fa-eye"></i> 2.1K views</span>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="row g-3" id="blogGrid">
+
+        
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="gaming" data-aos="fade-up" data-aos-delay="0">
+          <div class="bl-card" onclick="openArticle(1)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=800&q=80" class="bl-card-img" alt="Mechanical Keyboards"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-keyboard"></i> Keyboards</span>
+              <div class="bl-title">Mechanical vs Membrane: Which Keyboard Is Right for You?</div>
+              <p class="bl-excerpt">From Cherry MX switches to budget options — our guide to picking the perfect keyboard for gaming and work.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> May 28, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 6 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="monitors" data-aos="fade-up" data-aos-delay="60">
+          <div class="bl-card" onclick="openArticle(2)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80" class="bl-card-img" alt="Monitor Guide"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-display"></i> Monitors</span>
+              <div class="bl-title">144Hz vs 240Hz: Do You Really Need a High Refresh Monitor?</div>
+              <p class="bl-excerpt">We break down refresh rates, response times, and panel types to help you choose the right display.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> May 18, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 5 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="gaming" data-aos="fade-up" data-aos-delay="120">
+          <div class="bl-card" onclick="openArticle(3)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80" class="bl-card-img" alt="Gaming Setup"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-gamepad"></i> Gaming</span>
+              <div class="bl-title">Building the Ultimate Gaming Setup on a Budget</div>
+              <p class="bl-excerpt">A complete guide to assembling an impressive gaming station without breaking the bank.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> May 10, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 7 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="pcbuilding" data-aos="fade-up" data-aos-delay="0">
+          <div class="bl-card" onclick="openArticle(4)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9b7?w=800&q=80" class="bl-card-img" alt="PC Building"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-screwdriver-wrench"></i> PC Building</span>
+              <div class="bl-title">First PC Build? 10 Mistakes Every Beginner Makes</div>
+              <p class="bl-excerpt">Avoid costly errors with our checklist of common first-build pitfalls and how to sidestep them.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> April 29, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 5 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="monitors" data-aos="fade-up" data-aos-delay="60">
+          <div class="bl-card" onclick="openArticle(5)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=800&q=80" class="bl-card-img" alt="Monitor Buying"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-display"></i> Monitors</span>
+              <div class="bl-title">Monitor Buying Guide 2026: IPS, VA, or OLED?</div>
+              <p class="bl-excerpt">Panel technology explained — which display type suits gaming, creative work, and everyday use.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> April 20, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 4 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="peripherals" data-aos="fade-up" data-aos-delay="120">
+          <div class="bl-card" onclick="openArticle(6)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80" class="bl-card-img" alt="Gaming Mouse"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-computer-mouse"></i> Peripherals</span>
+              <div class="bl-title">Gaming Mouse DPI Explained: Finding Your Sweet Spot</div>
+              <p class="bl-excerpt">DPI, polling rate, and sensor types demystified — plus our top picks for FPS and MOBA players.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> April 12, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 6 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="gaming" data-aos="fade-up" data-aos-delay="0">
+          <div class="bl-card" onclick="openArticle(7)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=800&q=80" class="bl-card-img" alt="Gaming Headset"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-gamepad"></i> Gaming</span>
+              <div class="bl-title">Wired vs Wireless Gaming Headsets: Which Wins in 2026?</div>
+              <p class="bl-excerpt">Latency, battery life, and audio quality compared — the definitive guide for competitive gamers.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> April 5, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 8 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="pcbuilding" data-aos="fade-up" data-aos-delay="60">
+          <div class="bl-card" onclick="openArticle(8)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=800&q=80" class="bl-card-img" alt="GPU Guide"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-screwdriver-wrench"></i> PC Building</span>
+              <div class="bl-title">GPU Upgrade Guide: When Is It Time to Replace Your Graphics Card?</div>
+              <p class="bl-excerpt">Signs your GPU is bottlenecking your system and how to choose the right upgrade for your budget.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> March 28, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 5 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="keyboards" data-aos="fade-up" data-aos-delay="120">
+          <div class="bl-card" onclick="openArticle(9)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1614624532983-4ce03382d63c?w=800&q=80" class="bl-card-img" alt="RGB Keyboards"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-keyboard"></i> Keyboards</span>
+              <div class="bl-title">Best RGB Keyboards Under ₹5,000 in India</div>
+              <p class="bl-excerpt">Our top picks for budget mechanical keyboards with per-key RGB lighting and solid build quality.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> March 15, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 5 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="guides" data-aos="fade-up" data-aos-delay="0">
+          <div class="bl-card" onclick="openArticle(10)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" class="bl-card-img" alt="Cable Management"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-book"></i> Guides</span>
+              <div class="bl-title">Cable Management 101: Clean Desk, Clean Mind</div>
+              <p class="bl-excerpt">Practical tips and affordable accessories to tame the cable chaos under and on your desk.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> March 8, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 4 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="peripherals" data-aos="fade-up" data-aos-delay="60">
+          <div class="bl-card" onclick="openArticle(11)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80" class="bl-card-img" alt="Desk Setup"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-computer-mouse"></i> Peripherals</span>
+              <div class="bl-title">Ergonomic Desk Setup: Prevent Wrist and Neck Strain</div>
+              <p class="bl-excerpt">Monitor height, keyboard angle, and chair position — the essentials for long coding and gaming sessions.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> Feb 22, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 5 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 blog-col" data-cat="pcbuilding" data-aos="fade-up" data-aos-delay="120">
+          <div class="bl-card" onclick="openArticle(12)" aria-label="Read article">
+            <div class="bl-thumb"><img src="https://images.unsplash.com/photo-1625842268584-8f3296236761?w=800&q=80" class="bl-card-img" alt="PC Cooling"></div>
+            <div class="bl-body">
+              <span class="bl-cat"><i class="fa-solid fa-screwdriver-wrench"></i> PC Building</span>
+              <div class="bl-title">Air Cooling vs Liquid Cooling: What Your PC Actually Needs</div>
+              <p class="bl-excerpt">Thermal performance, noise levels, and maintenance compared — choose the right cooling for your build.</p>
+              <div class="bl-meta">
+                <span><i class="fa-regular fa-calendar"></i> Feb 14, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 6 min</span>
+                <span class="bl-read-more">Read <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      
+      <div id="noResults" style="display:none;text-align:center;padding:3rem 0;">
+        <div style="font-size:4rem;margin-bottom:1rem;">🔍</div>
+        <h3 style="font-family:var(--font-display);font-weight:700;color:#0d1b2a;margin-bottom:0.5rem;">No articles found</h3>
+        <p style="color:#687d94;">Try a different search term or category.</p>
+        <button class="btn btn-primary mt-3" onclick="resetFilters()"><i class="fa-solid fa-rotate-left"></i> Reset Filters</button>
+      </div>
+
+      
+      <nav class="pagination-wrap" aria-label="Pagination">
+        <a href="404.html" class="pag-btn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></a>
+        <a href="404.html" class="pag-btn active" aria-current="page">1</a>
+        <a href="404.html" class="pag-btn">2</a>
+        <a href="404.html" class="pag-btn">3</a>
+        <a href="404.html" class="pag-btn" style="cursor:default;">...</a>
+        <a href="404.html" class="pag-btn">6</a>
+        <a href="404.html" class="pag-btn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></a>
+      </nav>
+
+    </div>
+
+    
+    <div class="col-lg-4 blog-sidebar-col">
+      <aside class="blog-sidebar" aria-label="Blog sidebar">
+
+        
+        <div class="newsletter-widget">
+          <i class="fa-solid fa-envelope-open-text" style="font-size:2rem;color:#fff;opacity:0.9;margin-bottom:0.65rem;display:block;"></i>
+          <h5>Get Weekly Tech Tips</h5>
+          <p>No spam — only practical tech guides from our experts.</p>
+          <form class="newsletter-form-mini" onsubmit="handleNewsletter(event)">
+            <input type="email" placeholder="Your email address…" required aria-label="Email for newsletter"/>
+            <button type="submit" class="btn btn-white btn-sm" style="border-radius:9999px;">
+              <i class="fa-solid fa-paper-plane"></i> Subscribe
+            </button>
+          </form>
+        </div>
+
+        
+        <div class="sidebar-widget">
+          <div class="sidebar-widget__title"><i class="fa-solid fa-fire"></i> Popular Articles</div>
+          <div>
+            <div class="popular-post-item" onclick="openArticle(0)">
+              <div class="popular-post-thumb"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80" style="width:100%;height:100%;object-fit:cover;border-radius:0.65rem;" alt=""></div>
+              <div>
+                <div class="popular-post-title">The Complete Guide to Building Your Dream Gaming Setup</div>
+                <div class="popular-post-date"><i class="fa-regular fa-eye" style="color:#2563eb;font-size:0.7rem;"></i> 2.1K views · June 5</div>
+              </div>
+            </div>
+            <div class="popular-post-item" onclick="openArticle(2)">
+              <div class="popular-post-thumb">
+                <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80" style="width:100%;height:100%;object-fit:cover;border-radius:0.65rem;" alt="">
+              </div>
+              <div>
+                <div class="popular-post-title">144Hz vs 240Hz: Do You Really Need a High Refresh Monitor?</div>
+                <div class="popular-post-date"><i class="fa-regular fa-eye" style="color:#2563eb;font-size:0.7rem;"></i> 1.6K views · May 18</div>
+              </div>
+            </div>
+            <div class="popular-post-item" onclick="openArticle(9)">
+              <div class="popular-post-thumb"><img src="https://images.unsplash.com/photo-1614624532983-4ce03382d63c?w=800&q=80" style="width:100%;height:100%;object-fit:cover;border-radius:0.65rem;" alt=""></div>
+              <div>
+                <div class="popular-post-title">Best RGB Keyboards Under ₹5,000 in India</div>
+                <div class="popular-post-date"><i class="fa-regular fa-eye" style="color:#2563eb;font-size:0.7rem;"></i> 1.2K views · March 15</div>
+              </div>
+            </div>
+            <div class="popular-post-item" onclick="openArticle(1)">
+              <div class="popular-post-thumb"><img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=800&q=80" style="width:100%;height:100%;object-fit:cover;border-radius:0.65rem;" alt=""></div>
+              <div>
+                <div class="popular-post-title">Mechanical vs Membrane: Which Keyboard Is Right for You?</div>
+                <div class="popular-post-date"><i class="fa-regular fa-eye" style="color:#2563eb;font-size:0.7rem;"></i> 980 views · May 28</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="sidebar-widget">
+          <div class="sidebar-widget__title"><i class="fa-solid fa-folder-open"></i> Categories</div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div onclick="filterCatSidebar('gaming')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:0.45rem 0;border-bottom:1px solid rgba(37,99,235,0.07);transition:color 0.2s;" class="sidebar-cat-item">
+              <span style="font-size:0.88rem;font-weight:600;color:#2e4057;display:flex;align-items:center;"><i class="fa-solid fa-gamepad"></i> Gaming</span>
+              <span style="font-size:0.74rem;background:#eff6ff;color:#2563eb;padding:0.1rem 0.5rem;border-radius:9999px;font-weight:700;">3</span>
+            </div>
+            <div onclick="filterCatSidebar('keyboards')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:0.45rem 0;border-bottom:1px solid rgba(37,99,235,0.07);transition:color 0.2s;" class="sidebar-cat-item">
+              <span style="font-size:0.88rem;font-weight:600;color:#2e4057;display:flex;align-items:center;"><i class="fa-solid fa-keyboard"></i> Keyboards</span>
+              <span style="font-size:0.74rem;background:#eff6ff;color:#2563eb;padding:0.1rem 0.5rem;border-radius:9999px;font-weight:700;">2</span>
+            </div>
+            <div onclick="filterCatSidebar('monitors')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:0.45rem 0;border-bottom:1px solid rgba(37,99,235,0.07);transition:color 0.2s;" class="sidebar-cat-item">
+              <span style="font-size:0.88rem;font-weight:600;color:#2e4057;display:flex;align-items:center;"><i class="fa-solid fa-display"></i> Monitors</span>
+              <span style="font-size:0.74rem;background:#eff6ff;color:#2563eb;padding:0.1rem 0.5rem;border-radius:9999px;font-weight:700;">2</span>
+            </div>
+            <div onclick="filterCatSidebar('pcbuilding')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:0.45rem 0;border-bottom:1px solid rgba(37,99,235,0.07);transition:color 0.2s;" class="sidebar-cat-item">
+              <span style="font-size:0.88rem;font-weight:600;color:#2e4057;display:flex;align-items:center;"><i class="fa-solid fa-screwdriver-wrench"></i> PC Building</span>
+              <span style="font-size:0.74rem;background:#eff6ff;color:#2563eb;padding:0.1rem 0.5rem;border-radius:9999px;font-weight:700;">3</span>
+            </div>
+            <div onclick="filterCatSidebar('peripherals')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:0.45rem 0;border-bottom:1px solid rgba(37,99,235,0.07);transition:color 0.2s;" class="sidebar-cat-item">
+              <span style="font-size:0.88rem;font-weight:600;color:#2e4057;display:flex;align-items:center;"><i class="fa-solid fa-computer-mouse"></i> Peripherals</span>
+              <span style="font-size:0.74rem;background:#eff6ff;color:#2563eb;padding:0.1rem 0.5rem;border-radius:9999px;font-weight:700;">2</span>
+            </div>
+            <div onclick="filterCatSidebar('guides')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:0.45rem 0;transition:color 0.2s;" class="sidebar-cat-item">
+              <span style="font-size:0.88rem;font-weight:600;color:#2e4057;display:flex;align-items:center;"><i class="fa-solid fa-book"></i> Guides</span>
+              <span style="font-size:0.74rem;background:#eff6ff;color:#2563eb;padding:0.1rem 0.5rem;border-radius:9999px;font-weight:700;">1</span>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="sidebar-widget">
+          <div class="sidebar-widget__title"><i class="fa-solid fa-tags"></i> Popular Tags</div>
+          <div class="tags-cloud">
+            <span class="tag-item" onclick="searchTag('gaming')">Gaming</span>
+            <span class="tag-item" onclick="searchTag('keyboard')">Keyboard</span>
+            <span class="tag-item" onclick="searchTag('monitor')">Monitor</span>
+            <span class="tag-item" onclick="searchTag('mechanical')">Mechanical</span>
+            <span class="tag-item" onclick="searchTag('rgb')">RGB</span>
+            <span class="tag-item" onclick="searchTag('fps')">FPS</span>
+            <span class="tag-item" onclick="searchTag('gpu')">GPU</span>
+            <span class="tag-item" onclick="searchTag('cooling')">Cooling</span>
+            <span class="tag-item" onclick="searchTag('dpi')">DPI</span>
+            <span class="tag-item" onclick="searchTag('144hz')">144Hz</span>
+            <span class="tag-item" onclick="searchTag('pc build')">PC Build</span>
+            <span class="tag-item" onclick="searchTag('ergonomic')">Ergonomic</span>
+          </div>
+        </div>
+
+        
+        <div style="background:linear-gradient(135deg,#0d1b2a,#2563eb);border-radius:1.25rem;padding:1.5rem;text-align:center;">
+          <i class="fa-solid fa-store" style="font-size:1.8rem;color:#38bdf8;margin-bottom:0.65rem;display:block;"></i>
+          <div style="font-family:var(--font-display);font-weight:800;color:#fff;font-size:1rem;margin-bottom:0.4rem;">Browse Our Store</div>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:1rem;line-height:1.55;">Premium PC peripherals &amp; gaming gear — delivered across Salem.</p>
+          <a href="store.html" class="btn btn-primary btn-sm w-100">
+            <i class="fa-solid fa-arrow-right"></i> Shop Now
+          </a>
+        </div>
+
+      </aside>
+    </div>
+
+  </div>
+</div>
+</main>
+
+<!-- ════════════════════════════════════════════
+     FOOTER  (reusable component)
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo logo-brand"><img src="assets/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto;" /></a>
+        <p class="footer__desc">Salem's premier computer accessories store — premium PC peripherals, gaming gear, and expert tech support since 2018.</p>
+        <div class="footer__col-title" style="margin-top:1rem; margin-bottom:0.75rem;">Newsletter</div>
+        <form class="footer__newsletter" onsubmit="handleNewsletter(event)" style="margin-bottom:1.25rem;">
+          <input type="email" placeholder="Your email…" required aria-label="Newsletter email"/>
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <div class="footer__social">
+          <a href="404.html" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer__col-title">Quick Links</div>
+        <ul class="footer__links">
+          <li><a href="index.html"   class="footer__link">Home</a></li>
+          <li><a href="about.html"   class="footer__link">About Us</a></li>
+          <li><a href="store.html"   class="footer__link">Our Store</a></li>
+          <li><a href="blog.html"    class="footer__link">Tech Blog</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+          <li><a href="signin.html"  class="footer__link">Sign In</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__col-title">Services</div>
+        <ul class="footer__links">
+          <li><a href="404.html"   class="footer__link">PC Build Consultation</a></li>
+          <li><a href="404.html"   class="footer__link">Custom PC Builds</a></li>
+          <li><a href="404.html" class="footer__link">Tech Support</a></li>
+          <li><a href="404.html"   class="footer__link">Warranty Service</a></li>
+          <li><a href="404.html"   class="footer__link">Gaming Bundles</a></li>
+          <li><a href="404.html"     class="footer__link">Corporate Orders</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer__col-title">Find Us</div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>hello@stackly.in</span>
+        </div>
+        <div class="footer__address-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon–Sat: 8am–10pm · Sun: 9am–6pm</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="footer__bottom">
+      <div class="footer__copyright">
+        &copy; 2026 <span>Stackly</span>. All rights reserved. Designed with ❤️ in Salem.
+      </div>
+      <div class="footer__legal">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Use</a>
+        <a href="404.html">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ════════════════════════════════════════════
+     ARTICLE READ MODAL
+════════════════════════════════════════════ -->
+<div class="article-modal-backdrop" id="articleBackdrop" role="dialog" aria-modal="true" aria-label="Read article" onclick="closeArticleModal(event)">
+  <div class="article-modal" id="articleModal">
+    <button class="am-close" onclick="closeArticleModal()" aria-label="Close article"><i class="fa-solid fa-xmark"></i></button>
+    <div class="am-thumb" id="amThumb"></div>
+    <div class="am-body">
+      <div class="am-cat" id="amCat"></div>
+      <h2 class="am-title" id="amTitle"></h2>
+      <div class="am-meta" id="amMeta"></div>
+      <div class="am-divider"></div>
+      <div class="am-content" id="amContent"></div>
+      <div class="am-cta">
+        <p>Need the gear mentioned in this article?</p>
+        <a href="store.html" class="btn btn-white btn-sm" style="flex-shrink:0;">
+          <i class="fa-solid fa-store"></i> Browse Store
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+<script>
+/* ══════════════════════════════════════════════
+   BLOG PAGE — JavaScript
+══════════════════════════════════════════════ */
+
+const articlesData = [
+  {
+    title: "The Complete Guide to Building Your Dream Gaming Setup in 2026",
+    cat: "Gaming",
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80",
+    authorName: "Karthik Rajan",
+    authorInitials: "KR",
+    date: "June 5, 2026",
+    readTime: "8 min read",
+    content: `<p>Whether you are a competitive FPS player or a casual gamer, your setup directly impacts performance and comfort. Here is everything you need to build the ultimate gaming station in 2026.</p><h3>Monitor placement</h3><p>Position your monitor so the top edge is at or slightly below eye level. Sit <strong>50–70 cm</strong> away for a 24–27 inch display. A monitor arm frees desk space and allows precise angle adjustment.</p><h3>Peripheral essentials</h3><ul><li><strong>Keyboard:</strong> Mechanical switches (Red or Brown) for gaming; consider TKL layout for more mouse space.</li><li><strong>Mouse:</strong> 800–1600 DPI with a quality sensor (PixArt 3395 or better).</li><li><strong>Headset:</strong> Closed-back for noise isolation; open-back for spatial audio in single-player games.</li><li><strong>Mousepad:</strong> Extended desk mat for consistent tracking and wrist comfort.</li></ul><h3>Desk and ergonomics</h3><p>A desk depth of at least 60 cm accommodates monitor + keyboard comfortably. Cable management trays and velcro ties keep the setup clean. RGB lighting is optional but popular — bias lighting behind the monitor reduces eye strain.</p><p>Visit Stackly at MMR Complex, Salem for hands-on demos of gaming keyboards, mice, and headsets from Logitech, Razer, and Corsair.</p>`
+  },
+  {
+    title: "Mechanical vs Membrane: Which Keyboard Is Right for You?",
+    cat: "Keyboards",
+    image: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=800&q=80",
+    authorName: "Arjun Selvam",
+    authorInitials: "AS",
+    date: "May 28, 2026",
+    readTime: "6 min read",
+    content: `<p>Choosing between mechanical and membrane keyboards is one of the most important peripheral decisions you will make. Here is a clear breakdown.</p><h3>Mechanical keyboards</h3><p>Each key has an individual mechanical switch. Benefits include <strong>tactile feedback</strong>, faster actuation, and durability (50M+ keystrokes). Popular switch types: Cherry MX Red (linear, gaming), Brown (tactile, typing), Blue (clicky, loud).</p><h3>Membrane keyboards</h3><p>Keys sit on a rubber dome sheet. Quieter and cheaper, but less responsive and shorter lifespan. Fine for office use; less ideal for competitive gaming.</p><h3>Our recommendation</h3><ul><li><strong>Gaming:</strong> Mechanical with linear switches (Red/Speed Silver)</li><li><strong>Typing + gaming:</strong> Tactile switches (Brown)</li><li><strong>Budget office:</strong> Quality membrane from Logitech or Dell</li></ul><p>Try switches in person at our Salem store before buying — feel matters more than specs.</p>`
+  },
+  {
+    title: "144Hz vs 240Hz: Do You Really Need a High Refresh Monitor?",
+    cat: "Monitors",
+    image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80",
+    authorName: "Meena Suresh",
+    authorInitials: "MS",
+    date: "May 18, 2026",
+    readTime: "5 min read",
+    content: `<p>High refresh rate monitors are marketed aggressively, but the real benefit depends on your games, GPU, and reaction time.</p><h3>What refresh rate means</h3><p>A 144Hz monitor refreshes 144 times per second vs 60 times on a standard display. That means <strong>lower input lag</strong> and smoother motion — critical in FPS and racing games.</p><h3>144Hz vs 240Hz</h3><p>The jump from 60 to 144Hz is dramatic and noticeable. The jump from 144 to 240Hz is subtler — pro esports players benefit most. You also need a GPU that can consistently output 240+ FPS in your target games.</p><h3>Panel types</h3><ul><li><strong>IPS:</strong> Best colours and viewing angles; good for gaming + creative work</li><li><strong>VA:</strong> Better contrast; slight motion blur on budget models</li><li><strong>TN:</strong> Fastest response; poor colours — largely replaced by fast IPS</li></ul><p>We stock 144Hz and 240Hz monitors from ASUS, MSI, and LG at Stackly Salem.</p>`
+  },
+  {
+    title: "Building the Ultimate Gaming Setup on a Budget",
+    cat: "Gaming",
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80",
+    authorName: "Karthik Rajan",
+    authorInitials: "KR",
+    date: "May 10, 2026",
+    readTime: "7 min read",
+    content: `<p>You do not need ₹2 lakh to build an impressive gaming setup. Here is how to prioritize spending for maximum impact under ₹50,000.</p><h3>Priority order</h3><ol><li><strong>Monitor (₹15,000–20,000):</strong> 24 inch 144Hz IPS — the single biggest upgrade</li><li><strong>Mouse (₹2,000–4,000):</strong> Lightweight with a good sensor</li><li><strong>Keyboard (₹3,000–6,000):</strong> Entry mechanical or quality membrane</li><li><strong>Headset (₹3,000–5,000):</strong> Wired for zero latency on a budget</li><li><strong>Desk mat + cable management (₹1,000):</strong> Cheap but high impact</li></ol><h3>What to skip initially</h3><p>RGB everything, expensive wireless peripherals, and ultrawide monitors can wait. Invest in core performance first.</p><p>Stackly offers gaming bundles with monitor + keyboard + mouse combos at discounted prices.</p>`
+  },
+  {
+    title: "First PC Build? 10 Mistakes Every Beginner Makes",
+    cat: "PC Building",
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9b7?w=800&q=80",
+    authorName: "Arjun Selvam",
+    authorInitials: "AS",
+    date: "April 29, 2026",
+    readTime: "5 min read",
+    content: `<p>Building your first PC is rewarding but easy to get wrong. Avoid these common beginner mistakes.</p><h3>Top 10 mistakes</h3><ul><li><strong>Skipping compatibility checks</strong> — CPU socket, RAM type, case clearance</li><li><strong>Insufficient PSU wattage</strong> — use a PSU calculator; add 20% headroom</li><li><strong>Forgetting thermal paste</strong> — or using too much</li><li><strong>Installing RAM in wrong slots</strong> — check motherboard manual for dual-channel</li><li><strong>Not updating BIOS</strong> — especially for new CPU on older motherboard</li><li><strong>Cable management last</strong> — route cables before closing the case</li><li><strong>Static discharge</strong> — touch grounded metal before handling components</li><li><strong>Overtightening screws</strong> — especially on M.2 SSDs and motherboard</li><li><strong>Wrong display cable</strong> — plug into GPU, not motherboard (if you have a GPU)</li><li><strong>No backup plan</strong> — have a USB with Windows installer ready</li></ul><p>Book a free build consultation at Stackly — we help you pick compatible parts and can assemble in-store.</p>`
+  },
+  {
+    title: "Monitor Buying Guide 2026: IPS, VA, or OLED?",
+    cat: "Monitors",
+    image: "https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=800&q=80",
+    authorName: "Meena Suresh",
+    authorInitials: "MS",
+    date: "April 20, 2026",
+    readTime: "4 min read",
+    content: `<p>With OLED gaming monitors now under ₹40,000, the panel choice is more complex than ever.</p><h3>IPS panels</h3><p>Best all-rounder: accurate colours, wide viewing angles, fast variants now match TN for speed. Ideal for <strong>gaming + content creation</strong>.</p><h3>VA panels</h3><p>Deeper blacks and higher contrast than IPS. Good for cinematic games and movies. Watch for ghosting on budget VA panels.</p><h3>OLED panels</h3><p>Perfect blacks, instant response times, and stunning HDR. Risk of burn-in with static UI elements — less of an issue on newer models with pixel refresh features.</p><h3>Resolution guide</h3><ul><li><strong>1080p:</strong> 24 inch, budget gaming, high FPS</li><li><strong>1440p:</strong> 27 inch, sweet spot for most gamers</li><li><strong>4K:</strong> 32 inch+, needs powerful GPU</li></ul><p>Compare monitors side-by-side at our Salem showroom.</p>`
+  },
+  {
+    title: "Gaming Mouse DPI Explained: Finding Your Sweet Spot",
+    cat: "Peripherals",
+    image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80",
+    authorName: "Karthik Rajan",
+    authorInitials: "KR",
+    date: "April 12, 2026",
+    readTime: "6 min read",
+    content: `<p>DPI (dots per inch) determines how far your cursor moves per inch of mouse movement. Pro players use surprisingly low DPI — here is why.</p><h3>Common DPI ranges</h3><ul><li><strong>400–800 DPI:</strong> Preferred by many CS2 and Valorant pros — large arm movements, precise aim</li><li><strong>800–1600 DPI:</strong> Versatile for most gamers</li><li><strong>3200+ DPI:</strong> Useful for high-resolution multi-monitor setups</li></ul><h3>Polling rate</h3><p>1000Hz polling (1ms report rate) is standard for gaming. Some mice offer 4000Hz+ — marginal benefit for most players.</p><h3>Sensor quality</h3><p>Look for PixArt 3395, 3950, or equivalent. Optical sensors outperform laser on gaming pads. Weight matters too — <strong>60–80g</strong> is the modern sweet spot for FPS.</p><p>Test mice in-store at Stackly before you buy — grip style (palm, claw, fingertip) matters as much as specs.</p>`
+  },
+  {
+    title: "Wired vs Wireless Gaming Headsets: Which Wins in 2026?",
+    cat: "Gaming",
+    image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=800&q=80",
+    authorName: "Priya Krishnamurthy",
+    authorInitials: "PK",
+    date: "April 5, 2026",
+    readTime: "8 min read",
+    content: `<p>Wireless gaming headsets have closed the latency gap. Here is when to go wired vs wireless in 2026.</p><h3>Wireless advantages</h3><p>Modern 2.4GHz wireless (Logitech LIGHTSPEED, SteelSeries Quantum 2.0) delivers <strong>sub-20ms latency</strong> — imperceptible for gaming. Freedom of movement and cleaner desk setup.</p><h3>Wired advantages</h3><p>No battery anxiety, no charging dock needed, typically lower price for equivalent audio quality. USB-C wired headsets work on PC, console, and mobile.</p><h3>Audio features to look for</h3><ul><li>50mm drivers for gaming immersion</li><li>Detachable noise-cancelling mic for Discord/team chat</li><li>7.1 surround (software) — helpful in FPS for directional audio</li><li>Comfort: memory foam ear cushions for long sessions</li></ul><p>We carry wired and wireless headsets from HyperX, SteelSeries, and Razer at Stackly.</p>`
+  },
+  {
+    title: "GPU Upgrade Guide: When Is It Time to Replace Your Graphics Card?",
+    cat: "PC Building",
+    image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=800&q=80",
+    authorName: "Arjun Selvam",
+    authorInitials: "AS",
+    date: "March 28, 2026",
+    readTime: "5 min read",
+    content: `<p>GPUs are the most expensive component in a gaming PC. Knowing when to upgrade saves money and frustration.</p><h3>Signs you need an upgrade</h3><ul><li>Cannot maintain 60 FPS at your monitor resolution in current games</li><li>VRAM maxed out (stuttering, texture pop-in) — 8GB minimum for 1440p in 2026</li><li>GPU at 99% while CPU is under 70% — clear GPU bottleneck</li><li>No driver support for new game features (DLSS 3, FSR 3)</li></ul><h3>Upgrade path tips</h3><p>Check your PSU wattage and PCIe power connectors before buying. A RTX 4060 needs 550W PSU minimum; RTX 4070 needs 650W. Measure your case GPU clearance — some triple-fan cards exceed 300mm length.</p><h3>Should you wait?</h3><p>New GPU generations launch every 18–24 months. If your current card handles your games adequately, waiting for the next generation often gives better value.</p><p>Stackly stocks GPUs from NVIDIA and AMD with installation support available in-store.</p>`
+  },
+  {
+    title: "Best RGB Keyboards Under ₹5,000 in India",
+    cat: "Keyboards",
+    image: "https://images.unsplash.com/photo-1614624532983-4ce03382d63c?w=800&q=80",
+    authorName: "Meena Suresh",
+    authorInitials: "MS",
+    date: "March 15, 2026",
+    readTime: "5 min read",
+    content: `<p>RGB mechanical keyboards no longer cost a fortune. Here are our top picks under ₹5,000 available at Stackly.</p><h3>What to expect at this price</h3><p>Outemu or Gateron clone switches (still mechanical), per-key or zone RGB, aluminium top plate on premium models, and software for custom lighting profiles.</p><h3>Our top picks</h3><ul><li><strong>Redragon K552:</strong> TKL, Outemu Red switches, compact — best budget starter</li><li><strong>Cosmic Byte CB-GK-16:</strong> Full size, rainbow backlight, great value</li><li><strong>Ant Esports MK500:</strong> Hot-swappable switches — rare at this price</li></ul><h3>RGB tips</h3><p>Per-key RGB lets you set WASD highlights and custom game profiles. Zone RGB lights the whole board in one colour — still looks great on a budget.</p><p>All keyboards mentioned are in stock at our Salem store — come try the switch feel before buying.</p>`
+  },
+  {
+    title: "Cable Management 101: Clean Desk, Clean Mind",
+    cat: "Guides",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    authorName: "Karthik Rajan",
+    authorInitials: "KR",
+    date: "March 8, 2026",
+    readTime: "4 min read",
+    content: `<p>Messy cables ruin an otherwise great setup. Cable management is cheap, easy, and makes a huge visual difference.</p><h3>Essential accessories</h3><ul><li><strong>Velcro cable ties</strong> — reusable, adjustable, ₹100 for a pack</li><li><strong>Adhesive cable clips</strong> — route cables along desk edges</li><li><strong>Under-desk cable tray</strong> — hides power strips and excess length</li><li><strong>Sleeved cables</strong> — upgrade PSU cables for a premium look inside the case</li></ul><h3>Routing strategy</h3><p>Group cables by destination: monitor cables together, USB peripherals together, power last. Leave slack at connection points so you can move devices without unplugging. Label USB cables at the PC end — you will thank yourself later.</p><p>We stock cable management kits and desk accessories at Stackly from ₹199.</p>`
+  },
+  {
+    title: "Ergonomic Desk Setup: Prevent Wrist and Neck Strain",
+    cat: "Peripherals",
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80",
+    authorName: "Priya Krishnamurthy",
+    authorInitials: "PK",
+    date: "February 22, 2026",
+    readTime: "5 min read",
+    content: `<p>Long gaming and coding sessions take a toll on your body. An ergonomic setup prevents chronic pain and improves focus.</p><h3>Monitor height</h3><p>Top of screen at eye level. Use a monitor arm or stack books if needed. <strong>20–20–20 rule:</strong> every 20 minutes, look 20 feet away for 20 seconds.</p><h3>Keyboard and mouse position</h3><p>Elbows at 90 degrees, wrists neutral (not bent up or down). A wrist rest helps but only during breaks — not while actively typing. Mouse at the same level as keyboard.</p><h3>Chair and posture</h3><p>Feet flat on floor, lower back supported, shoulders relaxed. A gaming chair with lumbar support or an ergonomic office chair is worth the investment for daily users.</p><h3>Accessories that help</h3><ul><li>Ergonomic vertical mouse for wrist pain</li><li>Split or low-profile keyboards for shoulder strain</li><li>Footrest if your chair height does not allow flat feet</li></ul><p>Try ergonomic peripherals at Stackly Salem before committing to a purchase.</p>`
+  },
+  {
+    title: "Air Cooling vs Liquid Cooling: What Your PC Actually Needs",
+    cat: "PC Building",
+    image: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=800&q=80",
+    authorName: "Arjun Selvam",
+    authorInitials: "AS",
+    date: "February 14, 2026",
+    readTime: "6 min read",
+    content: `<p>Liquid cooling looks impressive, but most PCs do not need it. Here is how to choose the right cooling for your build.</p><h3>Air cooling</h3><p>A quality tower cooler (Deepcool AK400, Thermalright Peerless Assassin) handles CPUs up to 150W TDP easily. Pros: reliable, no pump failure risk, cheaper. Cons: taller, can block RAM slots on compact boards.</p><h3>AIO liquid cooling</h3><p>240mm or 360mm AIOs suit high-end CPUs (Intel i7/i9, AMD Ryzen 9) and cases with radiator support. Pros: lower CPU temps, cleaner look. Cons: pump noise over time, risk of leak (rare on quality units).</p><h3>When liquid makes sense</h3><ul><li>CPU TDP above 125W with sustained workloads</li><li>Small case with poor air cooler clearance</li><li>Aesthetic preference with tempered glass side panel</li></ul><h3>Case airflow matters more</h3><p>Two intake fans front, one exhaust rear — often beats a expensive cooler in a sealed case. Dust filters and positive pressure reduce cleaning frequency.</p><p>We stock air coolers, AIOs, and case fans from Cooler Master, NZXT, and Deepcool at Stackly.</p>`
+  }
+];
+
+let currentCat = 'all';
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ duration: 600, once: true, offset: 40, easing: 'ease-out-cubic' });
+  }
+
+  
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  
+  const hamburger = document.getElementById('hamburger');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  hamburger.addEventListener('click', () => {
+    const open = mobileOverlay.classList.contains('is-open');
+    if (open) closeMobileMenu();
+    else {
+      mobileOverlay.classList.add('is-open');
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  });
+
+  
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeMobileMenu(); closeSearch(); closeArticleModal(); }
+  });
+
+  
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) {
+      closeMobileMenu();
+    }
+  });
+
+  
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchToggle  = document.getElementById('searchToggle');
+  const searchCloseBtn = document.getElementById('searchClose');
+  const searchInputEl  = document.getElementById('searchInput');
+  searchToggle?.addEventListener('click', () => {
+    searchOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => searchInputEl.focus(), 300);
+  });
+  searchCloseBtn?.addEventListener('click', closeSearch);
+  searchOverlay?.addEventListener('click', e => { if (e.target === searchOverlay) closeSearch(); });
+  searchInputEl?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { closeSearch(); applySearch(searchInputEl.value); }
+  });
+
+  
+  const blogSearch = document.getElementById('blogSearchInput');
+  let st;
+  blogSearch.addEventListener('input', () => {
+    clearTimeout(st);
+    st = setTimeout(() => applySearch(blogSearch.value), 300);
+  });
+
+  
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  
+  document.querySelectorAll('.navbar__link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === 'blog.html') link.classList.add('active');
+  });
+
+  
+  document.querySelectorAll('.sidebar-cat-item').forEach(el => {
+    el.addEventListener('mouseenter', () => el.querySelector('span').style.color = '#2563eb');
+    el.addEventListener('mouseleave', () => el.querySelector('span').style.color = '#2e4057');
+  });
+
+  applyFilters();
+});
+
+
+
+function closeMobileMenu() {
+  document.getElementById('mobileOverlay').classList.remove('is-open');
+  document.getElementById('hamburger').classList.remove('is-open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('is-open');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+
+function showToast(msg, icon = 'fa-circle-check') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<i class="fa-solid ${icon}"></i>${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(16px)';
+    toast.style.transition = 'all 0.35s';
+    setTimeout(() => toast.remove(), 400);
+  }, 3200);
+}
+
+function handleNewsletter(e) {
+  e.preventDefault();
+  window.location.href = '404.html';
+}
+
+
+
+let blogCurrentPage = 1;
+const blogItemsPerPage = 6;
+
+function filterCat(btn, cat) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  blogCurrentPage = 1;
+  applyFilters();
+}
+
+function filterCatSidebar(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.cat === cat);
+  });
+  blogCurrentPage = 1;
+  applyFilters();
+  window.scrollTo({ top: document.getElementById('blogGrid').offsetTop - 140, behavior: 'smooth' });
+}
+
+function searchTag(term) {
+  document.getElementById('blogSearchInput').value = term;
+  currentCat = 'all';
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === 'all'));
+  blogCurrentPage = 1;
+  applyFilters(term);
+  window.scrollTo({ top: document.getElementById('blogGrid').offsetTop - 140, behavior: 'smooth' });
+}
+
+function applySearch(term) {
+  blogCurrentPage = 1;
+  applyFilters(term);
+}
+
+function applyFilters(searchTerm) {
+  const term = (searchTerm || document.getElementById('blogSearchInput').value || '').toLowerCase().trim();
+  const cols = Array.from(document.querySelectorAll('.blog-col'));
+  let shown = 0;
+  
+  cols.forEach(col => {
+    const cat = col.dataset.cat || '';
+    const text = col.textContent.toLowerCase();
+    const catMatch = currentCat === 'all' || cat === currentCat;
+    const searchMatch = !term || text.includes(term);
+    if (catMatch && searchMatch) {
+      col.style.display = '';
+      shown++;
+    } else {
+      col.style.display = 'none';
+    }
+  });
+
+  document.getElementById('noResults').style.display = shown === 0 ? 'block' : 'none';
+  updateResultsCount(shown);
+}
+
+function resetFilters() {
+  currentCat = 'all';
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.toggle('active', p.dataset.cat === 'all'));
+  document.getElementById('blogSearchInput').value = '';
+  blogCurrentPage = 1;
+  applyFilters();
+}
+
+function updateResultsCount(count) {
+  const n = count !== undefined ? count : document.querySelectorAll('.blog-col:not([style*="display: none"])').length;
+  document.getElementById('resultsCount').textContent = `Showing ${n} article${n !== 1 ? 's' : ''}`;
+}
+
+
+
+
+function openArticle(index) {
+  const art = articlesData[index];
+  if (!art) return;
+  const thumbEl = document.getElementById('amThumb');
+  if (art.image.startsWith('<svg') || art.image.includes('svg')) {
+    thumbEl.innerHTML = art.image;
+  } else {
+    thumbEl.innerHTML = `<img src="${art.image}" class="bl-card-img" style="width:100%;height:100%;object-fit:cover;" alt="${art.title}">`;
+  }
+  document.getElementById('amCat').textContent = art.cat;
+  document.getElementById('amTitle').textContent = art.title;
+  document.getElementById('amMeta').innerHTML = `
+    <div class="am-author">
+      <div class="am-avatar">${art.authorInitials}</div>
+      <span>${art.authorName}</span>
+    </div>
+    <span><i class="fa-regular fa-calendar"></i> ${art.date}</span>
+    <span><i class="fa-regular fa-clock"></i> ${art.readTime}</span>`;
+  document.getElementById('amContent').innerHTML = art.content;
+  document.getElementById('articleBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+  document.getElementById('articleModal').scrollTop = 0;
+}
+
+function closeArticleModal(e) {
+  if (!e || e.target === document.getElementById('articleBackdrop') || e.currentTarget.classList.contains('am-close')) {
+    document.getElementById('articleBackdrop').classList.remove('open');
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }
+}
+</script>
+    <script src="cart.js"></script>
+  </body>
+</html>
+
+
+
+
