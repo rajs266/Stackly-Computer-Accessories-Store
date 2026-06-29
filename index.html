@@ -496,6 +496,25 @@
     }
 .wave-sep svg { display: block; width: calc(100% + 2px); }
 
+    /* Scroll sequence — native-res GPU scale for sharp fullscreen frames */
+    #scroll-sequence .sticky-container {
+      isolation: isolate;
+    }
+    #hero-3d-frame {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: center center;
+      pointer-events: none;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      image-rendering: auto;
+      max-width: none;
+      max-height: none;
+      filter: contrast(1.05) saturate(1.06);
+    }
+
     
     @media (max-width:991.98px) {
       .hero-3d-scene { display: none; }
@@ -811,73 +830,73 @@
     <div class="row g-3 justify-content-center">
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="0">
         <a href="store.html" class="cat-card">
-          <img src="assets/keyboard.jpg" class="cat-bg" alt="Keyboards">
+          <img src="assets/keyboard.webp" class="cat-bg" alt="Keyboards">
           <div class="cat-overlay"><span class="cat-label">Keyboards</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="60">
         <a href="store.html" class="cat-card">
-          <img src="assets/mouse.jpg" class="cat-bg" alt="Mice">
+          <img src="assets/mouse.webp" class="cat-bg" alt="Mice">
           <div class="cat-overlay"><span class="cat-label">Mice</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="120">
         <a href="store.html" class="cat-card">
-          <img src="assets/monitor.jpg" class="cat-bg" alt="Monitors">
+          <img src="assets/monitor.webp" class="cat-bg" alt="Monitors">
           <div class="cat-overlay"><span class="cat-label">Monitors</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="180">
         <a href="store.html" class="cat-card">
-          <img src="assets/gaming.jpg" class="cat-bg" alt="Gaming">
+          <img src="assets/gaming.webp" class="cat-bg" alt="Gaming">
           <div class="cat-overlay"><span class="cat-label">Gaming</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="240">
         <a href="store.html" class="cat-card">
-          <img src="assets/storage.jpg" class="cat-bg" alt="Storage">
+          <img src="assets/storage.webp" class="cat-bg" alt="Storage">
           <div class="cat-overlay"><span class="cat-label">Storage</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="300">
         <a href="store.html" class="cat-card">
-          <img src="assets/audio.jpg" class="cat-bg" alt="Audio">
+          <img src="assets/audio.webp" class="cat-bg" alt="Audio">
           <div class="cat-overlay"><span class="cat-label">Audio</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="60">
         <a href="store.html" class="cat-card">
-          <img src="assets/webcam.jpg" class="cat-bg" alt="Webcams">
+          <img src="assets/webcam.webp" class="cat-bg" alt="Webcams">
           <div class="cat-overlay"><span class="cat-label">Webcams</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="120">
         <a href="store.html" class="cat-card">
-          <img src="assets/cable.jpg" class="cat-bg" alt="Cables">
+          <img src="assets/cable.webp" class="cat-bg" alt="Cables">
           <div class="cat-overlay"><span class="cat-label">Cables</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="180">
         <a href="store.html" class="cat-card">
-          <img src="assets/charger.jpg" class="cat-bg" alt="Chargers">
+          <img src="assets/charger.webp" class="cat-bg" alt="Chargers">
           <div class="cat-overlay"><span class="cat-label">Chargers</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="240">
         <a href="store.html" class="cat-card">
-          <img src="assets/laptop.jpg" class="cat-bg" alt="Laptops">
+          <img src="assets/laptop.webp" class="cat-bg" alt="Laptops">
           <div class="cat-overlay"><span class="cat-label">Laptops</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="300">
         <a href="store.html" class="cat-card">
-          <img src="assets/cooler.jpg" class="cat-bg" alt="Cooling">
+          <img src="assets/cooler.webp" class="cat-bg" alt="Cooling">
           <div class="cat-overlay"><span class="cat-label">Cooling</span></div>
         </a>
       </div>
       <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="360">
         <a href="store.html" class="cat-card">
-          <img src="assets/mousepad.jpg" class="cat-bg" alt="Mousepads">
+          <img src="assets/mousepad.webp" class="cat-bg" alt="Mousepads">
           <div class="cat-overlay"><span class="cat-label">Mousepads</span></div>
         </a>
       </div>
@@ -912,7 +931,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="keyboards" data-aos="fade-up" data-aos-delay="0">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/keyboard.jpg" class="prod-img" alt="Logitech MX Keys Mechanical Keyboard">
+            <img src="assets/keyboard.webp" class="prod-img" alt="Logitech MX Keys Mechanical Keyboard">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -927,7 +946,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹7,999 <del>₹9,999</del></span>
-              <button class="prod-cart-btn" onclick="addToCart('MX Keys Mechanical Keyboard', 'Logitech', 7999, 'assets/keyboard.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('MX Keys Mechanical Keyboard', 'Logitech', 7999, 'assets/keyboard.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -936,7 +955,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="gaming" data-aos="fade-up" data-aos-delay="80">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/mouse.jpg" class="prod-img" alt="Razer DeathAdder V3 Pro">
+            <img src="assets/mouse.webp" class="prod-img" alt="Razer DeathAdder V3 Pro">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -951,7 +970,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹12,499</span>
-              <button class="prod-cart-btn" onclick="addToCart('DeathAdder V3 Pro Mouse', 'Razer', 12499, 'assets/mouse.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('DeathAdder V3 Pro Mouse', 'Razer', 12499, 'assets/mouse.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -960,7 +979,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="monitors" data-aos="fade-up" data-aos-delay="160">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/monitor.jpg" class="prod-img" alt="Samsung 27 Curved Monitor">
+            <img src="assets/monitor.webp" class="prod-img" alt="Samsung 27 Curved Monitor">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -975,7 +994,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹18,999 <del>₹22,499</del></span>
-              <button class="prod-cart-btn" onclick="addToCart('27 Curved Gaming Monitor', 'Samsung', 18999, 'assets/monitor.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('27 Curved Gaming Monitor', 'Samsung', 18999, 'assets/monitor.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -984,7 +1003,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="audio" data-aos="fade-up" data-aos-delay="240">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/audio.jpg" class="prod-img" alt="Sony WH-1000XM5 Headphones">
+            <img src="assets/audio.webp" class="prod-img" alt="Sony WH-1000XM5 Headphones">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -998,7 +1017,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹26,990</span>
-              <button class="prod-cart-btn" onclick="addToCart('WH-1000XM5 Headphones', 'Sony', 26990, 'assets/audio.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('WH-1000XM5 Headphones', 'Sony', 26990, 'assets/audio.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -1007,7 +1026,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="gaming" data-aos="fade-up" data-aos-delay="0">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/keyboard.jpg" class="prod-img" alt="Corsair K70 RGB Keyboard">
+            <img src="assets/keyboard.webp" class="prod-img" alt="Corsair K70 RGB Keyboard">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -1022,7 +1041,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹14,999</span>
-              <button class="prod-cart-btn" onclick="addToCart('K70 RGB Pro Keyboard', 'Corsair', 14999, 'assets/keyboard.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('K70 RGB Pro Keyboard', 'Corsair', 14999, 'assets/keyboard.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -1031,7 +1050,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="monitors" data-aos="fade-up" data-aos-delay="80">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/monitor.jpg" class="prod-img" alt="Dell UltraSharp 27 Monitor">
+            <img src="assets/monitor.webp" class="prod-img" alt="Dell UltraSharp 27 Monitor">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -1046,7 +1065,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹32,999</span>
-              <button class="prod-cart-btn" onclick="addToCart('UltraSharp 27 4K Monitor', 'Dell', 32999, 'assets/monitor.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('UltraSharp 27 4K Monitor', 'Dell', 32999, 'assets/monitor.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -1055,7 +1074,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="keyboards" data-aos="fade-up" data-aos-delay="160">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/webcam.jpg" class="prod-img" alt="Logitech C920 HD Webcam">
+            <img src="assets/webcam.webp" class="prod-img" alt="Logitech C920 HD Webcam">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -1070,7 +1089,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹5,999 <del>₹7,999</del></span>
-              <button class="prod-cart-btn" onclick="addToCart('C920 HD Pro Webcam', 'Logitech', 5999, 'assets/webcam.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('C920 HD Pro Webcam', 'Logitech', 5999, 'assets/webcam.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -1079,7 +1098,7 @@
       <div class="col-6 col-md-4 col-lg-3 top-pick-item" data-category="gaming" data-aos="fade-up" data-aos-delay="240">
         <div class="prod-card">
           <div class="prod-thumb">
-            <img src="assets/storage.jpg" class="prod-img" alt="Kingston NV2 1TB SSD">
+            <img src="assets/storage.webp" class="prod-img" alt="Kingston NV2 1TB SSD">
             <div class="prod-overlay">
               <button class="prod-action-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
             </div>
@@ -1093,7 +1112,7 @@
             </div>
             <div class="prod-price-row">
               <span class="prod-price">₹4,499</span>
-              <button class="prod-cart-btn" onclick="addToCart('NV2 1TB NVMe SSD', 'Kingston', 4499, 'assets/storage.jpg')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+              <button class="prod-cart-btn" onclick="addToCart('NV2 1TB NVMe SSD', 'Kingston', 4499, 'assets/storage.webp')" aria-label="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
           </div>
         </div>
@@ -1113,7 +1132,7 @@
 ════════════════════════════════════════════════ -->
 <section id="scroll-sequence" style="height: 350vh; position: relative; background: #000;">
   <div class="sticky-container" style="position: sticky; top: 62px; height: calc(100vh - 62px); overflow: hidden; width: 100%;">
-    <canvas id="hero-3d-canvas" style="width: 100%; height: 100%; object-fit: cover;"></canvas>
+    <img id="hero-3d-frame" alt="" aria-hidden="true" decoding="async" fetchpriority="high">
     
     <div id="scroll-text-1" class="scroll-text-overlay" style="position: absolute; top: 50%; left: 10%; transform: translateY(-50%); color: white; font-size: clamp(2rem, 4vw, 4rem); font-weight: 800; opacity: 0; transition: opacity 0.3s; text-shadow: 0 4px 12px rgba(0,0,0,0.8); pointer-events: none;">
       Immersive Design.
@@ -1194,7 +1213,7 @@
       <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
         <a href="store.html" class="promo-split d-block">
           <div class="promo-split__img">
-            <img src="assets/gaming.jpg" alt="Gaming Mouse" loading="lazy"/>
+            <img src="assets/gaming.webp" alt="Gaming Mouse" loading="lazy"/>
           </div>
           <div class="promo-split__content" style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;">
             <span style="font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#38bdf8;">Razer®</span>
@@ -1207,7 +1226,7 @@
       <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
         <a href="store.html" class="promo-split d-block">
           <div class="promo-split__img">
-            <img src="assets/monitor.jpg" alt="Monitor" loading="lazy"/>
+            <img src="assets/monitor.webp" alt="Monitor" loading="lazy"/>
           </div>
           <div class="promo-split__content" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;">
             <span style="font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#eff6ff;">Samsung®</span>
@@ -1220,7 +1239,7 @@
       <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
         <a href="store.html" class="promo-split d-block">
           <div class="promo-split__img">
-            <img src="assets/keyboard.jpg" alt="Keyboard" loading="lazy"/>
+            <img src="assets/keyboard.webp" alt="Keyboard" loading="lazy"/>
           </div>
           <div class="promo-split__content" style="background:linear-gradient(135deg,#1e293b,#334155);color:#fff;">
             <span style="font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#38bdf8;">Logitech®</span>
@@ -1369,7 +1388,7 @@
           </a>
         </div>
       </div>
-      <div class="cta-pill-float" aria-hidden="true" style="right: 5%; top: 40%; font-size: 0; pointer-events: none;"><img src="assets/mouse.jpg" alt="" style="width: 140px; height: 140px; object-fit:contain; opacity: 0.15; transform: rotate(25deg);" loading="lazy"></div>
+      <div class="cta-pill-float" aria-hidden="true" style="right: 5%; top: 40%; font-size: 0; pointer-events: none;"><img src="assets/mouse.webp" alt="" style="width: 140px; height: 140px; object-fit:contain; opacity: 0.15; transform: rotate(25deg);" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1450,7 +1469,7 @@
     <div class="row g-4">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
         <a href="blog.html" class="bl-card">
-          <div class="bl-thumb"><img src="assets/gaming.jpg" class="bl-card-img" alt="Gaming Setup"></div>
+          <div class="bl-thumb"><img src="assets/gaming.webp" class="bl-card-img" alt="Gaming Setup"></div>
           <div class="bl-body">
             <span class="bl-cat">Gaming</span>
             <div class="bl-title">Complete Guide to Building Your Dream Gaming Setup in 2026</div>
@@ -1463,7 +1482,7 @@
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <a href="blog.html" class="bl-card">
-          <div class="bl-thumb"><img src="assets/keyboard.jpg" class="bl-card-img" alt="Mechanical Keyboard"></div>
+          <div class="bl-thumb"><img src="assets/keyboard.webp" class="bl-card-img" alt="Mechanical Keyboard"></div>
           <div class="bl-body">
             <span class="bl-cat">Keyboards</span>
             <div class="bl-title">Mechanical vs Membrane Keyboards: Which Is Right for You?</div>
@@ -1476,7 +1495,7 @@
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <a href="blog.html" class="bl-card">
-          <div class="bl-thumb"><img src="assets/monitor.jpg" class="bl-card-img" alt="Monitor"></div>
+          <div class="bl-thumb"><img src="assets/monitor.webp" class="bl-card-img" alt="Monitor"></div>
           <div class="bl-body">
             <span class="bl-cat">Monitors</span>
             <div class="bl-title">144Hz vs 240Hz: Do You Really Need a High Refresh Rate Monitor?</div>
@@ -1836,52 +1855,63 @@ function handleNewsletter(e) {
 }
 
 // --- 3D SCROLL SEQUENCE LOGIC ---
-const canvas = document.getElementById("hero-3d-canvas");
-if (canvas) {
-  const context = canvas.getContext("2d");
+const frameEl = document.getElementById("hero-3d-frame");
+if (frameEl) {
   const frameCount = 184;
-  const currentFrame = index => `assets/section1/frame_${(index + 1).toString().padStart(3, '0')}.png`;
-  
+  const currentFrame = index => `assets/section1/frame_${(index + 1).toString().padStart(3, '0')}.webp`;
+
   const images = [];
   const imageSequence = { frame: 0 };
+  let lastValidImage = null;
 
   for (let i = 0; i < frameCount; i++) {
     const img = new Image();
+    img.decoding = 'async';
     img.src = currentFrame(i);
     images.push(img);
   }
 
-  let lastValidImage = images[0];
+  function fitFrame(img) {
+    if (!img || !img.naturalWidth) return;
 
-  function render() {
-    let img = images[imageSequence.frame];
+    const container = frameEl.parentElement;
+    const cw = container.clientWidth;
+    const ch = container.clientHeight;
+    const nw = img.naturalWidth;
+    const nh = img.naturalHeight;
+    const scale = Math.max(cw / nw, ch / nh);
+
+    if (frameEl.src !== img.src) frameEl.src = img.src;
+    frameEl.style.width = nw + 'px';
+    frameEl.style.height = nh + 'px';
+    frameEl.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`;
+  }
+
+  function setFrame(index) {
+    let img = images[index];
     if (!img || !img.complete || img.naturalWidth === 0) {
       img = lastValidImage;
     } else {
       lastValidImage = img;
     }
-    if (!img || img.naturalWidth === 0) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    const cw = canvas.parentElement.clientWidth;
-    const ch = canvas.parentElement.clientHeight;
-
-    canvas.width = cw * dpr;
-    canvas.height = ch * dpr;
-    context.scale(dpr, dpr);
-
-    const hRatio = cw / img.naturalWidth;
-    const vRatio = ch / img.naturalHeight;
-    const ratio = Math.max(hRatio, vRatio);
-    const centerShift_x = (cw - img.naturalWidth * ratio) / 2;
-    const centerShift_y = (ch - img.naturalHeight * ratio) / 2;  
-    
-    context.clearRect(0, 0, cw, ch);
-    context.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, centerShift_x, centerShift_y, img.naturalWidth * ratio, img.naturalHeight * ratio);
+    fitFrame(img);
   }
 
-  images[0].onload = render;
-  window.addEventListener('resize', render);
+  Promise.all(
+    images.map(img =>
+      typeof img.decode === 'function'
+        ? img.decode().catch(() => {})
+        : new Promise(resolve => {
+            if (img.complete) resolve();
+            else {
+              img.onload = resolve;
+              img.onerror = resolve;
+            }
+          })
+    )
+  ).then(() => setFrame(0));
+
+  window.addEventListener('resize', () => setFrame(imageSequence.frame));
 
   window.addEventListener("scroll", () => {
     const section = document.getElementById("scroll-sequence");
@@ -1891,7 +1921,7 @@ if (canvas) {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
     const viewportHeight = window.innerHeight;
-    
+
     const scrollProgress = scrollTop - sectionTop;
     const maxScroll = sectionHeight - viewportHeight;
 
@@ -1903,12 +1933,12 @@ if (canvas) {
 
     requestAnimationFrame(() => {
       imageSequence.frame = frameIndex;
-      render();
-      
+      setFrame(frameIndex);
+
       const t1 = document.getElementById('scroll-text-1');
       const t2 = document.getElementById('scroll-text-2');
       const t3 = document.getElementById('scroll-text-3');
-      if(t1) t1.style.opacity = (fraction > 0.05 && fraction < 0.25) ? 1 : 0;
+      if (t1) t1.style.opacity = (fraction > 0.05 && fraction < 0.25) ? 1 : 0;
       if(t2) t2.style.opacity = (fraction > 0.35 && fraction < 0.55) ? 1 : 0;
       if(t3) t3.style.opacity = (fraction > 0.65 && fraction < 0.95) ? 1 : 0;
     });

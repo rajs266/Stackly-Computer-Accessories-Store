@@ -1,4 +1,4 @@
-﻿let cart = JSON.parse(localStorage.getItem('stackly_cart')) || [];
+let cart = JSON.parse(localStorage.getItem('stackly_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('stackly_wishlist')) || [];
 let qvCurrentProduct = null;
 let qvQty = 1;
@@ -171,7 +171,7 @@ function renderCart() {
     el.className = 'cart-item';
     el.innerHTML = `
       <div class="cart-item-img">
-        <img src="${item.img || 'assets/mouse.jpg'}" alt="${item.name}" />
+        <img src="${item.img || 'assets/mouse.webp'}" alt="${item.name}" />
       </div>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
@@ -435,7 +435,7 @@ function renderWishlist() {
     el.className = 'wishlist-item';
     el.innerHTML = `
       <div class="wishlist-item-img">
-        <img src="${item.img || 'assets/mouse.jpg'}" alt="${item.name}" />
+        <img src="${item.img || 'assets/mouse.webp'}" alt="${item.name}" />
       </div>
       <div class="wishlist-item-info">
         <div class="wishlist-item-name">${item.name}</div>
