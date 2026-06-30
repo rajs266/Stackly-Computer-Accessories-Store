@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -36,11 +36,17 @@
     .signup-visual__bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1547085757-e22220b07a3e?w=1200&q=80') center/cover no-repeat !important;
-      opacity: 0.8;
+      background: url('assets/blog-hero-bg.webp') center/cover no-repeat !important;
+      opacity: 2.8;
       z-index: 0;
     }
 
+    .signup-visual__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(8, 15, 25, 0.95), rgba(8, 15, 25, 0.8));
+      z-index: 1;
+    }
     .signup-visual__pattern {
       position: absolute;
       inset: 0;
@@ -132,6 +138,7 @@
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 700;
       color: #ffffff;
+        text-shadow: 0 4px 16px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9);
       line-height: 1.2;
       margin-bottom: 1rem;
     }
@@ -156,7 +163,9 @@
 
     .signup-visual__text {
       font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.85);
+      color: #ffffff;
+        text-shadow: 0 3px 12px rgba(0,0,0,1), 0 0 16px rgba(0,0,0,0.9);
+        font-weight: 500;
       line-height: 1.7;
       margin-bottom: 2.5rem;
     }
@@ -180,6 +189,7 @@
     .signup-visual__testimonial-text {
       font-size: 0.88rem;
       color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0,0,0,1);
       line-height: 1.6;
       font-style: italic;
       margin-bottom: 1rem;
@@ -207,11 +217,14 @@
       font-weight: 700;
       font-size: 0.85rem;
       color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0,0,0,1);
     }
 
     .signup-visual__testimonial-role {
       font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.75);
+      color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0,0,0,1);
+        font-weight: 600;
     }
 
     .form-back-btn {
@@ -338,7 +351,7 @@
     .role-option input:checked + .role-option__card {
       border-color: var(--clr-primary);
       background: var(--clr-primary-pale);
-      box-shadow: var(--shadow-green);
+      box-shadow: 0 0 0 2px var(--clr-primary);
       transform: translateY(-2px);
     }
 
@@ -661,7 +674,7 @@
     }
 
     .social-auth-btn.google i { color: #DB4437; }
-    .social-auth-btn.microsoft i { color: #0078D4; }
+    .social-auth-btn.facebook i { color: #1877F2; }
 
     .signup-footer {
       text-align: center;
@@ -819,7 +832,7 @@
     .signup-form-side .role-option input:checked + .role-option__card {
       background: rgba(37, 99, 235, 0.3);
       border-color: #38bdf8;
-      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 0 2px #38bdf8;
     }
     .signup-form-side .role-option input:checked + .role-option__card i {
       color: #38bdf8;
@@ -870,6 +883,24 @@
   </style>
 </head>
 <body>
+<div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading Stackly">
+  <div class="stackly-preloader__aurora" aria-hidden="true"></div>
+  <div class="stackly-preloader__particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="stackly-preloader__core">
+    <div class="stackly-preloader__ring stackly-preloader__ring--1"></div>
+    <div class="stackly-preloader__ring stackly-preloader__ring--2"></div>
+    <div class="stackly-preloader__ring stackly-preloader__ring--3"></div>
+    <div class="stackly-preloader__logo-glow" aria-hidden="true"></div>
+    <img src="assets/logo.webp" alt="Stackly" class="stackly-preloader__logo" width="140" height="48" decoding="sync">
+  </div>
+  <div class="stackly-preloader__progress" aria-hidden="true"><span></span></div>
+  <p class="stackly-preloader__tagline">Premium Tech Experience</p>
+</div>
+<script src="script.js"></script>
+
+
 
 <div class="signup-toast" id="signupToast" role="alert" aria-live="polite"></div>
 
@@ -1042,6 +1073,8 @@
               name="password" 
               placeholder="Create a strong password" 
               required
+              minlength="8"
+              maxlength="8"
               autocomplete="new-password"
               style="padding-right:2.75rem;"
             />
@@ -1056,7 +1089,7 @@
             </div>
             <span class="password-strength__text" id="strengthText">Enter a password</span>
           </div>
-          <span class="signup-form-error">Password must be at least 8 characters</span>
+          <span class="signup-form-error">Password must be exactly 8 characters</span>
         </div>
 
         <div class="signup-form-group" id="confirmPasswordGroup">
@@ -1099,10 +1132,10 @@
 
       <div class="social-auth">
         <button type="button" class="social-auth-btn google" onclick="window.location.href='404.html'">
-          <i class="fa-brands fa-google"></i> Google
+          <img src="assets/google-g.webp" alt="Google Logo" style="width: 18px; height: 18px;"> Google
         </button>
-        <button type="button" class="social-auth-btn microsoft" onclick="window.location.href='404.html'">
-          <i class="fa-brands fa-microsoft"></i> Microsoft
+        <button type="button" class="social-auth-btn facebook" onclick="window.location.href='404.html'">
+          <i class="fa-brands fa-facebook"></i> Facebook
         </button>
       </div>
 
@@ -1224,7 +1257,7 @@ function validatePhone(phone) {
 }
 
 function validatePassword(pw) {
-  return pw.length >= 8;
+  return pw.length === 8;
 }
 
 

@@ -214,11 +214,11 @@ function updateWishlistBadge() {
 function syncAllWishlistButtonsState() {
   const cards = document.querySelectorAll('.prod-card, .top-pick-item, .prod-col');
   cards.forEach(card => {
-    const nameEl = card.querySelector('.prod-name');
+    const nameEl = card.querySelector('.prod-name, .prod-title');
     if (!nameEl) return;
     const name = nameEl.textContent.trim();
     const isWishlisted = wishlist.some(i => i.name === name);
-    const btns = card.querySelectorAll('.prod-action-btn[aria-label="Wishlist"], .mobile-action-btn[onclick*="toggleWishlist"], .prod-action-btn[onclick*="404.html"], .prod-action-btn[onclick*="addWishlist"]');
+    const btns = card.querySelectorAll('.prod-action-btn[aria-label="Wishlist"], .mobile-action-btn[onclick*="toggleWishlist"], .prod-action-btn[onclick*="404.html"], .prod-action-btn[onclick*="addWishlist"], .prod-action[title="Wishlist"]');
     btns.forEach(btn => {
       const icon = btn.querySelector('i');
       if (isWishlisted) {
@@ -249,7 +249,7 @@ function syncAllWishlistButtonsState() {
 function initWishlistButtons() {
   const cards = document.querySelectorAll('.prod-card');
   cards.forEach(card => {
-    const nameEl = card.querySelector('.prod-name');
+    const nameEl = card.querySelector('.prod-name, .prod-title');
     const brandEl = card.querySelector('.prod-brand');
     const priceEl = card.querySelector('.prod-price');
     const imgEl = card.querySelector('.prod-img, .prod-thumb-img');
@@ -265,7 +265,7 @@ function initWishlistButtons() {
       price = parseInt(priceText, 10) || 0;
     }
     
-    const btns = card.querySelectorAll('.prod-action-btn, .mobile-action-btn');
+    const btns = card.querySelectorAll('.prod-action-btn, .mobile-action-btn, .prod-action');
     btns.forEach(btn => {
       
       const isWishlistBtn = btn.getAttribute('aria-label') === 'Wishlist' || 
@@ -288,7 +288,7 @@ function addWishlist(btn) {
   const card = btn.closest('.prod-card');
   if (!card) return;
 
-  const nameEl = card.querySelector('.prod-name');
+  const nameEl = card.querySelector('.prod-name, .prod-title');
   const brandEl = card.querySelector('.prod-brand');
   const priceEl = card.querySelector('.prod-price');
   const imgEl = card.querySelector('.prod-img, .prod-thumb-img');
@@ -730,7 +730,7 @@ function setupMobileQuickViewButtons() {
       mobileEyeBtn.className = 'prod-eye-btn-mobile';
       mobileEyeBtn.setAttribute('aria-label', 'Quick View');
       
-      const name = card.querySelector('.prod-name') ? card.querySelector('.prod-name').textContent.trim() : '';
+      const name = card.querySelector('.prod-name, .prod-title') ? card.querySelector('.prod-name, .prod-title').textContent.trim() : '';
       const brand = card.querySelector('.prod-brand') ? card.querySelector('.prod-brand').textContent.trim() : '';
       const img = card.querySelector('.prod-img') ? card.querySelector('.prod-img').getAttribute('src') : '';
       const priceText = card.querySelector('.prod-price') ? card.querySelector('.prod-price').textContent.replace(/[^\d]/g, '') : '0';
@@ -807,10 +807,7 @@ function setupMobileQuickViewButtons() {
       cartBtn.parentNode.insertBefore(mobileEyeBtn, cartBtn);
     }
   });
-}
-
-// Register listeners
-if (document.readyState === 'loading') {
+}if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', setupMobileQuickViewButtons);
 } else {
   setupMobileQuickViewButtons();

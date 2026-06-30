@@ -1,7 +1,51 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿(function initStacklyPreloader() {
+  const preloaderEl = document.getElementById('stackly-preloader');
+  if (!preloaderEl) return;
 
-  if (typeof AOS !== 'undefined') {
-    AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+  document.documentElement.classList.add('preloader-active');
+
+  const MAX_MS = 2000;
+  const MIN_MS = 900;
+  const start = performance.now();
+  let hidden = false;
+
+  function hidePreloader() {
+    if (hidden) return;
+    hidden = true;
+    const el = document.getElementById('stackly-preloader');
+    document.documentElement.classList.remove('preloader-active');
+    if (!el) return;
+    el.classList.add('is-hidden');
+    setTimeout(function () {
+      el.remove();
+    }, 600);
+  }
+
+  function scheduleHide() {
+    const elapsed = performance.now() - start;
+    const wait = Math.max(0, MIN_MS - elapsed);
+    setTimeout(hidePreloader, wait);
+  }
+
+  window.addEventListener('load', scheduleHide);
+  setTimeout(hidePreloader, MAX_MS);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (document.readyState === 'complete') scheduleHide();
+  });
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  if (typeof AOS !== 'undefined' && !window.__stacklyAosInit) {
+    window.__stacklyAosInit = true;
+    AOS.init({
+      duration: 700,
+      once: true,
+      offset: 60,
+      easing: 'ease-out-cubic',
+      disable: window.innerWidth < 768 ? 'mobile' : false
+    });
   }
 
   
@@ -23,7 +67,7 @@
   const hamburger = document.getElementById('hamburger');
   const mobileOverlay = document.getElementById('mobileOverlay');
 
-  if (hamburger) {
+  if (hamburger && mobileOverlay) {
     hamburger.addEventListener('click', () => {
       const isOpen = mobileOverlay.classList.contains('is-open');
       if (isOpen) {
@@ -81,21 +125,27 @@
 
 
 function closeMobileMenu() {
-  document.getElementById('mobileOverlay').classList.remove('is-open');
-  document.getElementById('hamburger').classList.remove('is-open');
-  document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+  const overlay = document.getElementById('mobileOverlay');
+  const hamburger = document.getElementById('hamburger');
+  if (!overlay || !hamburger) return;
+  overlay.classList.remove('is-open');
+  hamburger.classList.remove('is-open');
+  hamburger.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
   document.documentElement.style.overflow = '';
 }
 
 function closeSearch() {
-  document.getElementById('searchOverlay').classList.remove('is-open');
+  const searchOverlay = document.getElementById('searchOverlay');
+  if (!searchOverlay) return;
+  searchOverlay.classList.remove('is-open');
   document.body.style.overflow = '';
   document.documentElement.style.overflow = '';
 }
 
 function showToast(msg, icon = 'fa-circle-check') {
   const container = document.getElementById('toastContainer');
+  if (!container) return;
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `<i class="fa-solid ${icon}"></i>${msg}`;
@@ -117,6 +167,7 @@ function handleNewsletter(e) {
 
 
 window.addEventListener('DOMContentLoaded', () => {
+  if (!document.getElementById('userName')) return;
   const session = localStorage.getItem('stackly_user') || sessionStorage.getItem('stackly_user');
   if (!session) { window.location.href = 'signin.html'; return; }
   const user = JSON.parse(session);
@@ -158,6 +209,59 @@ const SECTION_NAMES = {
 
 function showSection(sectionId, event) {
   if (event) event.preventDefault();
+
+  if (document.getElementById('dashboardHome')) {
+    if (typeof window.showCustomerSection === 'function') {
+      return window.showCustomerSection(sectionId, event);
+    }
+    const CUSTOMER_VIEW_MAP = {
+      dashboardHome: 'home',
+      ordersSection: 'orders',
+      reservationsSection: 'reservations',
+      favoritesSection: 'favorites',
+      rewardsSection: 'rewards',
+      offersSection: 'offers',
+      energySection: 'energy',
+      notificationsSection: 'notifications',
+      settingsSection: 'settings'
+    };
+    const home = document.getElementById('dashboardHome');
+    home.setAttribute('data-view', CUSTOMER_VIEW_MAP[sectionId] || 'home');
+    ['ordersSection','reservationsSection','favoritesSection','rewardsSection',
+      'offersSection','energySection','notificationsSection','settingsSection'].forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.removeProperty('display');
+    });
+    const preview = document.getElementById('dashboardPreview');
+    const overview = document.getElementById('dashboardOverview');
+    const twoCol = document.querySelector('#dashboardHome .two-col');
+    if (preview) preview.style.removeProperty('display');
+    if (overview) overview.style.removeProperty('display');
+    if (twoCol) {
+      twoCol.style.removeProperty('display');
+      twoCol.style.removeProperty('grid-template-columns');
+    }
+    if (typeof setOrdersViewMode === 'function') setOrdersViewMode(sectionId === 'ordersSection');
+    if (typeof setReservationsViewMode === 'function') setReservationsViewMode(sectionId === 'reservationsSection');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof setActiveLink === 'function' && setActiveLink.length > 1) setActiveLink(event, sectionId);
+    else setActiveLink(event);
+    const CUSTOMER_NAMES = {
+      dashboardHome: 'Dashboard',
+      ordersSection: 'My Orders',
+      reservationsSection: 'PC Builds & Support',
+      favoritesSection: 'Wishlist',
+      rewardsSection: 'Stackly Rewards',
+      offersSection: 'Membership Plans',
+      energySection: 'Purchase Insights',
+      notificationsSection: 'Notifications',
+      settingsSection: 'Settings'
+    };
+    updateBreadcrumb(CUSTOMER_NAMES[sectionId] || 'Dashboard');
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar && sidebar.classList.contains('open') && typeof closeSidebar === 'function') closeSidebar();
+    return;
+  }
 
   const twoCol = document.querySelector('.two-col');
 
@@ -323,7 +427,9 @@ function handleSaveChanges(e) {
 }
 
 
-document.getElementById('fullName').addEventListener('blur', function() {
+const fullNameEl = document.getElementById('fullName');
+if (fullNameEl) {
+fullNameEl.addEventListener('blur', function() {
   const group = document.getElementById('profileNameGroup');
   if (this.value.trim() && !validateName(this.value.trim())) {
     group.classList.add('has-error');
@@ -331,8 +437,11 @@ document.getElementById('fullName').addEventListener('blur', function() {
     group.classList.remove('has-error');
   }
 });
+}
 
-document.getElementById('email').addEventListener('blur', function() {
+const emailEl = document.getElementById('email');
+if (emailEl) {
+emailEl.addEventListener('blur', function() {
   const group = document.getElementById('profileEmailGroup');
   if (this.value.trim() && !validateEmail(this.value.trim())) {
     group.classList.add('has-error');
@@ -340,8 +449,11 @@ document.getElementById('email').addEventListener('blur', function() {
     group.classList.remove('has-error');
   }
 });
+}
 
-document.getElementById('phone').addEventListener('blur', function() {
+const phoneEl = document.getElementById('phone');
+if (phoneEl) {
+phoneEl.addEventListener('blur', function() {
   const group = document.getElementById('profilePhoneGroup');
   if (this.value.trim() && !validatePhone(this.value.trim())) {
     group.classList.add('has-error');
@@ -349,6 +461,7 @@ document.getElementById('phone').addEventListener('blur', function() {
     group.classList.remove('has-error');
   }
 });
+}
 
 
 document.querySelectorAll('.settings-input-custom').forEach(input => {

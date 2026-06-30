@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,7 +19,7 @@
       .page-404 {
         background:
           linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.88) 100%),
-          url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80') center/cover no-repeat;
+          url('assets/404-bg.webp') center/cover no-repeat;
       }
       .page-404__icon {
         font-size: 3.5rem;
@@ -52,6 +52,24 @@
     </style>
   </head>
   <body>
+<div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading Stackly">
+  <div class="stackly-preloader__aurora" aria-hidden="true"></div>
+  <div class="stackly-preloader__particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="stackly-preloader__core">
+    <div class="stackly-preloader__ring stackly-preloader__ring--1"></div>
+    <div class="stackly-preloader__ring stackly-preloader__ring--2"></div>
+    <div class="stackly-preloader__ring stackly-preloader__ring--3"></div>
+    <div class="stackly-preloader__logo-glow" aria-hidden="true"></div>
+    <img src="assets/logo.webp" alt="Stackly" class="stackly-preloader__logo" width="140" height="48" decoding="sync">
+  </div>
+  <div class="stackly-preloader__progress" aria-hidden="true"><span></span></div>
+  <p class="stackly-preloader__tagline">Premium Tech Experience</p>
+</div>
+<script src="script.js"></script>
+
+
 
     <header class="navbar scrolled" id="navbar">
       <div class="container navbar__inner">
@@ -89,18 +107,8 @@
           data-reveal-delay="200"
         >
           <a href="index.html" class="btn btn-primary btn-lg"
-            ><i class="fa-solid fa-store"></i> Back to Store</a
+            ><i class="fa-solid fa-house"></i> Back to Home</a
           >
-          <a href="store.html" class="btn btn-lg"
-            style="
-              background: rgba(255, 255, 255, 0.1);
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              color: #fff;
-              backdrop-filter: blur(8px);
-            "
-          >
-            <i class="fa-solid fa-keyboard"></i> Browse Accessories
-          </a>
           <a
             href="javascript:history.back()"
             class="btn btn-lg"

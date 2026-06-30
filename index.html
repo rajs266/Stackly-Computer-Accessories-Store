@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -23,7 +23,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
 
   
-  <link rel="stylesheet" href="style.css?v=5"/>
+  <link rel="stylesheet" href="style.css?v=14"/>
 
   <style>
     
@@ -224,13 +224,72 @@
     .prod-badge.sale { background: #f05a5a; }
     .prod-badge.new  { background: #38bdf8; color: #0f172a; }
 
-    .prod-body { padding: 1rem 1.1rem 1.2rem; }
+    .prod-body { padding: 1rem 1.1rem 1.2rem; flex: 1; display: flex; flex-direction: column; }
     .prod-name {
       font-size: 0.9rem;
       font-weight: 700;
       color: #0f172a;
       margin-bottom: 0.25rem;
       line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.52em;
+    }
+    #products .row.g-4 > .top-pick-item {
+      display: flex;
+    }
+    #products .top-pick-item .prod-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+    #products .prod-price-row {
+      margin-top: auto;
+    }
+
+    .why-stackly-section {
+      background: var(--clr-dark);
+      position: relative;
+      overflow: hidden;
+      padding-top: 3rem;
+    }
+    .why-stackly-section__bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/hero-setup.webp') center/cover no-repeat;
+      opacity: 0.82;
+      transform: scale(1.02);
+      filter: contrast(1.1) saturate(1.12) brightness(1.05);
+      pointer-events: none;
+    }
+    .why-stackly-section__overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.28) 42%, rgba(15, 23, 42, 0.5) 100%),
+        radial-gradient(ellipse 85% 70% at 50% 45%, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.55) 100%);
+      pointer-events: none;
+    }
+    .why-stackly-section .wave-sep--bottom path {
+      fill: #f8fafc;
+    }
+    .why-stackly-section .section-title {
+      color: #fff;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.45);
+    }
+    .why-stackly-section .section-subtitle {
+      color: rgba(255, 255, 255, 0.92) !important;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    }
+    .why-stackly-section .eyebrow {
+      background: rgba(15, 23, 42, 0.65) !important;
+      color: #7dd3fc !important;
+      border-color: rgba(125, 211, 252, 0.45) !important;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
     .prod-brand { font-size: 0.72rem; color: #687d94; margin-bottom: 0.35rem; }
     .prod-stars { color: #f7b731; font-size: 0.72rem; }
@@ -315,9 +374,10 @@
 
     
     .why-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 1.25rem;
       padding: 1.75rem 1.5rem;
       transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
@@ -325,6 +385,7 @@
                   box-shadow 0.4s;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
     }
     .why-card::before {
       content: '';
@@ -337,23 +398,36 @@
     }
     .why-card:hover {
       transform: translateY(-10px) scale(1.02);
-      background: rgba(255,255,255,0.09);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+      background: rgba(15, 23, 42, 0.88);
+      box-shadow: 0 24px 50px rgba(0,0,0,0.4);
+      border-color: rgba(125, 211, 252, 0.35);
     }
     .why-card:hover::before { opacity: 1; }
     .why-icon {
       width: 56px; height: 56px;
       border-radius: 0.9rem;
-      background: rgba(56,189,248,0.15);
+      background: rgba(56, 189, 248, 0.22);
+      border: 1px solid rgba(125, 211, 252, 0.35);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem;
-      color: #38bdf8;
+      color: #7dd3fc;
       margin-bottom: 1.1rem;
       transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
     }
     .why-card:hover .why-icon { transform: rotateY(360deg) scale(1.1); }
-    .why-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
-    .why-desc  { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
+    .why-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    }
+    .why-desc {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.65;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    }
 
     
     .cta-section {
@@ -495,8 +569,6 @@
       line-height: 0;
     }
 .wave-sep svg { display: block; width: calc(100% + 2px); }
-
-    /* Scroll sequence — native-res GPU scale for sharp fullscreen frames */
     #scroll-sequence .sticky-container {
       isolation: isolate;
     }
@@ -521,10 +593,18 @@
       .hfb-1,.hfb-2,.hfb-3 { display: none; }
     }
     @media (max-width:767.98px) {
-      .hero { min-height: 92vh; }
+      .hero { min-height: 50vh !important; padding-bottom: 0.8rem !important; }
+      .scroll-indicator { bottom: 0.25rem !important; }
       .cta-section { padding: 2.5rem 1.5rem; }
       .cta-pill-float { display: none; }
       .flip-container { height: 230px; }
+      .marquee-track { animation-duration: 6s; }
+      #categories { padding-block: 1.5rem; }
+      #categories .container { padding-inline: 0.6rem; }
+      .stat-num-big { font-size: 1.5rem !important; }
+      .stat-num-big + div { font-size: 0.75rem !important; line-height: 1.3; margin-top: 0.3rem !important; }
+      #stats-section { padding: 2.5rem 0 !important; }
+      #stats-section .row { row-gap: 2.5rem !important; }
     }
     @media (max-width: 767.98px) {
       
@@ -565,7 +645,8 @@
       .top-pick-item .prod-img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: contain !important;
+        object-fit: cover !important;
+        mix-blend-mode: multiply !important;
       }
       .top-pick-item .prod-body {
         padding: 0.25rem 0.5rem !important;
@@ -599,18 +680,19 @@
         align-items: center !important;
         justify-content: space-between !important;
         flex-wrap: nowrap !important;
+        width: 100% !important;
         gap: 0.25rem !important;
       }
       .top-pick-item .prod-price {
-        font-size: 1.6rem !important;
+        font-size: 1.15rem !important;
         white-space: normal !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        line-height: 1 !important;
+        line-height: 1.1 !important;
       }
       .top-pick-item .prod-price del {
-        font-size: 1rem !important;
+        font-size: 0.85rem !important;
         margin-left: 0 !important;
         margin-top: 0.15rem !important;
       }
@@ -654,9 +736,24 @@
 </head>
 
 <body>
-<!-- ════════════════════════════════════════════════
-     SEARCH OVERLAY
-════════════════════════════════════════════════ -->
+<div id="stackly-preloader" class="stackly-preloader" role="status" aria-live="polite" aria-label="Loading Stackly">
+  <div class="stackly-preloader__aurora" aria-hidden="true"></div>
+  <div class="stackly-preloader__particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="stackly-preloader__core">
+    <div class="stackly-preloader__ring stackly-preloader__ring--1"></div>
+    <div class="stackly-preloader__ring stackly-preloader__ring--2"></div>
+    <div class="stackly-preloader__ring stackly-preloader__ring--3"></div>
+    <div class="stackly-preloader__logo-glow" aria-hidden="true"></div>
+    <img src="assets/logo.webp" alt="Stackly" class="stackly-preloader__logo" width="140" height="48" decoding="sync">
+  </div>
+  <div class="stackly-preloader__progress" aria-hidden="true"><span></span></div>
+  <p class="stackly-preloader__tagline">Premium Tech Experience</p>
+</div>
+<script src="script.js"></script>
+
+
 <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
   <div class="search-overlay__inner">
     <div class="search-overlay__input-wrap">
@@ -668,38 +765,30 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     MOBILE FULL-SCREEN OVERLAY MENU
-════════════════════════════════════════════════ -->
-<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation"> 
-  <div class="mobile-overlay__header">
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="mobile-overlay__topbar">
     <a href="index.html" class="mobile-overlay__logo logo-brand" aria-label="Stackly Home">
-      <img src="assets/logo.webp" alt="Stackly Logo" style="height: 32px; width: auto;" />
+      <img src="assets/logo.webp" alt="Stackly Logo" />
     </a>
     <button class="mobile-overlay__close-btn" onclick="closeMobileMenu()" aria-label="Close menu">
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
-
-  <nav class="mobile-overlay__nav" aria-label="Mobile Navigation">
-    <a href="index.html"    class="mobile-overlay__link active" onclick="closeMobileMenu()">Home</a>
-    <a href="about.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">About</a>
-    <a href="store.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">Store</a>
-    <a href="blog.html"     class="mobile-overlay__link" onclick="closeMobileMenu()">Blog</a>
-    <a href="contact.html"  class="mobile-overlay__link" onclick="closeMobileMenu()">Contact</a>
-  </nav>
-  <div class="mobile-overlay__bottom">
-    <div class="mobile-overlay__divider"></div>
-    <div class="mobile-overlay__btns">
-      <a href="signin.html"      class="btn btn-ghost btn-sm">Sign In</a>
-      <a href="signup.html"      class="btn btn-primary btn-sm">Get Started</a>
-    </div>
+  <div class="mobile-overlay__stack">
+    <nav class="mobile-overlay__nav" aria-label="Mobile Navigation">
+      <a href="index.html"    class="mobile-overlay__link active" onclick="closeMobileMenu()">Home</a>
+      <a href="about.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">About</a>
+      <a href="store.html"    class="mobile-overlay__link" onclick="closeMobileMenu()">Store</a>
+      <a href="blog.html"     class="mobile-overlay__link" onclick="closeMobileMenu()">Blog</a>
+      <a href="contact.html"  class="mobile-overlay__link" onclick="closeMobileMenu()">Contact</a>
+    </nav>
+  </div>
+  <div class="mobile-overlay__btns">
+    <a href="signin.html" class="btn btn-ghost btn-sm">Sign In</a>
+    <a href="signup.html" class="btn btn-primary btn-sm">Get Started</a>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     NAVBAR
-════════════════════════════════════════════════ -->
 <header class="navbar navbar--hero" id="navbar">
   <div class="container navbar__inner">
 
@@ -739,9 +828,6 @@
   </div>
 </header>
 
-<!-- ════════════════════════════════════════════════
-     HERO SECTION
-════════════════════════════════════════════════ -->
 <section class="hero" id="home">
 
   
@@ -791,9 +877,6 @@
 
 </section>
 
-<!-- ════════════════════════════════════════════════
-     MARQUEE FEATURES STRIP
-════════════════════════════════════════════════ -->
 <div style="background:linear-gradient(135deg,#2563eb,#1d4ed8);padding:0.85rem 0;overflow:hidden;" aria-label="Features">
   <div class="marquee-track" aria-hidden="true">
     
@@ -816,9 +899,6 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     SHOP BY CATEGORY
-════════════════════════════════════════════════ -->
 <section class="section bg-light" id="categories">
   <div class="container">
     <div class="text-center mb-5" data-aos="fade-up">
@@ -827,74 +907,74 @@
       <p class="section-subtitle mx-auto mt-2">Find the perfect peripherals for your setup — from gaming rigs to home offices.</p>
     </div>
 
-    <div class="row g-3 justify-content-center">
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="0">
+    <div class="row g-1 g-md-3 justify-content-center">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="0">
         <a href="store.html" class="cat-card">
           <img src="assets/keyboard.webp" class="cat-bg" alt="Keyboards">
           <div class="cat-overlay"><span class="cat-label">Keyboards</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="60">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="60">
         <a href="store.html" class="cat-card">
           <img src="assets/mouse.webp" class="cat-bg" alt="Mice">
           <div class="cat-overlay"><span class="cat-label">Mice</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="120">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="120">
         <a href="store.html" class="cat-card">
           <img src="assets/monitor.webp" class="cat-bg" alt="Monitors">
           <div class="cat-overlay"><span class="cat-label">Monitors</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="180">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="180">
         <a href="store.html" class="cat-card">
           <img src="assets/gaming.webp" class="cat-bg" alt="Gaming">
           <div class="cat-overlay"><span class="cat-label">Gaming</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="240">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="240">
         <a href="store.html" class="cat-card">
           <img src="assets/storage.webp" class="cat-bg" alt="Storage">
           <div class="cat-overlay"><span class="cat-label">Storage</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="300">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="300">
         <a href="store.html" class="cat-card">
           <img src="assets/audio.webp" class="cat-bg" alt="Audio">
           <div class="cat-overlay"><span class="cat-label">Audio</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="60">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="60">
         <a href="store.html" class="cat-card">
           <img src="assets/webcam.webp" class="cat-bg" alt="Webcams">
           <div class="cat-overlay"><span class="cat-label">Webcams</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="120">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="120">
         <a href="store.html" class="cat-card">
           <img src="assets/cable.webp" class="cat-bg" alt="Cables">
           <div class="cat-overlay"><span class="cat-label">Cables</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="180">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="180">
         <a href="store.html" class="cat-card">
           <img src="assets/charger.webp" class="cat-bg" alt="Chargers">
           <div class="cat-overlay"><span class="cat-label">Chargers</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="240">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="240">
         <a href="store.html" class="cat-card">
           <img src="assets/laptop.webp" class="cat-bg" alt="Laptops">
           <div class="cat-overlay"><span class="cat-label">Laptops</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="300">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="300">
         <a href="store.html" class="cat-card">
           <img src="assets/cooler.webp" class="cat-bg" alt="Cooling">
           <div class="cat-overlay"><span class="cat-label">Cooling</span></div>
         </a>
       </div>
-      <div class="col-4 col-sm-3 col-md-2" data-aos="zoom-in" data-aos-delay="360">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="360">
         <a href="store.html" class="cat-card">
           <img src="assets/mousepad.webp" class="cat-bg" alt="Mousepads">
           <div class="cat-overlay"><span class="cat-label">Mousepads</span></div>
@@ -904,9 +984,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     FEATURED PRODUCTS
-════════════════════════════════════════════════ -->
 <section class="section" id="products">
   <div class="container">
     <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-5" data-aos="fade-up">
@@ -987,7 +1064,7 @@
           </div>
           <div class="prod-body">
             <div class="prod-brand">Samsung</div>
-            <div class="prod-name">27" Curved Gaming Monitor</div>
+            <div class="prod-name">27-inch Curved Gaming Monitor</div>
             <div class="prod-stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
               <span>(415)</span>
@@ -1058,7 +1135,7 @@
           </div>
           <div class="prod-body">
             <div class="prod-brand">Dell</div>
-            <div class="prod-name">UltraSharp 27" 4K Monitor</div>
+            <div class="prod-name">UltraSharp 27-inch 4K Monitor</div>
             <div class="prod-stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
               <span>(321)</span>
@@ -1127,10 +1204,7 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     3D SCROLL SEQUENCE
-════════════════════════════════════════════════ -->
-<section id="scroll-sequence" style="height: 350vh; position: relative; background: #000;">
+<section id="scroll-sequence" style="height: 600vh; position: relative; background: #000;">
   <div class="sticky-container" style="position: sticky; top: 62px; height: calc(100vh - 62px); overflow: hidden; width: 100%;">
     <img id="hero-3d-frame" alt="" aria-hidden="true" decoding="async" fetchpriority="high">
     
@@ -1146,63 +1220,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     WHY CHOOSE STACKLY — dark bg + glass cards
-════════════════════════════════════════════════ -->
-<section class="section" style="background:var(--clr-dark);position:relative;overflow:hidden;">
-  
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 15% 50%,rgba(37,99,235,0.2) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 85% 30%,rgba(56,189,248,0.1) 0%,transparent 55%);pointer-events:none;"></div>
-
-  <div class="container" style="position:relative;z-index:2;">
-    <div class="text-center mb-5" data-aos="fade-up">
-      <span class="eyebrow" style="background:rgba(56,189,248,0.15);color:#38bdf8;border-color:#38bdf8;">Why Stackly</span>
-      <h2 class="section-title mt-3 text-white">Tech Gear You Can <span style="color:#38bdf8;">Trust</span></h2>
-      <p class="section-subtitle mx-auto mt-2" style="color:rgba(255,255,255,0.55);">We go beyond selling accessories — we help you build the perfect setup.</p>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-        <div class="why-card">
-          <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <div class="why-title">100% Authentic</div>
-          <div class="why-desc">Every product is sourced directly from authorized distributors. Zero counterfeits, guaranteed.</div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-        <div class="why-card">
-          <div class="why-icon"><i class="fa-solid fa-truck-fast"></i></div>
-          <div class="why-title">Same-Day Delivery</div>
-          <div class="why-desc">Order before 2pm and get delivery across Salem the same day. Nationwide shipping available.</div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-        <div class="why-card">
-          <div class="why-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <div class="why-title">Expert Guidance</div>
-          <div class="why-desc">Chat with our tech specialists anytime. Get the right gear for your gaming or work setup.</div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-        <div class="why-card">
-          <div class="why-icon"><i class="fa-solid fa-percent"></i></div>
-          <div class="why-title">Best Prices</div>
-          <div class="why-desc">Up to 45% off on leading brands. Loyalty rewards and exclusive member discounts every day.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-  <div class="wave-sep" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;">
-    <svg viewBox="0 0 1440 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height:50px;">
-      <path d="M0,20 C480,55 960,-10 1440,20 L1440,0 L0,0 Z" fill="#f8fafc"/>
-    </svg>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     PROMO BANNERS — 3D Product Showcase (Bos Nesi Style)
-════════════════════════════════════════════════ -->
 <section class="section bg-light" id="promos">
   <div class="container">
     <div class="text-center mb-4" data-aos="fade-up">
@@ -1253,9 +1270,62 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     SERVICES — FLIP CARDS
-════════════════════════════════════════════════ -->
+<section class="section why-stackly-section" id="why-stackly">
+  <div class="why-stackly-section__bg" aria-hidden="true"></div>
+  <div class="why-stackly-section__overlay" aria-hidden="true"></div>
+
+  <div class="wave-sep wave-sep--top" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;">
+    <svg viewBox="0 0 1440 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height:50px;">
+      <path d="M0,20 C480,55 960,-10 1440,20 L1440,0 L0,0 Z" fill="#f8fafc"/>
+    </svg>
+  </div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow">Why Stackly</span>
+      <h2 class="section-title mt-3">Tech Gear You Can <span style="color:#7dd3fc;">Trust</span></h2>
+      <p class="section-subtitle mx-auto mt-2">We go beyond selling accessories — we help you build the perfect setup.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="why-title">100% Authentic</div>
+          <div class="why-desc">Every product is sourced directly from authorized distributors. Zero counterfeits, guaranteed.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <div class="why-title">Same-Day Delivery</div>
+          <div class="why-desc">Order before 2pm and get delivery across Salem the same day. Nationwide shipping available.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <div class="why-title">Expert Guidance</div>
+          <div class="why-desc">Chat with our tech specialists anytime. Get the right gear for your gaming or work setup.</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-percent"></i></div>
+          <div class="why-title">Best Prices</div>
+          <div class="why-desc">Up to 45% off on leading brands. Loyalty rewards and exclusive member discounts every day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave-sep wave-sep--bottom" aria-hidden="true" style="position:absolute;bottom:0;left:0;width:100%;">
+    <svg viewBox="0 0 1440 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height:50px;">
+      <path d="M0,35 C480,0 960,55 1440,35 L1440,55 L0,55 Z"/>
+    </svg>
+  </div>
+</section>
+
 <section class="section bg-light">
   <div class="container">
     <div class="text-center mb-5" data-aos="fade-up">
@@ -1336,66 +1406,30 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     STATS COUNTER STRIP
-════════════════════════════════════════════════ -->
-<section class="section" style="background:var(--grad-primary);position:relative;overflow:hidden;">
+<section id="stats-section" class="section" style="background:var(--grad-primary);position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:url('data:image/svg+xml,<svg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg><circle cx=30 cy=30 r=2 fill=rgba(255,255,255,0.06)/></svg>');background-size:30px 30px;"></div>
   <div class="container" style="position:relative;z-index:2;">
     <div class="row g-4 text-center">
       <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
-        <div class="stat-num-big counter" data-target="50000" style="color:#fff;">0</div>
+        <div class="stat-num-big counter" data-target="50000" data-suffix="+" style="color:#fff;">0</div>
         <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">Happy Customers</div>
       </div>
       <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
-        <div class="stat-num-big counter" data-target="8500" style="color:#fff;">0</div>
+        <div class="stat-num-big counter" data-target="8500" data-suffix="+" style="color:#fff;">0</div>
         <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">Products Available</div>
       </div>
       <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
-        <div class="stat-num-big counter" data-target="25" style="color:#fff;">0</div>
+        <div class="stat-num-big counter" data-target="25" data-suffix="+" style="color:#fff;">0</div>
         <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">Tech Experts</div>
       </div>
       <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
-        <div class="stat-num-big counter" data-target="98" style="color:#fff;">0</div>
+        <div class="stat-num-big counter" data-target="98" data-suffix="+" style="color:#fff;">0</div>
         <div style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;margin-top:0.3rem;">% Satisfaction Rate</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     CTA BANNER
-════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div class="cta-section" data-aos="zoom-in">
-      <div style="position:relative;z-index:2;" class="row align-items-center g-4">
-        <div class="col-lg-7">
-          <span class="eyebrow" style="background:rgba(56,189,248,0.18);color:#38bdf8;border-color:#38bdf8;margin-bottom:1rem;display:inline-flex;">
-            Limited Offer
-          </span>
-          <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:0.75rem;">
-            Get <span style="color:#38bdf8;">30% Off</span> Your<br/>First Order
-          </h2>
-          <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;max-width:420px;">Sign up today and use code <strong style="color:#38bdf8;">STACKLY30</strong> at checkout. Valid on all accessories and gaming gear.</p>
-        </div>
-        <div class="col-lg-5 d-flex gap-3 flex-wrap justify-content-lg-end">
-          <a href="signup.html"      class="btn btn-white btn-lg">
-            <i class="fa-solid fa-user-plus"></i> Sign Up Free
-          </a>
-          <a href="store.html" class="btn btn-ghost btn-lg">
-            Shop Now <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-      <div class="cta-pill-float" aria-hidden="true" style="right: 5%; top: 40%; font-size: 0; pointer-events: none;"><img src="assets/mouse.webp" alt="" style="width: 140px; height: 140px; object-fit:contain; opacity: 0.15; transform: rotate(25deg);" loading="lazy"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
-     TESTIMONIALS
-════════════════════════════════════════════════ -->
 <section class="section bg-light">
   <div class="container">
     <div class="text-center mb-5" data-aos="fade-up">
@@ -1453,9 +1487,33 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     BLOG PREVIEW
-════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-section" data-aos="zoom-in">
+      <div style="position:relative;z-index:2;" class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="eyebrow" style="background:rgba(56,189,248,0.18);color:#38bdf8;border-color:#38bdf8;margin-bottom:1rem;display:inline-flex;">
+            Limited Offer
+          </span>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:0.75rem;">
+            Get <span style="color:#38bdf8;">30% Off</span> Your<br/>First Order
+          </h2>
+          <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;max-width:420px;">Sign up today and use code <strong style="color:#38bdf8;">STACKLY30</strong> at checkout. Valid on all accessories and gaming gear.</p>
+        </div>
+        <div class="col-lg-5 d-flex gap-3 flex-wrap justify-content-lg-end">
+          <a href="signup.html"      class="btn btn-white btn-lg">
+            <i class="fa-solid fa-user-plus"></i> Sign Up Free
+          </a>
+          <a href="store.html" class="btn btn-ghost btn-lg">
+            Shop Now <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="cta-pill-float" aria-hidden="true" style="right: 5%; top: 40%; font-size: 0; pointer-events: none;"><img src="assets/mouse.webp" alt="" style="width: 140px; height: 140px; object-fit:contain; opacity: 0.15; transform: rotate(25deg);" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-5" data-aos="fade-up">
@@ -1510,9 +1568,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     NEWSLETTER
-════════════════════════════════════════════════ -->
 <section class="section bg-accent" style="background:var(--clr-accent2);">
   <div class="container text-center" data-aos="zoom-in">
     <span class="eyebrow">Stay Updated</span>
@@ -1532,9 +1587,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════ -->
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
@@ -1631,10 +1683,6 @@
 
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- ════════════════════════════════════════════
-     SCRIPTS
-════════════════════════════════════════════ -->
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
@@ -1644,86 +1692,6 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  
-  if (typeof AOS !== 'undefined') {
-    AOS.init({ 
-      duration: 700, 
-      once: true, 
-      offset: 60, 
-      easing: 'ease-out-cubic',
-      disable: 'mobile'
-    });
-  }
-
-  
-  const navbar = document.getElementById('navbar');
-  const onScroll = () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-      navbar.classList.remove('navbar--hero');
-    } else {
-      navbar.classList.remove('scrolled');
-      navbar.classList.add('navbar--hero');
-    }
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  
-  const hamburger = document.getElementById('hamburger');
-  const mobileOverlay = document.getElementById('mobileOverlay');
-
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileOverlay.classList.contains('is-open');
-    if (isOpen) {
-      closeMobileMenu();
-    } else {
-      mobileOverlay.classList.add('is-open');
-      hamburger.classList.add('is-open');
-      hamburger.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-    }
-  });
-
-  
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      closeMobileMenu();
-      closeSearch();
-    }
-  });
-
-  
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 992) {
-      closeMobileMenu();
-    }
-  });
-
-  
-  const searchOverlay = document.getElementById('searchOverlay');
-  const searchToggle  = document.getElementById('searchToggle');
-  const searchClose   = document.getElementById('searchClose');
-  const searchInput   = document.getElementById('searchInput');
-
-  searchToggle.addEventListener('click', () => {
-    searchOverlay.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    setTimeout(() => searchInput.focus(), 300);
-  });
-  searchClose.addEventListener('click', closeSearch);
-  searchOverlay.addEventListener('click', e => {
-    if (e.target === searchOverlay) closeSearch();
-  });
-  searchInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      closeSearch();
-      window.location.href = 'store.html';
-    }
-  });
 
 
 
@@ -1749,32 +1717,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
   const counters = document.querySelectorAll('.counter');
-  const countObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = +el.dataset.target;
-      const duration = 2000;
-      const step = target / (duration / 16);
-      let current = 0;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = target >= 10000
-          ? Math.floor(current).toLocaleString('en-IN')
-          : Math.floor(current) + (el.dataset.suffix || '');
-        if (current >= target) clearInterval(timer);
-      }, 16);
-      countObserver.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  counters.forEach(c => countObserver.observe(c));
+  let countersStarted = false;
+  const startCounters = () => {
+    if (countersStarted || !counters.length) return;
+    const rect = counters[0].getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      countersStarted = true;
+      counters.forEach(el => {
+        const target = +el.dataset.target;
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        const suffix = el.dataset.suffix || '+';
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          const value = Math.floor(current);
+          const formatted = target >= 1000 ? value.toLocaleString('en-IN') : String(value);
+          el.textContent = formatted + suffix;
+          if (current >= target) clearInterval(timer);
+        }, 16);
+      });
+      window.removeEventListener('scroll', startCounters);
+    }
+  };
+  window.addEventListener('scroll', startCounters, { passive: true });
+  startCounters();
 
   
   const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    btt.classList.toggle('visible', window.scrollY > 400);
-  }, { passive: true });
-  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  if (btt) {
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
   
   const animEls = document.querySelectorAll('.anim-fade-up,.anim-fade-left,.anim-fade-right,.anim-scale,.anim-flip');
@@ -1824,24 +1800,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if(typedTextSpan) type();
 
 });
-
-
-function closeMobileMenu() {
-  document.getElementById('mobileOverlay').classList.remove('is-open');
-  document.getElementById('hamburger').classList.remove('is-open');
-  document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-  document.documentElement.style.overflow = '';
-}
-
-function closeSearch() {
-  document.getElementById('searchOverlay').classList.remove('is-open');
-  document.body.style.overflow = '';
-  document.documentElement.style.overflow = '';
-}
-
 function showToast(msg, icon = 'fa-circle-check') {
   const container = document.getElementById('toastContainer');
+  if (!container) return;
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `<i class="fa-solid ${icon}"></i>${msg}`;
@@ -1853,12 +1814,18 @@ function handleNewsletter(e) {
   e.preventDefault();
   window.location.href = '404.html';
 }
-
-// --- 3D SCROLL SEQUENCE LOGIC ---
 const frameEl = document.getElementById("hero-3d-frame");
 if (frameEl) {
-  const frameCount = 184;
-  const currentFrame = index => `assets/section1/frame_${(index + 1).toString().padStart(3, '0')}.webp`;
+  const frameNumbers = [];
+  for (let i = 1; i <= 184; i++) {
+    if (i >= 177 && i <= 180) continue;
+    frameNumbers.push(i);
+  }
+  const frameCount = frameNumbers.length;
+  const currentFrame = index => {
+    const num = frameNumbers[Math.min(index, frameCount - 1)];
+    return `assets/section1/frame_${num.toString().padStart(3, '0')}.webp`;
+  };
 
   const images = [];
   const imageSequence = { frame: 0 };
