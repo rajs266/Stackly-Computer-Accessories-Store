@@ -28,9 +28,7 @@
   <link rel="stylesheet" href="style.css?v=5"/>
 
   <style>
-    /* ══════════════════════════════════════════════
-       STORE-SPECIFIC STYLES
-    ══════════════════════════════════════════════ */
+
 
     
     .store-header {
@@ -2273,9 +2271,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
 
 <script>
-/* ══════════════════════════════════════════════
-   STORE PAGE — JavaScript
-══════════════════════════════════════════════ */
 
 
 let currentView = 'grid';
@@ -2451,7 +2446,8 @@ function filterRating(element, ratingVal) {
 function applySearch(term) {
   currentPage = 1;
   applyFilters(term);
-}let currentPage = 1;
+}
+let currentPage = 1;
 const itemsPerPage = 16;
 let filteredCols = [];
 
@@ -2583,7 +2579,8 @@ function renderPagination(totalPages) {
   next.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
   next.onclick = (e) => { e.preventDefault(); if (currentPage < totalPages) { currentPage++; applySortAndPaginate(); } };
   nav.appendChild(next);
-}function applySort() {
+}
+function applySort() {
   currentPage = 1;
   applySortAndPaginate();
 }

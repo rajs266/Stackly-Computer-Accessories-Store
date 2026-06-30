@@ -1,9 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ══════════════════════════════════════════════
-   1. CSS CUSTOM PROPERTIES (Design Tokens)
-══════════════════════════════════════════════ */
 :root {
   
   --clr-primary:       #2563eb;
@@ -67,9 +64,7 @@
   --perspective: 1200px;
 }
 
-/* ══════════════════════════════════════════════
-   2. RESET & BASE
-══════════════════════════════════════════════ */
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -97,9 +92,6 @@ ul, ol { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 input, textarea, select { font-family: inherit; }
 
-/* ══════════════════════════════════════════════
-   3. TYPOGRAPHY
-══════════════════════════════════════════════ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   line-height: 1.2;
@@ -148,9 +140,7 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
-/* ══════════════════════════════════════════════
-   4. LAYOUT UTILITIES
-══════════════════════════════════════════════ */
+
 .container {
   width: 100%;
   max-width: 1220px;
@@ -180,9 +170,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--sp-lg);
 }
 
-/* ══════════════════════════════════════════════
-   5. SCROLL ANIMATION SYSTEM
-══════════════════════════════════════════════ */
+
 
 
 .anim-fade-up {
@@ -262,9 +250,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ══════════════════════════════════════════════
-   6. BUTTONS
-══════════════════════════════════════════════ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -358,9 +343,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-sm { padding: 0.55rem 1.25rem; font-size: 0.82rem; }
 .btn-lg { padding: 0.95rem 2.2rem; font-size: 1rem; }
 
-/* ══════════════════════════════════════════════
-   7. CARDS — Glass & 3D
-══════════════════════════════════════════════ */
+
 .card {
   background: var(--clr-white);
   border-radius: var(--r-lg);
@@ -488,9 +471,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
 }
 
-/* ══════════════════════════════════════════════
-   8. NAVBAR
-══════════════════════════════════════════════ */
 .navbar {
   position: fixed;
   top: 0;
@@ -841,15 +821,13 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.82rem 1.85rem;
   font-size: 1.12rem;
   font-weight: 600;
-}.mobile-overlay__header,
+}
+.mobile-overlay__header,
 .mobile-overlay__bottom,
 .mobile-overlay__divider {
   display: none;
 }
 
-/* ══════════════════════════════════════════════
-   9. HERO SECTION
-══════════════════════════════════════════════ */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -1107,9 +1085,7 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translate(-50%, 14px); opacity: 0; }
 }
 
-/* ══════════════════════════════════════════════
-   10. SECTION — FEATURES / USP STRIP
-══════════════════════════════════════════════ */
+
 .features-strip {
   background: var(--clr-primary);
   padding-block: 1.25rem;
@@ -1152,9 +1128,7 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translateX(-50%); }
 }
 
-/* ══════════════════════════════════════════════
-   11. SECTION — CATEGORIES
-══════════════════════════════════════════════ */
+
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -1211,9 +1185,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
 }
 
-/* ══════════════════════════════════════════════
-   12. SECTION — BANNER / CTA STRIP
-══════════════════════════════════════════════ */
+
 .cta-banner {
   position: relative;
   overflow: hidden;
@@ -1266,9 +1238,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .cta-banner__action { position: relative; z-index: 2; }
 
-/* ══════════════════════════════════════════════
-   13. SECTION — TESTIMONIALS
-══════════════════════════════════════════════ */
+
 .testimonials-wrap {
   overflow: hidden;
   position: relative;
@@ -1395,9 +1365,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.1);
 }
 
-/* ══════════════════════════════════════════════
-   14. SECTION — BLOG CARDS
-══════════════════════════════════════════════ */
+
 .blog-card {
   background: var(--clr-white);
   border-radius: var(--r-lg);
@@ -1461,9 +1429,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .blog-card__meta i { font-size: 0.85rem; color: var(--clr-primary); }
 
-/* ══════════════════════════════════════════════
-   15. ABOUT PAGE
-══════════════════════════════════════════════ */
 .about-visual {
   position: relative;
 }
@@ -1603,9 +1568,6 @@ h1, h2, h3, h4, h5, h6 {
 .team-card__name { font-size: 1rem; font-weight: 700; color: var(--clr-dark); }
 .team-card__role { font-size: 0.78rem; color: var(--clr-primary); font-weight: 600; }
 
-/* ══════════════════════════════════════════════
-   16. STORE / SHOP
-══════════════════════════════════════════════ */
 
 .shop-filters {
   display: flex;
@@ -1711,9 +1673,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1rem;
 }
 
-/* ══════════════════════════════════════════════
-   17. CONTACT PAGE
-══════════════════════════════════════════════ */
+
 .contact-card {
   background: var(--clr-white);
   border-radius: var(--r-lg);
@@ -1795,9 +1755,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   display: block;
 }
 
-/* ══════════════════════════════════════════════
-   18. AUTH PAGES (Sign In / Get Started)
-══════════════════════════════════════════════ */
+
 .auth-page {
   min-height: 100vh;
   display: flex;
@@ -1890,9 +1848,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   transform: translateY(-2px);
 }
 
-/* ══════════════════════════════════════════════
-   19. BLOG PAGE
-══════════════════════════════════════════════ */
+
 .blog-hero {
   background: var(--grad-dark);
   padding-block: 6rem 3rem;
@@ -1939,9 +1895,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   gap: 0.75rem;
 }
 
-/* ══════════════════════════════════════════════
-   20. FOOTER
-══════════════════════════════════════════════ */
+
 .footer {
   background: var(--clr-dark);
   color: rgba(255,255,255,0.7);
@@ -2133,9 +2087,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 }
 .footer__legal a:hover { color: var(--clr-white); }
 
-/* ══════════════════════════════════════════════
-   21. PAGE HEADER (inner pages)
-══════════════════════════════════════════════ */
+
 .page-header {
   background: var(--grad-dark);
   padding-block: 5.5rem 2.5rem;
@@ -2175,9 +2127,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 .breadcrumb a:hover { color: var(--clr-accent); }
 .breadcrumb i { font-size: 0.7rem; }
 
-/* ══════════════════════════════════════════════
-   22. STATS / COUNTER SECTION
-══════════════════════════════════════════════ */
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -2216,9 +2166,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 .stat-card__num .accent { color: var(--clr-primary); }
 .stat-card__label { font-size: 0.82rem; color: var(--clr-grey); font-weight: 600; }
 
-/* ══════════════════════════════════════════════
-   23. SEARCH OVERLAY
-══════════════════════════════════════════════ */
+
 .search-overlay {
   position: fixed;
   inset: 0;
@@ -2280,9 +2228,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   margin-top: 1rem;
 }
 
-/* ══════════════════════════════════════════════
-   24. BACK TO TOP
-══════════════════════════════════════════════ */
+
 .back-to-top {
   position: fixed;
   bottom: 1.5rem;
@@ -2314,9 +2260,6 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   transform: translateY(-4px);
 }
 
-/* ══════════════════════════════════════════════
-   25. BADGES, TAGS, CHIPS
-══════════════════════════════════════════════ */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -2333,9 +2276,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 .badge-danger  { background: rgba(240,90,90,0.12); color: var(--clr-danger); }
 .badge-info    { background: rgba(59,130,246,0.12); color: #3b82f6; }
 
-/* ══════════════════════════════════════════════
-   26. SECTION BG VARIANTS
-══════════════════════════════════════════════ */
+
 .bg-light    { background: var(--clr-light); }
 .bg-dark     { background: var(--clr-dark); }
 .bg-dark2    { background: var(--clr-dark2); }
@@ -2348,9 +2289,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   background-size: 24px 24px;
 }
 
-/* ══════════════════════════════════════════════
-   27. UTILITY CLASSES
-══════════════════════════════════════════════ */
+
 .mt-section  { margin-top: var(--sp-xl); }
 .mb-section  { margin-bottom: var(--sp-xl); }
 .text-center { text-align: center; }
@@ -2390,9 +2329,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   margin-block: var(--sp-lg);
 }
 
-/* ══════════════════════════════════════════════
-   28. KEYFRAME ANIMATIONS
-══════════════════════════════════════════════ */
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -2464,9 +2401,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   100% { transform: scale(2.5); opacity: 0; }
 }
 
-/* ══════════════════════════════════════════════
-   29. TOAST / NOTIFICATION
-══════════════════════════════════════════════ */
+
 .toast-container {
   position: fixed;
   bottom: 1.5rem;
@@ -2502,9 +2437,6 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* ══════════════════════════════════════════════
-   30. 404 PAGE
-══════════════════════════════════════════════ */
 .page-404 {
   min-height: 100vh;
   display: flex;
@@ -2539,9 +2471,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   margin-inline: auto;
 }
 
-/* ══════════════════════════════════════════════
-   31. ACCORDION (FAQ)
-══════════════════════════════════════════════ */
+
 .accordion-item {
   border: 1px solid rgba(37,99,235,0.12);
   border-radius: var(--r-md);
@@ -2602,9 +2532,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   line-height: 1.7;
 }
 
-/* ══════════════════════════════════════════════
-   32. TABS
-══════════════════════════════════════════════ */
+
 .tabs-nav {
   display: flex;
   gap: 0.25rem;
@@ -2642,9 +2570,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 .tab-panel { display: none; animation: fadeIn 0.4s var(--ease-out); }
 .tab-panel.active { display: block; }
 
-/* ══════════════════════════════════════════════
-   33. RESPONSIVE — TABLET (≤ 991px)
-══════════════════════════════════════════════ */
+
 @media (max-width: 991.98px) {
 
   .footer__grid {
@@ -2673,9 +2599,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   .hamburger { display: flex; }
 }
 
-/* ══════════════════════════════════════════════
-   34. RESPONSIVE — MOBILE (≤ 767px)
-══════════════════════════════════════════════ */
+
 @media (max-width: 767.98px) {
 
   :root {
@@ -2784,9 +2708,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   img, video, iframe { max-width: 100%; }
 }
 
-/* ══════════════════════════════════════════════
-   35. RESPONSIVE — SMALL MOBILE (≤ 480px)
-══════════════════════════════════════════════ */
+
 @media (max-width: 480px) {
   .categories-grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
   .category-card__label { font-size: 0.72rem; }
@@ -2864,18 +2786,13 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   }
 }
 
-/* ══════════════════════════════════════════════
-   36. FOCUS ACCESSIBLE OUTLINE
-══════════════════════════════════════════════ */
 :focus-visible {
   outline: 2.5px solid var(--clr-primary);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* ══════════════════════════════════════════════
-   36.5. CARD IMAGE HELPERS (Replacing Emojis)
-   ══════════════════════════════════════════════ */
+
 .prod-thumb {
   position: relative;
   overflow: hidden;
@@ -2933,9 +2850,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   transform: scale(1.08);
 }
 
-/* ══════════════════════════════════════════════
-   37. PRINT
-══════════════════════════════════════════════ */
+
 @media print {
   .navbar,
   .mobile-overlay,
@@ -2948,9 +2863,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   .hero { min-height: auto; padding-block: 1rem; }
 }
 
-/* ══════════════════════════════════════════════
-   38. MOBILE PRODUCT QUICK VIEW BUTTON
-   ══════════════════════════════════════════════ */
+
 .prod-eye-btn-mobile {
   display: none !important; 
 }
@@ -3097,9 +3010,7 @@ html, body {
   overflow: visible !important;
 }
 
-/* ══════════════════════════════════════════════
-   STACKLY TECH STORE — Logo & 3D Components
-══════════════════════════════════════════════ */
+
 .logo-brand {
   display: inline-flex;
   align-items: center;
@@ -3261,7 +3172,8 @@ html, body {
 }
 .navbar__inner {
   overflow: visible !important;
-}@keyframes floatDynamic {
+}
+@keyframes floatDynamic {
   0% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-10px) rotate(1deg); }
   100% { transform: translateY(0) rotate(0deg); }
@@ -3302,7 +3214,8 @@ html, body {
 
 .promo-split:hover .promo-split__img img {
   transform: scale(1.05) !important;
-}html.preloader-active,
+}
+html.preloader-active,
 html.preloader-active body {
   overflow: hidden !important;
   overflow-x: clip !important;
