@@ -504,7 +504,6 @@ h1, h2, h3, h4, h5, h6 {
 .navbar__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
 }
 
@@ -514,6 +513,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.6rem;
   text-decoration: none;
   flex-shrink: 0;
+  margin-right: auto;
 }
 
 .navbar__logo img {
@@ -1984,7 +1984,7 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   border-radius: var(--r-full);
 }
 
-.footer__links { display: flex; flex-direction: column; gap: 0.5rem; }
+.footer__links { display: flex; flex-direction: column; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
 
 .footer__link {
   font-size: 0.87rem;
